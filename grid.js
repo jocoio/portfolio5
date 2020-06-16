@@ -54,6 +54,12 @@ function generateGrid () {
     for (let block of gridcont.children) {
       block.classList.remove('mono');
     }
+    // let animation = anime({
+    //   targets: '.block',
+    //   duration: 10000,
+    //   backgroundColor: '#000000',
+    //   delay: anime.stagger(200, {grid: [numRows, numCols]})
+    // });   
   }, 1500);
 }
 
@@ -182,10 +188,9 @@ function setGridTemplateCols () {
 function setBlockSize () {
 
   let smallest = Math.min(window.innerWidth, window.innerHeight);
-  console.log(smallest);
 
   if (smallest <= 450) {
-    BLOCKIDEAL = 50;
+    BLOCKIDEAL = 75;
   }
   else if (smallest < 600) {
     BLOCKIDEAL = 100;
