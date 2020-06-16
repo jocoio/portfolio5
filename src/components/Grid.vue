@@ -2,9 +2,9 @@
   <div id="grid-container" :style="container_style">
     <Block 
       v-for="block in blocks"
-      :id="block.id" 
       :key="block.id"
-      :color="randomColor()"
+      :id="block.id"
+      :mode="mode"
     >
     </Block>
   </div>
@@ -20,7 +20,6 @@ export default {
   name: 'Grid',
   data: function () {
     return {
-      colors: ['#dbacac', '#a2c9aa', '#909eb4', '#b06262', '#605e5e', '#2f86ff', '#ffa490'],
       BLOCKIDEAL: 100,
       // Current num of rows and columns in grid
       numCols: 0,
@@ -31,6 +30,8 @@ export default {
       // Grid container object
       // gridcont: null,
       blocks: [],
+      // Current grid mode
+      mode: 'solids',
       // Boolean to prevent overcalling processes while resizing
       resizing: false,
       // Resize timer
@@ -195,10 +196,6 @@ export default {
       else {
         this.BLOCKIDEAL = 200;
       }
-    },
-    // Returns random color from colors list
-    randomColor: function () {
-      return this.colors[Math.floor(Math.random() * this.colors.length)];
     }
   }
 }
