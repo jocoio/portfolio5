@@ -1,10 +1,12 @@
 <template onload="generateGrid();">
   <div id="grid-container" :style="container_style">
     <Block 
+      class="block"
+      v-bind:class="{'intro-style': introing, 'resize-style': resizing}"
       v-for="block in blocks"
       :key="block.id"
       :id="block.id"
-      :mode="mode"
+      :mode="intro"
     >
     </Block>
   </div>
@@ -12,7 +14,8 @@
 
 <script>
 
-// import anime from 'animejs';
+import { mapGetters } from 'vuex';
+import anime from 'animejs/lib/anime.es';
 import Block from './Block';
 
 export default {
@@ -33,7 +36,7 @@ export default {
       // Current grid mode
       mode: 'solids',
       // Boolean to prevent overcalling processes while resizing
-      resizing: false,
+      introing: true,
       // Resize timer
       resizeTimer: null
     }
@@ -48,18 +51,51 @@ export default {
         gridTemplateColumns: 'repeat(' + this.numCols + ', 1fr)'
       }
     },
-    // block_style () {
-    //   return {
-    //     backgroundColor: this.randomColor()
-    //   }
-    // }
+    ...mapGetters({
+      resizing: 'resizing'
+    })
   },
   mounted() {
+    // Create the grid
     this.generateGrid();
+
     // Register an event listener when the Vue component is ready
     window.addEventListener('resize', this.resizeGrid)
+    
+    // Run the intro
+    let vm = this;
+    setTimeout(() => vm.intro(), 500);
   },
   methods: {
+    pause: function () {
+      this.$store.commit('togglePaused');
+    },
+    intro: function () {
+      let vm = this;
+
+      let introTL = anime.timeline({
+        targets: '.block',
+        easing: 'easeOutExpo',
+        duration: 1000,
+        complete: function () {
+          vm.introing = false
+          vm.$store.commit("setMode", 'solids');
+        }
+      })
+      .add({
+        borderColor: '#FFFFFF',
+        borderWidth: '1px',
+        duration: 750,
+        delay: anime.stagger(50)
+      })
+      .add({
+        borderColor: 'rgba(255, 255, 255, 0)',
+        borderWidth: '0px',
+        duration: 750
+      });
+
+      introTL.play();
+    },
     // Initial grid generation
     // Creates even square blocks according to width & height
     generateGrid: function () {
@@ -98,7 +134,7 @@ export default {
 
       // Runs once at start of resizing
       if (!this.resizing) {
-        this.resizing = true;
+        this.$store.commit('setResizing', true);
         // for (let block of this.gridcont.children) {
         //   block.classList.add('mono');
         // }
@@ -107,7 +143,7 @@ export default {
       // Runs once at end of resizing
       clearTimeout(this.resizeTimer);
       this.resizeTimer = setTimeout(() => {
-        vm.resizing = false;
+        vm.$store.commit('setResizing', false);
         // for (let block of vm.gridcont.children) {
         //   block.classList.remove('mono');
         // }
@@ -208,5 +244,23 @@ export default {
     margin: 0;
     width: 100vw;
     height: 100vh;
+  }
+
+  .block {
+    border-style: solid;
+   /*
+    border-color: #FFFFFF;*/
+    border-width: 0px;
+    background-color: #000000; 
+  }
+
+  .block.intro-style {
+    border-color: #000000;
+    border-width: 1px;
+  }
+
+  .block.resize-style {
+    border-width: 1px !important;
+    border: 1px solid #FFFFFF !important;
   }
 </style>

@@ -1,15 +1,33 @@
 <template>
-  <div class="solid" :style="color_style" />
+  <div class="solid" :style="color_style" :id="num"/>
 </template>
 
 <script>
+import anime from 'animejs';
 
 export default {
   name: 'Solids',
   data: function () {
     return {
       colors: ['#dbacac', '#a2c9aa', '#909eb4', '#b06262', '#605e5e', '#2f86ff', '#ffa490'],
-      color: '#000000'
+      color: '#FFFFFF',
+      introAnim: anime({
+        duration: 500,
+        targets: '.solid',
+        easing: 'easeInOutQuad',
+        loop: false,
+        autoplay: false,
+        opacity: 1,
+        // backgroundColor: "#444444"
+      }),
+      colorAnim: anime({
+        duration: 500,
+        targets: '#' + this.id,
+        easing: 'easeInOutQuad',
+        loop: false,
+        autoplay: false,
+        backgroundColor: "#444444"
+      }),
     }
   },
   computed: {
@@ -20,6 +38,8 @@ export default {
     }
   },
   props: {
+    paused: Boolean,
+    num: Number
   },
   components: {
   },
@@ -30,21 +50,32 @@ export default {
     },
     // Returns random color from colors list
     randomColor: function () {
-      return this.colors[Math.floor(Math.random() * this.colors.length)];
+      return this.colors[Math.floor(Math.random() * 7)];
+    }
+  },
+  watch: {
+    paused: function () {
+      // this.paused ? this.colorAnim.play() : this.colorAnim.pause();
     }
   },
   created: function () {
-    let vm = this;
+    this.changeColor();
+    this.introAnim.play();
+    // let vm = this;
+
     let rand = Math.round(Math.random() * (15000) + 2000);
     window.setInterval(() => {
-      vm.changeColor();
+      // vm.colorAnim.play();
+      this.changeColor();
     }, rand);
+
   }
 }
 </script>
 
 <style>
   .solid {
-    transition: background-color 500ms;
+    background-color: #000000;
+    opacity: 0;
   }
 </style>

@@ -1,53 +1,58 @@
 <template>
-  <div class="block">
-      <div v-if="first" class="logo"><Logo/></div>
-      <Solids v-else-if="mode==='solids'" />
+  <div>
+      <div v-if="first" class="logo" @click="pause"><Logo/></div>
+      <div v-else-if="resizing"></div>
+      <Solids v-else-if="mode==='solids'" :paused="paused" :num="id"/>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+// import anime from 'animejs';
+
 import Solids from '../modes/Solids';
 import Logo from '../assets/Logo';
 
 export default {
   name: 'Grid',
-  data: function () {
-    return {
-    }
-  },
-  props: {
-    id: Number,
-    mode: String,
-    color: String
-  },
   components: {
     Logo,
     Solids
   },
+  props: {
+    id: Number
+  },
+  data: function () {
+    return {
+
+    }
+  },
   computed: {
     first() {
       return this.id === 1;
+    },
+    ...mapGetters({
+      mode: 'mode',
+      paused: 'paused',
+      resizing: 'resizing'
+    })
+  },
+  watch: {
+    paused() {
+
+    }
+  },
+  methods: {
+    pause() {
+      this.$store.commit('togglePaused');
     }
   },
   mounted: function () {
-    console.log(this.id);
   }
 }
 </script>
 
 <style>
-  .block {
-    /* text-align: center; */
-    transition: border-color 500ms, background-color 250ms;
-    /* border: 0.5px solid #000000; */
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-
-  .mono {
-    /* background-color: transparent !important; */
-    /* border: 0.5px solid black !important; */
-  }
   
   .block>div {
     width: 100%;
