@@ -39,11 +39,13 @@ export default new Vuex.Store({
     setResizing (state, bool) {
       state.resizing = bool;
     },
-    toggleTransition (state) {
-      state.transitioning = !state.transitioning;
+    setTransitioning (state, bool) {
+      state.transitioning = bool
     }
   },
   actions : {
-
+    outroComplete(context) {
+      context.commit('setMode', 'mono')
+    }
   }
 })

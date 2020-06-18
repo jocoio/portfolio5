@@ -1,8 +1,9 @@
 <template>
   <div>
-      <div v-if="first" class="logo" @click="pause"><Logo/></div>
+      <div v-if="first" class="logo" @click="transition"><Logo/></div>
       <div v-else-if="resizing"></div>
-      <Solids v-else-if="mode==='solids'" :paused="paused" :num="id"/>
+      <Mono v-else-if="mode==='mono'" :paused="paused" :num="id" :changing="transitioning"/>
+      <Solids v-else-if="mode==='solids'" :paused="paused" :num="id" :changing="transitioning"/>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import { mapGetters } from 'vuex';
 // import anime from 'animejs';
 
+import Mono from '../modes/Mono';
 import Solids from '../modes/Solids';
 import Logo from '../assets/Logo';
 
@@ -17,6 +19,7 @@ export default {
   name: 'Grid',
   components: {
     Logo,
+    Mono,
     Solids
   },
   props: {
@@ -34,7 +37,8 @@ export default {
     ...mapGetters({
       mode: 'mode',
       paused: 'paused',
-      resizing: 'resizing'
+      resizing: 'resizing',
+      transitioning: 'transitioning'
     })
   },
   watch: {
@@ -43,8 +47,11 @@ export default {
     }
   },
   methods: {
-    pause() {
-      this.$store.commit('togglePaused');
+    transition() {
+      this.$store.commit('setTransitioning', true);
+      setTimeout(() =>{
+      this.$store.dispatch('outroComplete');
+      }, 500);
     }
   },
   mounted: function () {

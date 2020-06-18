@@ -6,7 +6,6 @@
       v-for="block in blocks"
       :key="block.id"
       :id="block.id"
-      :mode="intro"
     >
     </Block>
   </div>
@@ -33,8 +32,6 @@ export default {
       // Grid container object
       // gridcont: null,
       blocks: [],
-      // Current grid mode
-      mode: 'solids',
       // Boolean to prevent overcalling processes while resizing
       introing: true,
       // Resize timer
@@ -69,6 +66,9 @@ export default {
   methods: {
     pause: function () {
       this.$store.commit('togglePaused');
+    },
+    transition: function () {
+      this.$store.commit('setTransitioning', true);
     },
     intro: function () {
       let vm = this;
@@ -108,22 +108,6 @@ export default {
       for (let i = 0; i < this.numRows * this.numCols; i++) {
         this.blocks.push({id: i + 1});
       }
-
-      // The view model
-      // var vm = this;
-
-      // Animate blocks in
-      setTimeout(() => {
-        // for (let block of vm.gridcont.children) {
-        //   block.classList.remove('mono');
-        // }
-        // this.animation = anime({
-        //   targets: '.block',
-        //   duration: 10000,
-        //   backgroundColor: '#000000',
-        //   delay: anime.stagger(100)
-        // });   
-      }, 1500);
     },
     // ---------- RESIZE ---------- //
     // Called on every resize, multiple times per resize
@@ -135,18 +119,12 @@ export default {
       // Runs once at start of resizing
       if (!this.resizing) {
         this.$store.commit('setResizing', true);
-        // for (let block of this.gridcont.children) {
-        //   block.classList.add('mono');
-        // }
       }
 
       // Runs once at end of resizing
       clearTimeout(this.resizeTimer);
       this.resizeTimer = setTimeout(() => {
         vm.$store.commit('setResizing', false);
-        // for (let block of vm.gridcont.children) {
-        //   block.classList.remove('mono');
-        // }
         vm.reID();
       }, 500);
 
