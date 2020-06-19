@@ -30,11 +30,11 @@ export default {
       // Placeholders that get calculated on resize
       colsNeeded: 0,
       rowsNeeded: 0,
-      // Grid container object
-      // gridcont: null,
       blocks: [],
-      // Resize timer
-      resizeTimer: null
+      // Timeout for when user is done resizing
+      resizeTimer: null,
+      // Interval to randomly animate a grid block
+      randomAnimator: null
     }
   },
   components: {
@@ -47,9 +47,16 @@ export default {
     numRows: function () {
       this.$store.commit('setRows', this.numRows);
     },
-    // Start the 
     introing: function () {
       if (!this.introing) {
+        this.startRandomAnimator();
+      }
+    },
+    resizing: function () {
+      if (this.resizing) {
+        clearInterval(this.randomAnimator);
+      }
+      else {
         this.startRandomAnimator();
       }
     }
@@ -111,7 +118,7 @@ export default {
     // Chooses a random block child on interval and sends call to animate it
     startRandomAnimator: function () {
       let idx = 0;
-      setInterval(() => {
+      this.randomAnimator = setInterval(() => {
         idx = Math.floor(Math.random() * (this.rows * this.cols));
         if (idx > 1) this.$refs[idx][0].animate();
       }, 1000)
