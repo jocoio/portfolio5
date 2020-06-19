@@ -1,22 +1,24 @@
 <template>
-  <div class="mono" :id="num" :ref="num" :style="color_style"/>
+  <svg class="dot" :ref="num" width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"> 
+    <circle cx="50" cy="50" r="30" fill="white"/>
+  </svg>
 </template>
 
 <script>
 import anime from 'animejs';
 
 export default {
-  name: 'Mono',
+  name: 'Dot',
   data: function () {
     return {
-      color: '#b06262',
-      introAnim: null
+      introAnim: null,
+      mainAnim: null
     }
   },
   computed: {
     color_style () {
       return {
-        backgroundColor: this.color
+        // backgroundColor: 'this.color'
       }
     }
   },
@@ -24,10 +26,11 @@ export default {
     changing: Boolean,
     num: Number
   },
-  components: {
-  },
+  components: {},
   methods: {
-    animate: function () {},
+    animate: function () {
+      console.log('dot');
+    },
     initIntro: function () {
       this.introAnim = anime({
         duration: 500,
@@ -35,8 +38,11 @@ export default {
         easing: 'easeInOutQuad',
         loop: false,
         autoplay: false,
-        opacity: 1,
+        opacity: 1
       }) 
+    },
+    initMain: function () {
+
     }
   },
   watch: {
@@ -54,7 +60,7 @@ export default {
 </script>
 
 <style>
-  .mono {
+  .dot {
     opacity: 0;
   }
 </style>

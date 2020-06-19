@@ -5,6 +5,7 @@
       <div v-else-if="resizing"></div>
       <Mono v-else-if="mode==='mono'" :num="id" :ref="id" :changing="transitioning"/>
       <Solids v-else-if="mode==='solids'" :num="id" :ref="id" :changing="transitioning"/>
+      <Shapes v-else-if="mode==='shapes'" :num="id" :ref="id" :changing="transitioning"/>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import { mapGetters } from 'vuex';
 
 import Mono from '../modes/Mono';
 import Solids from '../modes/Solids';
+import Shapes from '../modes/shapes/Shapes';
 import Logo from '../assets/Logo';
 
 export default {
@@ -21,6 +23,7 @@ export default {
   components: {
     Mono,
     Solids,
+    Shapes,
     Logo
   },
   props: {

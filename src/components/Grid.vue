@@ -1,4 +1,4 @@
-<template onload="generateGrid();">
+<template>
   <div id="grid-container" :style="container_style">
     <Block 
       class="block"
@@ -47,6 +47,7 @@ export default {
     numRows: function () {
       this.$store.commit('setRows', this.numRows);
     },
+    // Start the 
     introing: function () {
       if (!this.introing) {
         this.startRandomAnimator();
@@ -61,6 +62,8 @@ export default {
       }
     },
     ...mapGetters({
+      rows: 'rows',
+      cols: 'cols',
       resizing: 'resizing',
       introing: 'introing'
     })
@@ -74,13 +77,8 @@ export default {
     
     // Run the intro
     setTimeout(() => this.intro(), 500);
-
-    // this.$refs[7][0].animate();
   },
   methods: {
-    pause: function () {
-      this.$store.commit('togglePaused');
-    },
     transition: function () {
       this.$store.commit('setTransitioning', true);
     },
@@ -112,8 +110,10 @@ export default {
     },
     // Chooses a random block child on interval and sends call to animate it
     startRandomAnimator: function () {
+      let idx = 0;
       setInterval(() => {
-        this.$refs[2][0].animate();
+        idx = Math.floor(Math.random() * (this.rows * this.cols));
+        if (idx > 1) this.$refs[idx][0].animate();
       }, 1000)
     },
     // Initial grid generation
@@ -242,10 +242,11 @@ export default {
 
   .block {
     border-style: solid;
-   /*
-    border-color: #FFFFFF;*/
     border-width: 0px;
     background-color: #000000; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .block.intro-style {

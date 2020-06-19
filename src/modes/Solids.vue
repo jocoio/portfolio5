@@ -26,13 +26,15 @@ export default {
   },
   props: {
     changing: Boolean,
-    paused: Boolean,
     num: Number
   },
   components: {
   },
   methods: {
     animate: function () {
+      if (this.animated) {
+        this.colorAnim.reverse();
+      }
       this.colorAnim.play();
     },
     initIntro: function () {
@@ -52,7 +54,8 @@ export default {
           easing: 'easeInOutQuad',
           loop: false,
           autoplay: false,
-          backgroundColor: this.color
+          backgroundColor: this.color,
+          complete: () => this.animated = true
       });
     },
     // Change color on a constant interval
@@ -68,9 +71,6 @@ export default {
     changing: function () {
       this.introAnim.reverse();
       this.introAnim.play();
-    },
-    paused: function () {
-      // this.paused ? this.colorAnim.play() : this.colorAnim.pause();
     }
   },
   created: function () {
@@ -82,12 +82,6 @@ export default {
     
     this.initIntro();
     this.initColor();
-
-    // let rand = Math.round(Math.random() * (15000) + 2000);
-    // window.setTimeout(() => {
-    //   this.changeColor();
-    //   this.colorAnim.play();
-    // }, rand);
 
     this.introAnim.play();
   }

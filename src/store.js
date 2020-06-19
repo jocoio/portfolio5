@@ -11,8 +11,6 @@ export default new Vuex.Store({
     cols: 0,
     // Global grid mode
     mode: 'intro',
-    // Pause toggle for micro animation cycles
-    paused: false,
     // Window resizing?
     resizing: false,
     // Initial intro animation
@@ -29,9 +27,6 @@ export default new Vuex.Store({
     },
     mode(state) {
       return state.mode;
-    },
-    paused(state) {
-      return state.paused;
     },
     resizing(state) {
       return state.resizing;
@@ -53,9 +48,6 @@ export default new Vuex.Store({
     }, 
     setMode (state, mode) {
       state.mode = mode;
-    },
-    togglePaused (state) {
-      state.paused = state.paused ? false : true;
     },
     setResizing (state, bool) {
       state.resizing = bool;
