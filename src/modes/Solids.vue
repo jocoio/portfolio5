@@ -11,6 +11,8 @@ export default {
     return {
       colors: ['#dbacac', '#a2c9aa', '#909eb4', '#b06262', '#605e5e', '#2f86ff', '#ffa490'],
       color: '#FFFFFF',
+      // Has this solid animated already
+      animated: false,
       introAnim: null,
       colorAnim: null
     }
@@ -30,6 +32,9 @@ export default {
   components: {
   },
   methods: {
+    animate: function () {
+      this.colorAnim.play();
+    },
     initIntro: function () {
       this.introAnim = anime({
         duration: 500,
@@ -78,11 +83,11 @@ export default {
     this.initIntro();
     this.initColor();
 
-    let rand = Math.round(Math.random() * (15000) + 2000);
-    window.setTimeout(() => {
-      this.changeColor();
-      this.colorAnim.play();
-    }, rand);
+    // let rand = Math.round(Math.random() * (15000) + 2000);
+    // window.setTimeout(() => {
+    //   this.changeColor();
+    //   this.colorAnim.play();
+    // }, rand);
 
     this.introAnim.play();
   }

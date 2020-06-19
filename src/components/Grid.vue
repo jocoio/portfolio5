@@ -6,6 +6,7 @@
       v-for="block in blocks"
       :key="block.id"
       :id="block.id"
+      :ref="block.id"
     >
     </Block>
   </div>
@@ -32,14 +33,25 @@ export default {
       // Grid container object
       // gridcont: null,
       blocks: [],
-      // Boolean to prevent overcalling processes while resizing
-      introing: true,
       // Resize timer
       resizeTimer: null
     }
   },
   components: {
     Block
+  },
+  watch: {
+    numCols: function () {
+      this.$store.commit('setCols', this.numCols);
+    },
+    numRows: function () {
+      this.$store.commit('setRows', this.numRows);
+    },
+    introing: function () {
+      if (!this.introing) {
+        this.startRandomAnimator();
+      }
+    }
   },
   computed: {
     container_style () {
@@ -49,7 +61,8 @@ export default {
       }
     },
     ...mapGetters({
-      resizing: 'resizing'
+      resizing: 'resizing',
+      introing: 'introing'
     })
   },
   mounted() {
@@ -60,8 +73,9 @@ export default {
     window.addEventListener('resize', this.resizeGrid)
     
     // Run the intro
-    let vm = this;
-    setTimeout(() => vm.intro(), 500);
+    setTimeout(() => this.intro(), 500);
+
+    // this.$refs[7][0].animate();
   },
   methods: {
     pause: function () {
@@ -78,7 +92,7 @@ export default {
         easing: 'easeOutExpo',
         duration: 1000,
         complete: function () {
-          vm.introing = false
+          vm.$store.commit("setIntroing", false);
           vm.$store.commit("setMode", 'solids');
         }
       })
@@ -95,6 +109,12 @@ export default {
       });
 
       introTL.play();
+    },
+    // Chooses a random block child on interval and sends call to animate it
+    startRandomAnimator: function () {
+      setInterval(() => {
+        this.$refs[2][0].animate();
+      }, 1000)
     },
     // Initial grid generation
     // Creates even square blocks according to width & height
@@ -142,7 +162,6 @@ export default {
           this.removeColumns(this.numCols - this.colsNeeded);
 
         this.numCols = this.colsNeeded;
-        // this.setGridTemplateCols();
       }
 
       // Rows
@@ -154,7 +173,6 @@ export default {
           this.removeRows(this.numRows - this.rowsNeeded);
 
         this.numRows = this.rowsNeeded;
-        // this.setGridTemplateRows();
       }
     },
     // ---------- RESIZE HELPERS ---------- //
@@ -196,15 +214,13 @@ export default {
     // Sets size range for blocks based on screen width and height
     setBlockSize: function () {
 
-      let smallest = Math.min(window.innerWidth, window.innerHeight);
-
-      if (smallest <= 450) {
+      if (window.innerWidth <= 450) {
         this.BLOCKIDEAL = 75;
       }
-      else if (smallest < 600) {
-        this.BLOCKIDEAL = 100;
+      else if (window.innerWidth < 1440) {
+        this.BLOCKIDEAL = 125;
       }
-      else if (smallest < 1000) {
+      else if (window.innerWidth < 2160) {
         this.BLOCKIDEAL = 175;
       }
       else {

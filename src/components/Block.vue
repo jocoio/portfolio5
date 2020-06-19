@@ -1,9 +1,10 @@
 <template>
-  <div>
-      <div v-if="first" class="logo" @click="transition"><Logo/></div>
+  <div >
+      <Logo v-if="first" @click.native="transition"/>
+      <!-- <Info v-else-if="last" @click.native="transition"/> -->
       <div v-else-if="resizing"></div>
-      <Mono v-else-if="mode==='mono'" :paused="paused" :num="id" :changing="transitioning"/>
-      <Solids v-else-if="mode==='solids'" :paused="paused" :num="id" :changing="transitioning"/>
+      <Mono v-else-if="mode==='mono'" :num="id" :ref="id" :changing="transitioning"/>
+      <Solids v-else-if="mode==='solids'" :num="id" :ref="id" :changing="transitioning"/>
   </div>
 </template>
 
@@ -18,9 +19,9 @@ import Logo from '../assets/Logo';
 export default {
   name: 'Grid',
   components: {
-    Logo,
     Mono,
-    Solids
+    Solids,
+    Logo
   },
   props: {
     id: Number
@@ -34,17 +35,19 @@ export default {
     first() {
       return this.id === 1;
     },
+    last() {
+      return this.id === this.cols;
+    },
     ...mapGetters({
+      rows: 'rows',
+      cols: 'cols',
       mode: 'mode',
-      paused: 'paused',
       resizing: 'resizing',
+      introing: 'introing',
       transitioning: 'transitioning'
     })
   },
   watch: {
-    paused() {
-
-    }
   },
   methods: {
     transition() {
@@ -52,6 +55,9 @@ export default {
       setTimeout(() =>{
       this.$store.dispatch('outroComplete');
       }, 500);
+    },
+    animate() {
+      this.$refs[this.id].animate();
     }
   },
   mounted: function () {
@@ -64,15 +70,5 @@ export default {
   .block>div {
     width: 100%;
     height: 100%;
-  }
-
-  .block>.logo {
-    display: flex;
-    background-color: #000000;
-  }
-
-  .block>.logo>svg {
-    margin: auto;
-    width: 30%;
   }
 </style>
