@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import anime from 'animejs';
 
 export default {
@@ -18,6 +19,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      transitioning: 'transitioning'
+    }),
     color_style () {
       return {
         backgroundColor: this.color
@@ -25,10 +29,17 @@ export default {
     }
   },
   props: {
-    changing: Boolean,
     num: Number
   },
   components: {
+  },
+  watch: {
+    transitioning: function () {
+      if (!this.transitioning) {
+        this.introAnim.reset();
+        this.introAnim.play();
+      } 
+    }
   },
   methods: {
     animate: function () {
@@ -44,7 +55,7 @@ export default {
         easing: 'easeInOutQuad',
         loop: false,
         autoplay: false,
-        opacity: 1,
+        opacity: 1
       }) 
     },
     initColor: function () {
@@ -67,17 +78,13 @@ export default {
       return this.colors[Math.floor(Math.random() * 7)];
     },
   },
-  watch: {
-    changing: function () {
-      this.introAnim.reverse();
-      this.introAnim.play();
-    }
-  },
+
   created: function () {
     this.changeColor();
   },
   mounted: function () {
     
+    // Initial color
     this.$refs[this.num].style.backgroundColor = this.randomColor();
     
     this.initIntro();

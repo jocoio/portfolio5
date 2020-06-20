@@ -1,9 +1,13 @@
 <template>
-  <Dot :ref="num" :num="num"/>
+  <div class="shapes" ref="shapes">
+    <Dot :ref="num" :num="num"/>
+  </div>
 </template>
 
 <script>
-// import anime from 'animejs';
+import { mapGetters } from 'vuex';
+import anime from 'animejs';
+
 import Dot from './atoms/Dot';
 
 export default {
@@ -14,6 +18,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      transitioning: 'transitioning'
+    }),
     color_style () {
       return {
         // backgroundColor: 'this.color'
@@ -30,21 +37,36 @@ export default {
   methods: {
     animate: function () {
       this.$refs[this.num].animate();
-    }
-  },
-  watch: {
-    changing: function () {
-      this.introAnim.reverse();
+    },
+    intro: function () {
+      this.introAnim = anime({
+        duration: 500,
+        targets: this.$refs.shapes,
+        easing: 'easeInOutQuad',
+        loop: false,
+        autoplay: false,
+        opacity: 1
+      });
       this.introAnim.play();
     }
   },
+  watch: {
+    transitioning: function () {
+      if (!this.transitioning) {
+        this.introAnim.reset();
+        this.introAnim.play();
+      } 
+    }
+  },
   created: function () {},
-  mounted: function () {}
+  mounted: function () {
+    this.intro();
+  }
 }
 </script>
 
 <style>
-  .mono {
+  .shapes {
     opacity: 0;
   }
 </style>

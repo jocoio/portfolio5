@@ -23,13 +23,12 @@ export default {
     }
   },
   props: {
-    changing: Boolean,
     num: Number
   },
   components: {},
   methods: {
     animate: function () {
-      console.log('dot');
+      console.log('animating dot');
     },
     initIntro: function () {
       this.introAnim = anime({
@@ -41,26 +40,12 @@ export default {
         opacity: 1
       }) 
     },
-    initMain: function () {
-
-    }
   },
-  watch: {
-    changing: function () {
-      this.introAnim.reverse();
-      this.introAnim.play();
-    }
-  },
+  watch: {},
   created: function () {},
-  mounted: function () {
-    this.initIntro();
-    this.introAnim.play();
-  }
+  mounted: function () {}
 }
 </script>
 
 <style>
-  .dot {
-    opacity: 0;
-  }
 </style>

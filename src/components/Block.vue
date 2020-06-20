@@ -1,6 +1,6 @@
 <template>
   <div >
-      <Logo v-if="first" @click.native="transition"/>
+      <Logo v-if="first" @click.native="transition" :ref="id"/>
       <!-- <Info v-else-if="last" @click.native="transition"/> -->
       <div v-else-if="resizing"></div>
       <Mono v-else-if="mode==='mono'" :num="id" :ref="id" :changing="transitioning"/>
@@ -19,7 +19,7 @@ import Shapes from '../modes/shapes/Shapes';
 import Logo from '../assets/Logo';
 
 export default {
-  name: 'Grid',
+  name: 'Block',
   components: {
     Mono,
     Solids,
@@ -30,9 +30,7 @@ export default {
     id: Number
   },
   data: function () {
-    return {
-
-    }
+    return {}
   },
   computed: {
     first() {
@@ -50,21 +48,16 @@ export default {
       transitioning: 'transitioning'
     })
   },
-  watch: {
-  },
+  watch: {},
   methods: {
     transition() {
       this.$store.commit('setTransitioning', true);
-      setTimeout(() =>{
-      this.$store.dispatch('outroComplete');
-      }, 500);
     },
     animate() {
       this.$refs[this.id].animate();
     }
   },
-  mounted: function () {
-  }
+  mounted: function () {}
 }
 </script>
 

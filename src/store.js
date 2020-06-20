@@ -16,7 +16,9 @@ export default new Vuex.Store({
     // Initial intro animation
     introing: true,
     // Large scale transitions
-    transitioning: false
+    transitioning: false,
+    // Array of available grid modes
+    modes: ['solids', 'mono', 'shapes']
   },
   getters: {
     rows(state) {
@@ -60,8 +62,14 @@ export default new Vuex.Store({
     }
   },
   actions : {
+    // One time page intro done
+    introComplete(context) {
+      context.commit('setIntroing', false);
+    },
+    // Grid-wide transition done
     outroComplete(context) {
-      context.commit('setMode', 'mono')
+      context.commit('setMode', context.state.modes[Math.floor(Math.random() * 3)]);
+      context.commit('setTransitioning', false);
     }
   }
 })

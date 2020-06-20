@@ -30,7 +30,11 @@ export default {
       // Placeholders that get calculated on resize
       colsNeeded: 0,
       rowsNeeded: 0,
+      // Master block array
       blocks: [],
+      // intro animation
+      introTL: null,
+      staggerTL: null,
       // Timeout for when user is done resizing
       resizeTimer: null,
       // Interval to randomly animate a grid block
@@ -59,6 +63,11 @@ export default {
       else {
         this.startRandomAnimator();
       }
+    },
+    transitioning: function () {
+      this.transitioning ? 
+      this.stagger() :
+      this.staggerTL.reset();
     }
   },
   computed: {
@@ -72,30 +81,46 @@ export default {
       rows: 'rows',
       cols: 'cols',
       resizing: 'resizing',
-      introing: 'introing'
+      introing: 'introing',
+      transitioning: 'transitioning'
     })
   },
   mounted() {
     // Create the grid
     this.generateGrid();
+    
+    // Run the intro
+    setTimeout(() => {
+      this.intro();
+    }, 500);
 
     // Register an event listener when the Vue component is ready
     window.addEventListener('resize', this.resizeGrid)
-    
-    // Run the intro
-    setTimeout(() => this.intro(), 500);
   },
   methods: {
-    transition: function () {
-      this.$store.commit('setTransitioning', true);
+    stagger: function () {
+      this.staggerTL = anime({
+        targets: '.block',
+        easing: 'easeOutExpo',
+        autoplay: false,
+        opacity: (el, i) => { return i !== 0 ? 0 : 1},
+        duration: 400,
+        delay: anime.stagger(100, {grid: [this.numCols, this.numRows], from: 0}),
+        complete: () => {
+          this.$store.dispatch('outroComplete');
+          this.staggerTL.reset();
+        }
+      });
+
+      this.staggerTL.play();
     },
     intro: function () {
       let vm = this;
 
-      let introTL = anime.timeline({
+      this.introTL = anime.timeline({
         targets: '.block',
         easing: 'easeOutExpo',
-        duration: 1000,
+        
         complete: function () {
           vm.$store.commit("setIntroing", false);
           vm.$store.commit("setMode", 'solids');
@@ -105,7 +130,7 @@ export default {
         borderColor: '#FFFFFF',
         borderWidth: '1px',
         duration: 750,
-        delay: anime.stagger(50)
+        delay: anime.stagger(130, {grid: [this.numCols, this.numRows], from: 0}),
       })
       .add({
         borderColor: 'rgba(255, 255, 255, 0)',
@@ -113,7 +138,7 @@ export default {
         duration: 750
       });
 
-      introTL.play();
+      this.introTL.play();
     },
     // Chooses a random block child on interval and sends call to animate it
     startRandomAnimator: function () {
@@ -164,9 +189,9 @@ export default {
       if (this.colsNeeded !== this.numCols) {
         this.colsNeeded > this.numCols ? 
           // Not enough cols
-          this.addCoumns(this.colsNeeded - this.numCols) :
+          this.add((this.colsNeeded - this.numCols) * this.numRows) :
           // Too many cols
-          this.removeColumns(this.numCols - this.colsNeeded);
+          this.remove((this.numCols - this.colsNeeded) * this.numRows);
 
         this.numCols = this.colsNeeded;
       }
@@ -175,39 +200,25 @@ export default {
       if (this.rowsNeeded !== this.numRows) {
         this.rowsNeeded > this.numRows ? 
           // Not enough rows
-          this.addRows(this.rowsNeeded - this.numRows) :
+          this.add((this.rowsNeeded - this.numRows) * this.numCols) :
           // Too many rows
-          this.removeRows(this.numRows - this.rowsNeeded);
+          this.remove((this.numRows - this.rowsNeeded) * this.numCols);
 
         this.numRows = this.rowsNeeded;
       }
     },
     // ---------- RESIZE HELPERS ---------- //
     // Add row helper
-    // amount (num): number of new rows to make
-    addRows: function (amount) {
-      for (let i = 0; i < this.numCols * amount; i++) {
-        this.blocks.push({id: (Math.random() * 1000) + i});
-      }
-    },
-    // Add column helper
-    // amount (num): number of new columns to make
-    addCoumns: function(amount) {
-      for (let i = 0; i < this.numRows * amount; i++) {
+    // amt (num): number of blocks to make
+    add: function (amt) {
+      for (let i = 0; i < amt; i++) {
         this.blocks.push({id: (Math.random() * 1000) + i});
       }
     },
     // Remove row helper
-    // amount (num): number of rows to remove
-    removeRows: function(amount) {
-      for (let i = 0; i < this.numCols * amount; i++) {
-        this.blocks.pop();
-      }
-    },
-    // Remove row helper
-    // amount (num): number of columns to remove
-    removeColumns: function(amount) {
-      for (let i = 0; i < this.numRows * amount; i++) {
+    // amt (num): number of blocks to remove
+    remove: function(amt) {
+      for (let i = 0; i < amt; i++) {
         this.blocks.pop();
       }
     },
@@ -245,6 +256,7 @@ export default {
     margin: 0;
     width: 100vw;
     height: 100vh;
+    background-color: #000000;
   }
 
   .block {

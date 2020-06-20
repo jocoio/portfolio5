@@ -10,6 +10,9 @@ export default {
   name: 'Logo',
   data: function () {
     return {}
+  },
+  methods: {
+    animate: function () {}
   }
 }
 </script>
