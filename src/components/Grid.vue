@@ -104,8 +104,8 @@ export default {
         easing: 'easeOutExpo',
         autoplay: false,
         opacity: (el, i) => { return i !== 0 ? 0 : 1},
-        duration: 400,
-        delay: anime.stagger(100, {grid: [this.numCols, this.numRows], from: 0}),
+        duration: 250,
+        delay: anime.stagger(75, {grid: [this.numCols, this.numRows], from: 0}),
         complete: () => {
           this.$store.dispatch('outroComplete');
           this.staggerTL.reset();
@@ -123,7 +123,7 @@ export default {
         
         complete: function () {
           vm.$store.commit("setIntroing", false);
-          vm.$store.commit("setMode", 'solids');
+          vm.$store.commit("setMode", 'shapes');
         }
       })
       .add({
@@ -266,6 +266,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: fit-content;
+    min-height: fit-content;
   }
 
   .block.intro-style {

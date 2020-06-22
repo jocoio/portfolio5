@@ -1,6 +1,6 @@
 <template>
   <div >
-      <Logo v-if="first" @click.native="transition" :ref="id"/>
+      <Nav v-if="first" @click.native="transition" :ref="id"/>
       <!-- <Info v-else-if="last" @click.native="transition"/> -->
       <div v-else-if="resizing"></div>
       <Mono v-else-if="mode==='mono'" :num="id" :ref="id" :changing="transitioning"/>
@@ -14,17 +14,17 @@ import { mapGetters } from 'vuex';
 // import anime from 'animejs';
 
 import Mono from '../modes/Mono';
+import Nav from './Nav';
 import Solids from '../modes/Solids';
 import Shapes from '../modes/shapes/Shapes';
-import Logo from '../assets/Logo';
 
 export default {
   name: 'Block',
   components: {
     Mono,
+    Nav,
     Solids,
-    Shapes,
-    Logo
+    Shapes
   },
   props: {
     id: Number

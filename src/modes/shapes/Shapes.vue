@@ -1,6 +1,7 @@
 <template>
   <div class="shapes" ref="shapes">
-    <Dot :ref="num" :num="num"/>
+    <Vines v-if="atom === 0" :ref="num" primary="white" secondary="black" />
+    <Dot v-else-if="atom === 1" :ref="num" primary="white" secondary="black" />
   </div>
 </template>
 
@@ -8,13 +9,15 @@
 import { mapGetters } from 'vuex';
 import anime from 'animejs';
 
+import Vines from './atoms/0_Vines';
 import Dot from './atoms/Dot';
 
 export default {
   name: 'Shapes',
   data: function () {
     return {
-      introAnim: null
+      introAnim: null,
+      atom: 0
     }
   },
   computed: {
@@ -32,6 +35,7 @@ export default {
     num: Number
   },
   components: {
+    Vines,
     Dot
   },
   methods: {
@@ -48,6 +52,10 @@ export default {
         opacity: 1
       });
       this.introAnim.play();
+    },
+    setAtom: function () {
+      this.atom = Math.floor(Math.random() * 3);
+      console.log(this.atom);
     }
   },
   watch: {
@@ -58,7 +66,9 @@ export default {
       } 
     }
   },
-  created: function () {},
+  created: function () {
+    this.setAtom();
+  },
   mounted: function () {
     this.intro();
   }
