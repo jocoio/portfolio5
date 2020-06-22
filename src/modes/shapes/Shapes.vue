@@ -1,7 +1,7 @@
 <template>
-  <div class="shapes" ref="shapes">
-    <Vines v-if="atom === 0" :ref="num" primary="white" secondary="black" />
-    <Dot v-else-if="atom === 1" :ref="num" primary="white" secondary="black" />
+  <div class="shape" ref="shape" v-bind:class="{'flipped': flipped}">
+    <Vines v-if="atom === 0" :ref="num" :primary="prime" :secondary="second"/>
+    <Dot v-else-if="atom === 1" :ref="num" :primary="prime" :secondary="second"/>
   </div>
 </template>
 
@@ -17,18 +17,20 @@ export default {
   data: function () {
     return {
       introAnim: null,
-      atom: 0
+      atom: 0,
+      prime: 'black',
+      second: 'white',
+      palletes: [
+        ['#000000', '#FFFFFF'],
+        ['#FFFFFF', '#000000']
+      ],
+      flipped: true
     }
   },
   computed: {
     ...mapGetters({
       transitioning: 'transitioning'
-    }),
-    color_style () {
-      return {
-        // backgroundColor: 'this.color'
-      }
-    }
+    })
   },
   props: {
     changing: Boolean,
@@ -45,7 +47,7 @@ export default {
     intro: function () {
       this.introAnim = anime({
         duration: 500,
-        targets: this.$refs.shapes,
+        targets: this.$refs.shape,
         easing: 'easeInOutQuad',
         loop: false,
         autoplay: false,
@@ -53,9 +55,15 @@ export default {
       });
       this.introAnim.play();
     },
-    setAtom: function () {
-      this.atom = Math.floor(Math.random() * 3);
-      console.log(this.atom);
+    setAtom: function (num) {
+      this.atom = num;
+    },
+    setColors: function (pallete) {
+      this.prime = pallete[0];
+      this.second = pallete[1]
+    },
+    setFlipped: function (bool) {
+      this.flipped = !bool;
     }
   },
   watch: {
@@ -67,7 +75,9 @@ export default {
     }
   },
   created: function () {
-    this.setAtom();
+    this.setAtom(Math.floor(Math.random() * 2));
+    this.setColors(this.palletes[Math.floor(Math.random() * this.palletes.length)]);
+    this.setFlipped(Math.round(Math.random()) === 1);
   },
   mounted: function () {
     this.intro();
@@ -76,7 +86,10 @@ export default {
 </script>
 
 <style>
-  .shapes {
+  .shape {
     opacity: 0;
+  }
+  .shape.flipped {
+    transform: rotate(180deg);
   }
 </style>
