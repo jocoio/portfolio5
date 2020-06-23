@@ -7,6 +7,10 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
   >
+    <rect width="150" height="150" :fill="primary"/>
+    <path d="M150 0V150H0L150 0Z" :fill="secondary"/>
+    <path d="M75 0V75H0L75 0Z" :fill="secondary"/>
+    <path d="M37 0V37H0L37 0Z" :fill="secondary"/>
   </svg>
 </template>
 
@@ -14,7 +18,7 @@
 import anime from 'animejs';
 
 export default {
-  name: 'Vines',
+  name: 'Trigrow',
   data: function () {
     return {
       animIntro: null,

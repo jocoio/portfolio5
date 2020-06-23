@@ -11,7 +11,7 @@ export default {
   data: function () {
     return {
       color: '#b06262',
-      introAnim: null
+      animIntro: null
     }
   },
   computed: {
@@ -32,7 +32,7 @@ export default {
   methods: {
     animate: function () {},
     intro: function () {
-      this.introAnim = anime({
+      this.animIntro = anime({
         duration: 500,
         targets: this.$refs[this.num],
         easing: 'easeInOutQuad',
@@ -40,14 +40,14 @@ export default {
         autoplay: false,
         opacity: 1
       });
-      this.introAnim.play();
+      this.animIntro.play();
     }
   },
   watch: {
     transitioning: function () {
       if (!this.transitioning) {
-        this.introAnim.reset();
-        this.introAnim.play();
+        this.animIntro.reset();
+        this.animIntro.play();
       } 
     }
   },

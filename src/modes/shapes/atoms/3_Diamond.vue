@@ -7,6 +7,8 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
   >
+    <rect width="150" height="150" :fill="primary"/>
+    <rect x="25" y="75" width="70.7107" height="70.7107" transform="rotate(-45 25 75)" :fill="secondary"/>
   </svg>
 </template>
 
@@ -14,7 +16,7 @@
 import anime from 'animejs';
 
 export default {
-  name: 'Vines',
+  name: 'Diamond',
   data: function () {
     return {
       animIntro: null,

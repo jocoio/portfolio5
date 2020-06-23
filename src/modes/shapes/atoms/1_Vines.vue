@@ -35,8 +35,8 @@ export default {
   name: 'Vines',
   data: function () {
     return {
-      introAnim: null,
-      mainAnim: null
+      animIntro: null,
+      animMain: null
     }
   },
   computed: {},
@@ -49,8 +49,11 @@ export default {
     animate: function () {
       console.log('animating ' + this.$options.name);
     },
+    playIntro: function () {
+      this.animIntro.play();
+    },
     initIntro: function () {
-      this.introAnim = anime({
+      this.animIntro = anime({
         duration: 500,
         targets: this.$refs.svg,
         easing: 'easeInOutQuad',
@@ -65,9 +68,14 @@ export default {
   },
   watch: {},
   created: function () {},
-  mounted: function () {}
+  mounted: function () {
+    this.initIntro();
+  }
 }
 </script>
 
-<style>
+<style scoped>
+  svg {
+    opacity: 0;
+  }
 </style>

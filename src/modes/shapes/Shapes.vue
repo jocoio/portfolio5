@@ -1,7 +1,13 @@
 <template>
-  <div class="shape" ref="shape" v-bind:class="{'flipped': flipped}">
+  <div class="shape" ref="shape" v-bind:class="{'flipped': flipped}" @click="animate">
     <Vines v-if="atom === 0" :ref="num" :primary="prime" :secondary="second"/>
-    <Dot v-else-if="atom === 1" :ref="num" :primary="prime" :secondary="second"/>
+    <Halfmoon v-else-if="atom === 1" :ref="num" :primary="prime" :secondary="second"/>
+    <Diamond v-else-if="atom === 2" :ref="num" :primary="prime" :secondary="second"/>
+    <Trigrow v-else-if="atom === 3" :ref="num" :primary="prime" :secondary="second"/>
+    <Pinwheel v-else-if="atom === 4" :ref="num" :primary="prime" :secondary="second"/>
+    <Rectripple v-else-if="atom === 5" :ref="num" :primary="prime" :secondary="second"/>
+    <Halfblack v-else-if="atom === 6" :ref="num" :primary="prime" :secondary="second"/>
+    <Bullseye v-else-if="atom === 7" :ref="num" :primary="prime" :secondary="second"/>
   </div>
 </template>
 
@@ -9,14 +15,20 @@
 import { mapGetters } from 'vuex';
 import anime from 'animejs';
 
-import Vines from './atoms/0_Vines';
-import Dot from './atoms/Dot';
+import Vines from './atoms/1_Vines';
+import Halfmoon from './atoms/2_Halfmoon';
+import Diamond from './atoms/3_Diamond';
+import Trigrow from './atoms/4_Trigrow';
+import Pinwheel from './atoms/5_Pinwheel';
+import Rectripple from './atoms/6_Rectripple';
+import Halfblack from './atoms/7_Halfblack';
+import Bullseye from './atoms/8_Bullseye';
 
 export default {
   name: 'Shapes',
   data: function () {
     return {
-      introAnim: null,
+      animIntro: null,
       atom: 0,
       prime: 'black',
       second: 'white',
@@ -38,14 +50,20 @@ export default {
   },
   components: {
     Vines,
-    Dot
+    Halfmoon,
+    Diamond,
+    Trigrow,
+    Pinwheel,
+    Rectripple,
+    Halfblack,
+    Bullseye
   },
   methods: {
     animate: function () {
       this.$refs[this.num].animate();
     },
     intro: function () {
-      this.introAnim = anime({
+      this.animIntro = anime({
         duration: 500,
         targets: this.$refs.shape,
         easing: 'easeInOutQuad',
@@ -53,7 +71,9 @@ export default {
         autoplay: false,
         opacity: 1
       });
-      this.introAnim.play();
+      setTimeout(() => {
+        this.$refs[this.num].playIntro();
+      }, Math.random() * 1000)
     },
     setAtom: function (num) {
       this.atom = num;
@@ -62,21 +82,21 @@ export default {
       this.prime = pallete[0];
       this.second = pallete[1]
     },
-    setFlipped: function (bool) {
-      this.flipped = !bool;
+    setFlipped: function () {
+      this.flipped = false;
     }
   },
   watch: {
     transitioning: function () {
       if (!this.transitioning) {
-        this.introAnim.reset();
-        this.introAnim.play();
+        this.animIntro.reset();
+        this.animIntro.play();
       } 
     }
   },
   created: function () {
-    this.setAtom(Math.floor(Math.random() * 2));
-    this.setColors(this.palletes[Math.floor(Math.random() * this.palletes.length)]);
+    this.setAtom(Math.floor(Math.random() * 8));
+    this.setColors(this.palletes[Math.floor(Math.random() * this.palletes.length - 1)]);
     this.setFlipped(Math.round(Math.random()) === 1);
   },
   mounted: function () {
@@ -87,7 +107,7 @@ export default {
 
 <style>
   .shape {
-    opacity: 0;
+    opacity: 1;
   }
   .shape.flipped {
     transform: rotate(180deg);

@@ -14,7 +14,7 @@ export default {
       color: '#FFFFFF',
       // Has this solid animated already
       animated: false,
-      introAnim: null,
+      animIntro: null,
       colorAnim: null
     }
   },
@@ -36,8 +36,8 @@ export default {
   watch: {
     transitioning: function () {
       if (!this.transitioning) {
-        this.introAnim.reset();
-        this.introAnim.play();
+        this.animIntro.reset();
+        this.animIntro.play();
       } 
     }
   },
@@ -49,7 +49,7 @@ export default {
       this.colorAnim.play();
     },
     initIntro: function () {
-      this.introAnim = anime({
+      this.animIntro = anime({
         duration: 500,
         targets: this.$refs[this.num],
         easing: 'easeInOutQuad',
@@ -90,7 +90,7 @@ export default {
     this.initIntro();
     this.initColor();
 
-    this.introAnim.play();
+    this.animIntro.play();
   }
 }
 </script>
