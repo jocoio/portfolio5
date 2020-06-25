@@ -28,7 +28,7 @@ export default {
   },
   components: {},
   methods: {
-    animate: function () {
+    playMain: function () {
       console.log('animating ' + this.$options.name);
     },
     playIntro: function () {

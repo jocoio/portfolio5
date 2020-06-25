@@ -7,7 +7,7 @@
     <Pinwheel v-else-if="atom === 4" :ref="num" :primary="prime" :secondary="second"/>
     <Rectripple v-else-if="atom === 5" :ref="num" :primary="prime" :secondary="second"/>
     <Halfblack v-else-if="atom === 6" :ref="num" :primary="prime" :secondary="second"/>
-    <Bullseye v-else-if="atom === 7" :ref="num" :primary="prime" :secondary="second"/>
+    <Bullseye v-else-if="atom === 7" :ref="num" :pri="prime" :sec="second"/>
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
       atom: 0,
       prime: 'black',
       second: 'white',
-      palletes: [
+      pallettes: [
         ['#000000', '#FFFFFF'],
         ['#FFFFFF', '#000000']
       ],
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     animate: function () {
-      this.$refs[this.num].animate();
+      this.$refs[this.num].playMain();
     },
     intro: function () {
       this.animIntro = anime({
@@ -78,9 +78,9 @@ export default {
     setAtom: function (num) {
       this.atom = num;
     },
-    setColors: function (pallete) {
-      this.prime = pallete[0];
-      this.second = pallete[1]
+    setColors: function (pallette) {
+      this.prime = pallette[0];
+      this.second = pallette[1]
     },
     setFlipped: function () {
       this.flipped = false;
@@ -96,7 +96,7 @@ export default {
   },
   created: function () {
     this.setAtom(Math.floor(Math.random() * 8));
-    this.setColors(this.palletes[Math.floor(Math.random() * this.palletes.length - 1)]);
+    this.setColors(this.pallettes[Math.floor(Math.random() * this.pallettes.length)]);
     this.setFlipped(Math.round(Math.random()) === 1);
   },
   mounted: function () {
