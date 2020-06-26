@@ -8,9 +8,9 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="150" height="150" :fill="pri"/>
-    <path d="M150 0V150H0L150 0Z" :fill="secondary"/>
-    <path d="M75 0V75H0L75 0Z" :fill="secondary"/>
-    <path d="M37 0V37H0L37 0Z" :fill="secondary"/>
+    <path d="M150 0V150H0L150 0Z" :fill="sec"/>
+    <path d="M75 0V75H0L75 0Z" :fill="sec"/>
+    <path d="M37 0V37H0L37 0Z" :fill="sec"/>
   </svg>
 </template>
 
@@ -28,7 +28,7 @@ export default {
   computed: {},
   props: {
     pri: String,
-    secondary: String
+    sec: String
   },
   components: {},
   methods: {

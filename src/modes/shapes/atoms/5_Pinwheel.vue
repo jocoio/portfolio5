@@ -9,23 +9,23 @@
   >
     <rect width="150" height="150" :fill="pri"/>
     <g ref="objects">
-      <rect width='50' height='4' x="50%" y="49%" transform="" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-180 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-90 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(90 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-45 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(45 75 75)" :fill="secondary"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-180 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-90 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(90 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-45 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(45 75 75)" :fill="sec"/>
 
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-22.5 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-66.5 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-112.5 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-135 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-157.5 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(157.5 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(135 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(112.5 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(66.5 75 75)" :fill="secondary"/>
-      <rect width='50' height='4' x="50%" y="49%" transform="rotate(22.5 75 75)" :fill="secondary"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-22.5 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-66.5 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-112.5 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-135 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(-157.5 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(157.5 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(135 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(112.5 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(66.5 75 75)" :fill="sec"/>
+      <rect width='50' height='4' x="50%" y="49%" transform="rotate(22.5 75 75)" :fill="sec"/>
     </g>
   </svg>
 </template>
@@ -44,7 +44,7 @@ export default {
   computed: {},
   props: {
     pri: String,
-    secondary: String
+    sec: String
   },
   components: {},
   methods: {

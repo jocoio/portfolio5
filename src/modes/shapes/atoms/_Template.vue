@@ -24,7 +24,7 @@ export default {
   computed: {},
   props: {
     pri: String,
-    secondary: String
+    sec: String
   },
   components: {},
   methods: {

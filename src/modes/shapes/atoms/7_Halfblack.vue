@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="150" height="150" :fill="pri"/>
-    <rect x="75" width="75" height="150" :fill="secondary"/>
+    <rect x="75" width="75" height="150" :fill="sec"/>
   </svg>
 </template>
 
@@ -26,7 +26,7 @@ export default {
   computed: {},
   props: {
     pri: String,
-    secondary: String
+    sec: String
   },
   components: {},
   methods: {

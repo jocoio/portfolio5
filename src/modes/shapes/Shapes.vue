@@ -1,12 +1,12 @@
 <template>
   <div class="shape" ref="shape" v-bind:class="{'flipped': flipped}" @click="animate">
-    <Vines v-if="atom === 0" :ref="num" :pri="prime" :secondary="second"/>
-    <Halfmoon v-else-if="atom === 1" :ref="num" :pri="prime" :secondary="second"/>
-    <Diamond v-else-if="atom === 2" :ref="num" :pri="prime" :secondary="second"/>
-    <Trigrow v-else-if="atom === 3" :ref="num" :pri="prime" :secondary="second"/>
-    <Pinwheel v-else-if="atom === 4" :ref="num" :pri="prime" :secondary="second"/>
-    <Rectripple v-else-if="atom === 5" :ref="num" :pri="prime" :secondary="second"/>
-    <Halfblack v-else-if="atom === 6" :ref="num" :pri="prime" :secondary="second"/>
+    <Vines v-if="atom === 0" :ref="num" :pri="prime" :sec="second"/>
+    <Halfmoon v-else-if="atom === 1" :ref="num" :pri="prime" :sec="second"/>
+    <Diamond v-else-if="atom === 2" :ref="num" :pri="prime" :sec="second"/>
+    <Trigrow v-else-if="atom === 3" :ref="num" :pri="prime" :sec="second"/>
+    <Pinwheel v-else-if="atom === 4" :ref="num" :pri="prime" :sec="second"/>
+    <Rectripple v-else-if="atom === 5" :ref="num" :pri="prime" :sec="second"/>
+    <Halfblack v-else-if="atom === 6" :ref="num" :pri="prime" :sec="second"/>
     <Bullseye v-else-if="atom === 7" :ref="num" :pri="prime" :sec="second"/>
   </div>
 </template>
@@ -73,7 +73,7 @@ export default {
         this.$refs[this.num].playIntro();
       }, Math.random() * 1000)
       setTimeout(() => {
-        this.setColors(this.palettes[Math.floor(Math.random() * this.palettes.length)]);
+        this.setColors(this.palettes[0]);
       }, 3000)
     },
     setAtom: function (num) {
