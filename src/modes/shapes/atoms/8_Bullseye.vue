@@ -7,16 +7,16 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect width="150" height="150" :fill="primary"/>
+    <rect width="150" height="150" :fill="pri"/>
     <g ref="objects">
-      <circle cx="75" cy="75" r="5.5" fill="none" :stroke="secondary" stroke-width="3"/>
-      <circle cx="75" cy="75" r="12.5" fill="none" :stroke="secondary" stroke-width="3"/>
-      <circle cx="75" cy="75" r="19.5" fill="none" :stroke="secondary" stroke-width="3"/>
-      <circle cx="75" cy="75" r="26.5" fill="none" :stroke="secondary" stroke-width="3"/>
-      <circle cx="75" cy="75" r="33.5" fill="none" :stroke="secondary" stroke-width="3"/>
-      <circle cx="75" cy="75" r="41.5" fill="none" :stroke="secondary" stroke-width="3"/>
-      <circle cx="75" cy="75" r="49.5" fill="none" :stroke="secondary" stroke-width="3"/>
-      <circle cx="75" cy="75" r="57.5" fill="none" :stroke="secondary" stroke-width="3"/>
+      <circle cx="75" cy="75" r="5.5" fill="none" :stroke="sec" stroke-width="3"/>
+      <circle cx="75" cy="75" r="12.5" fill="none" :stroke="sec" stroke-width="3"/>
+      <circle cx="75" cy="75" r="19.5" fill="none" :stroke="sec" stroke-width="3"/>
+      <circle cx="75" cy="75" r="26.5" fill="none" :stroke="sec" stroke-width="3"/>
+      <circle cx="75" cy="75" r="33.5" fill="none" :stroke="sec" stroke-width="3"/>
+      <circle cx="75" cy="75" r="41.5" fill="none" :stroke="sec" stroke-width="3"/>
+      <circle cx="75" cy="75" r="49.5" fill="none" :stroke="sec" stroke-width="3"/>
+      <circle cx="75" cy="75" r="57.5" fill="none" :stroke="sec" stroke-width="3"/>
     </g>
   </svg>
 </template>
@@ -31,8 +31,6 @@ export default {
       animIntro: null,
       animMain: null,
       animpalette: null,
-      primary: "#000000",
-      secondary: "#FFFFFF"
     }
   },
   computed: {},
@@ -47,10 +45,6 @@ export default {
     },
     playIntro: function () {
       this.animIntro.play();
-    },
-    applypalette: function () {
-      this.primary = this.pri;
-      this.secondary = this.sec;
     },
     initIntro: function () {
       this.animIntro = anime({
@@ -101,9 +95,5 @@ export default {
 <style scoped>
   circle {
     opacity: 0;
-  }
-
-  svg * {
-    transition: fill 150ms, stroke 150ms;
   }
 </style>

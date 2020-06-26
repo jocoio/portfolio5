@@ -7,7 +7,7 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect width="150" height="150" :fill="primary"/>
+    <rect width="150" height="150" :fill="pri"/>
     <rect x="-6.62254" y="115.173" width="168.234" height="167.11" transform="rotate(-45 -6.62254 115.173)" fill="none" :stroke="secondary" stroke-width="10"/>
     <rect x="-35.3401" y="116.236" width="210.22" height="209.999" transform="rotate(-45 -35.3401 116.236)" fill="none" :stroke="secondary" stroke-width="10"/>
     <rect x="-65.1212" y="116.204" width="251.549" height="250.879" transform="rotate(-45 -65.1212 116.204)" fill="none" :stroke="secondary" stroke-width="10"/>
@@ -33,7 +33,7 @@ export default {
   },
   computed: {},
   props: {
-    primary: String,
+    pri: String,
     secondary: String
   },
   components: {},
@@ -51,7 +51,7 @@ export default {
         easing: 'easeInOutQuad',
         loop: false,
         autoplay: false,
-        opacity: 1
+        opacity: [0, 1]
       }) 
     },
     initMain: function () {}
@@ -65,7 +65,4 @@ export default {
 </script>
 
 <style scoped>
-  svg {
-    opacity: 0;
-  }
 </style>

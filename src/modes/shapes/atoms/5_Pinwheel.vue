@@ -7,7 +7,7 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect width="150" height="150" :fill="primary"/>
+    <rect width="150" height="150" :fill="pri"/>
     <g ref="objects">
       <rect width='50' height='4' x="50%" y="49%" transform="" :fill="secondary"/>
       <rect width='50' height='4' x="50%" y="49%" transform="rotate(-180 75 75)" :fill="secondary"/>
@@ -43,7 +43,7 @@ export default {
   },
   computed: {},
   props: {
-    primary: String,
+    pri: String,
     secondary: String
   },
   components: {},

@@ -7,7 +7,7 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect width="150" height="150" :fill="primary"/>
+    <rect width="150" height="150" :fill="pri"/>
     <path d="M150 0V150H0L150 0Z" :fill="secondary"/>
     <path d="M75 0V75H0L75 0Z" :fill="secondary"/>
     <path d="M37 0V37H0L37 0Z" :fill="secondary"/>
@@ -27,7 +27,7 @@ export default {
   },
   computed: {},
   props: {
-    primary: String,
+    pri: String,
     secondary: String
   },
   components: {},
@@ -45,7 +45,7 @@ export default {
         easing: 'easeInOutQuad',
         loop: false,
         autoplay: false,
-        opacity: 1
+        opacity: [0, 1]
       }) 
     },
     initMain: function () {}
@@ -59,7 +59,4 @@ export default {
 </script>
 
 <style scoped>
-  svg {
-    opacity: 0;
-  }
 </style>
