@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="150" height="150" :fill="primary"/>
-    <circle cx="75" r="75" :fill="secondary"/>
+    <circle ref="circle" cx="75" r="75" :fill="secondary"/>
   </svg>
 </template>
 
@@ -31,7 +31,7 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating ' + this.$options.name);
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
@@ -39,25 +39,39 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        targets: this.$refs.circle,
+        easing: 'easeOutQuad',
         loop: false,
         autoplay: false,
-        opacity: 1
+        cy: [-75, 0]
       }) 
     },
-    initMain: function () {}
+    initMain: function () {
+      this.animMain = anime.timeline({
+        targets: this.$refs.circle,
+        loop: false,
+        autoplay: false
+      })
+      .add({
+        duration: 500,
+        easing: 'easeInCirc',
+        cy: [0, 300],
+      })
+      .add({
+        duration: 500,
+        easing: 'easeOutCirc',
+        cy: [-100, 0],
+      });
+    }
   },
   watch: {},
   created: function () {},
   mounted: function () {
+    this.initMain();
     this.initIntro();
   }
 }
 </script>
 
 <style scoped>
-  svg {
-    opacity: 0;
-  }
 </style>

@@ -3,9 +3,9 @@
       <Nav v-if="first" @click.native="transition" :ref="id"/>
       <!-- <Info v-else-if="last" @click.native="transition"/> -->
       <div v-else-if="resizing"></div>
-      <Mono v-else-if="mode==='mono'" :num="id" :ref="id" :changing="transitioning"/>
-      <Solids v-else-if="mode==='solids'" :num="id" :ref="id" :changing="transitioning"/>
-      <Shapes v-else-if="mode==='shapes'" :num="id" :ref="id" :changing="transitioning"/>
+      <Mono v-else-if="mode==='mono'" :num="id" :ref="id" />
+      <Solids v-else-if="mode==='solids'" :num="id" :ref="id" />
+      <Shapes v-else-if="mode==='shapes'" :num="id" :ref="id" />
   </div>
 </template>
 

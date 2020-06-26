@@ -30,7 +30,7 @@ export default {
     return {
       animIntro: null,
       animMain: null,
-      animPallette: null,
+      animpalette: null,
       primary: "#000000",
       secondary: "#FFFFFF"
     }
@@ -48,7 +48,7 @@ export default {
     playIntro: function () {
       this.animIntro.play();
     },
-    applyPallette: function () {
+    applypalette: function () {
       this.primary = this.pri;
       this.secondary = this.sec;
     },
@@ -60,12 +60,9 @@ export default {
         loop: false,
         autoplay: false,
         delay: anime.stagger(40),
-        opacity: 1,
+        opacity: [0, 1],
         complete: () => {
           this.animIntro.reverse();
-          this.initMain();
-          // this.initPallette();
-          // this.animPallette.play();
         }
       }) 
     },
@@ -88,13 +85,14 @@ export default {
         delay: anime.stagger(40)
       });
     },
-    initPallette: function () {
+    initpalette: function () {
       
     }
   },
   watch: {},
   created: function () {},
   mounted: function () {
+    this.initMain();
     this.initIntro();
   }
 }

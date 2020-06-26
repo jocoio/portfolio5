@@ -41,21 +41,35 @@ export default {
         easing: 'easeInOutQuad',
         loop: false,
         autoplay: false,
-        opacity: 1
+        opacity: [0, 1]
       }) 
     },
-    initMain: function () {}
+    initMain: function () {
+      this.animMain = anime.timeline({
+        targets: this.$refs.svg,
+        loop: false,
+        autoplay: false,
+      })
+      .add({
+        duration: 500,
+        easing: 'easeInOutQuad',
+        opacity: [0, 1]
+      })
+      .add({
+        duration: 500,
+        easing: 'easeInOutQuad',
+        opacity: [1, 0]
+      })
+    }
   },
   watch: {},
   created: function () {},
   mounted: function () {
+    this.initMain();
     this.initIntro();
   }
 }
 </script>
 
 <style scoped>
-  svg {
-    opacity: 0;
-  }
 </style>

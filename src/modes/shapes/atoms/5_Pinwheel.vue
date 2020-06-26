@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="150" height="150" :fill="primary"/>
-    <g ref="pinwheel">
+    <g ref="objects">
       <rect width='50' height='4' x="50%" y="49%" transform="" :fill="secondary"/>
       <rect width='50' height='4' x="50%" y="49%" transform="rotate(-180 75 75)" :fill="secondary"/>
       <rect width='50' height='4' x="50%" y="49%" transform="rotate(-90 75 75)" :fill="secondary"/>
@@ -58,21 +58,21 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 750,
-        targets: this.$refs.pinwheel.children,
+        targets: this.$refs.objects.children,
         easing: 'easeOutCubic',
         loop: false,
         autoplay: false,
         // delay: anime.stagger(20),
         width: [0, 50],
         complete: () => {
-          this.initMain();
+          
         }
       }) 
     },
     initMain: function () {
       this.animMain = anime.timeline({
         duration: 300,
-        targets: this.$refs.pinwheel.children,
+        targets: this.$refs.objects.children,
         easing: 'easeInOutQuad',
         loop: false,
         autoplay: false,
@@ -88,6 +88,7 @@ export default {
   watch: {},
   created: function () {},
   mounted: function () {
+    this.initMain();
     this.initIntro();
   }
 }

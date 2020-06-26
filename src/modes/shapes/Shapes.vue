@@ -13,7 +13,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import anime from 'animejs';
+// import anime from 'animejs';
 
 import Vines from './atoms/1_Vines';
 import Halfmoon from './atoms/2_Halfmoon';
@@ -32,9 +32,8 @@ export default {
       atom: 0,
       prime: 'black',
       second: 'white',
-      pallettes: [
-        ['#000000', '#FFFFFF'],
-        ['#FFFFFF', '#000000']
+      palettes: [
+        ['#000000', '#FFFFFF']
       ],
       flipped: true
     }
@@ -45,7 +44,6 @@ export default {
     })
   },
   props: {
-    changing: Boolean,
     num: Number
   },
   components: {
@@ -62,15 +60,15 @@ export default {
     animate: function () {
       this.$refs[this.num].playMain();
     },
-    intro: function () {
-      this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.shape,
-        easing: 'easeInOutQuad',
-        loop: false,
-        autoplay: false,
-        opacity: 1
-      });
+    playIntro: function () {
+      // this.animIntro = anime({
+      //   duration: 500,
+      //   targets: this.$refs.shape,
+      //   easing: 'easeInOutQuad',
+      //   loop: false,
+      //   autoplay: false,
+      //   opacity: 1
+      // });
       setTimeout(() => {
         this.$refs[this.num].playIntro();
       }, Math.random() * 1000)
@@ -78,29 +76,29 @@ export default {
     setAtom: function (num) {
       this.atom = num;
     },
-    setColors: function (pallette) {
-      this.prime = pallette[0];
-      this.second = pallette[1]
+    setColors: function (palette) {
+      this.prime = palette[0];
+      this.second = palette[1]
     },
     setFlipped: function () {
       this.flipped = false;
     }
   },
   watch: {
-    transitioning: function () {
-      if (!this.transitioning) {
-        this.animIntro.reset();
-        this.animIntro.play();
-      } 
-    }
+    // transitioning: function () {
+    //   if (!this.transitioning) {
+    //     this.animIntro.reset();
+    //     this.animIntro.play();
+    //   } 
+    // }
   },
   created: function () {
     this.setAtom(Math.floor(Math.random() * 8));
-    this.setColors(this.pallettes[Math.floor(Math.random() * this.pallettes.length)]);
+    this.setColors(this.palettes[Math.floor(Math.random() * this.palettes.length)]);
     this.setFlipped(Math.round(Math.random()) === 1);
   },
   mounted: function () {
-    this.intro();
+    this.playIntro();
   }
 }
 </script>
