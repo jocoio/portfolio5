@@ -54,12 +54,12 @@ export default {
     },
     initIntro: function () {
       this.animIntro = anime({
-        duration: 750,
+        duration: 1000,
         targets: this.$refs.objects.children,
-        easing: 'easeOutSine',
+        easing: 'easeOutCirc',
         loop: false,
         autoplay: false,
-        delay: anime.stagger(75),
+        delay: anime.stagger(40),
         opacity: 1,
         complete: () => {
           this.animIntro.reverse();
