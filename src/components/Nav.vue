@@ -1,31 +1,30 @@
 <template>
-  <div class="nav">
+  <div class="nav" @click="toggleNav">
       <Logo v-if="activeIcon === 'logo'" ref="logo"/>
-      <Soon v-else-if="activeIcon === 'soon'" ref="soon"/>
   </div>
 </template>
 
 <script>
   // import anime from 'animejs';
   import Logo from '../assets/Logo';
-  import Soon from '../assets/Soon';
 
   export default {
   name: 'Nav',
   data: function () {
     return {
       activeIcon: 'logo',
-      
+      open: false,
     }
   },
   components: {
-    Logo,
-    Soon
+    Logo
   },
   watch: {
   },
   methods: {
-    animate: function () {},
+    toggleNav: function () {
+      this.$store.dispatch('changeNav');
+    }
   },
   mounted () {
   }
@@ -36,6 +35,11 @@
   .nav {
     width: 100%;
     height: 100%;
+    z-index: 1;
+  }
+
+  .nav.open > .icon {
+    background-color: red;
   }
 
   .icon {

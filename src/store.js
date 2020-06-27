@@ -30,40 +30,17 @@ export default new Vuex.Store({
     resizing: false,
     // Mode transition
     transitioning: false,
+    // Nav transition
+    naving: false,
 
 
     // ----- NAVIGATION ----- //
-
+    
+    // Is the nav open
     navOpen: false
 
   },
-  getters: {
-    // ----- GRID ----- //
-    rows(state) {
-      return state.rows;
-    },
-    cols(state) {
-      return state.cols;
-    },
-    // ----- MODE ----- //
-    mode(state) {
-      return state.mode;
-    },
-    // ----- ANIMATION FLAGS ----- //
-    introing(state) {
-      return state.introing;
-    },
-    resizing(state) {
-      return state.resizing;
-    },
-    transitioning(state) {
-      return state.transitioning;
-    },
-    // ----- NAVIGATION ----- //
-    navOpen(state) {
-      return state.navOpen;
-    }
-  },
+  getters: {},
   mutations: {
     // ----- GRID ----- //
     setRows (state, rows) {
@@ -86,20 +63,34 @@ export default new Vuex.Store({
     setTransitioning (state, bool) {
       state.transitioning = bool
     },
+    setNaving (state, bool) {
+      state.naving = bool;
+    },
     // ----- NAVIGATION ----- //
     setNavOpen (state, bool) {
       state.navOpen = bool;
+    },
+    toggleNav (state) {
+      state.navOpen = !state.navOpen;
     }
   },
   actions : {
     // One time page intro done
-    introComplete(context) {
+    introComplete (context) {
       context.commit('setIntroing', false);
     },
     // Grid-wide transition done
-    outroComplete(context) {
+    outroComplete (context) {
       context.commit('setMode', context.state.modes[Math.floor(Math.random() * 3)]);
       context.commit('setTransitioning', false);
+    },
+    // Change nav state
+    changeNav (context) {
+      context.commit('toggleNav');
+    },
+    // Nav transition done 
+    navComplete (context) {
+      context.commit('setNaving', false);
     }
   }
 })

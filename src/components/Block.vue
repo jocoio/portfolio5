@@ -1,7 +1,6 @@
 <template>
-  <div >
-      <Nav v-if="first" @click.native="transition" :ref="id"/>
-      <!-- <Info v-else-if="last" @click.native="transition"/> -->
+  <div :id="'block_' + id">
+      <Nav v-if="first" :ref="id" />
       <div v-else-if="resizing"></div>
       <Mono v-else-if="mode==='mono'" :num="id" :ref="id" />
       <Solids v-else-if="mode==='solids'" :num="id" :ref="id" />
@@ -10,8 +9,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-// import anime from 'animejs';
+import { mapState } from 'vuex';
 
 import Mono from '../modes/Mono';
 import Nav from './Nav';
@@ -20,6 +18,11 @@ import Shapes from '../modes/shapes/Shapes';
 
 export default {
   name: 'Block',
+  data: function () {
+    return {
+      width: '200%'
+    }
+  },
   components: {
     Mono,
     Nav,
@@ -29,24 +32,20 @@ export default {
   props: {
     id: Number
   },
-  data: function () {
-    return {}
-  },
   computed: {
+    ...mapState([
+      'rows',
+      'cols',
+      'mode',
+      'resizing',
+      'transitioning',
+    ]),
     first() {
       return this.id === 1;
     },
     last() {
       return this.id === this.cols;
-    },
-    ...mapGetters({
-      rows: 'rows',
-      cols: 'cols',
-      mode: 'mode',
-      resizing: 'resizing',
-      introing: 'introing',
-      transitioning: 'transitioning'
-    })
+    }
   },
   watch: {},
   methods: {

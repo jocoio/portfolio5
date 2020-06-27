@@ -15,7 +15,6 @@
       <rect width='50' height='4' x="50%" y="49%" transform="rotate(90 75 75)" :fill="sec"/>
       <rect width='50' height='4' x="50%" y="49%" transform="rotate(-45 75 75)" :fill="sec"/>
       <rect width='50' height='4' x="50%" y="49%" transform="rotate(45 75 75)" :fill="sec"/>
-
       <rect width='50' height='4' x="50%" y="49%" transform="rotate(-22.5 75 75)" :fill="sec"/>
       <rect width='50' height='4' x="50%" y="49%" transform="rotate(-66.5 75 75)" :fill="sec"/>
       <rect width='50' height='4' x="50%" y="49%" transform="rotate(-112.5 75 75)" :fill="sec"/>
@@ -49,7 +48,6 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('test');
       this.animMain.play();
     },
     playIntro: function () {
@@ -62,11 +60,7 @@ export default {
         easing: 'easeOutCubic',
         loop: false,
         autoplay: false,
-        // delay: anime.stagger(20),
         width: [0, 50],
-        complete: () => {
-          
-        }
       }) 
     },
     initMain: function () {

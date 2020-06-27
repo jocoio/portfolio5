@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 // import anime from 'animejs';
 
 import Vines from './atoms/1_Vines';
@@ -33,15 +33,15 @@ export default {
       prime: '#000000',
       second: '#FFFFFF',
       palettes: [
-        ['#4066EC', '#FFFFFF']
+        ['#318E40', '#FFFFFF']
       ],
       flipped: true
     }
   },
   computed: {
-    ...mapGetters({
-      transitioning: 'transitioning'
-    })
+    ...mapState([
+      'transitioning'
+    ])
   },
   props: {
     num: Number
@@ -72,9 +72,9 @@ export default {
       setTimeout(() => {
         this.$refs[this.num].playIntro();
       }, Math.random() * 1000)
-      setTimeout(() => {
-        this.setColors(this.palettes[0]);
-      }, 3000)
+      // setTimeout(() => {
+      //   this.setColors(this.palettes[0]);
+      // }, 3000)
     },
     setAtom: function (num) {
       this.atom = num;

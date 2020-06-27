@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 import anime from 'animejs';
 
 export default {
@@ -15,9 +15,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      transitioning: 'transitioning'
-    }),
+    ...mapState([
+      'transitioning'
+    ]),
     color_style () {
       return {
         backgroundColor: this.color
