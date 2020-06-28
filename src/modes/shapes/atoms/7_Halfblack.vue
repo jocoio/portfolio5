@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="150" height="150" :fill="pri"/>
-    <rect x="75" width="75" height="150" :fill="sec"/>
+    <rect ref="rect" x="75" width="150" height="150" :fill="sec"/>
   </svg>
 </template>
 
@@ -31,7 +31,7 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating ' + this.$options.name);
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
@@ -39,18 +39,35 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        targets: this.$refs.rect,
+        easing: 'easeOutQuad',
         loop: false,
         autoplay: false,
-        opacity: [0, 1]
+        x: [150, 75]
       }) 
     },
-    initMain: function () {}
+    initMain: function () {
+      this.animMain = anime.timeline({
+        targets: this.$refs.rect,
+        loop: false,
+        autoplay: false
+      })
+      .add({
+        duration: 500,
+        easing: 'easeInCirc',
+        x: [75, 300],
+      })
+      .add({
+        duration: 600,
+        easing: 'easeOutCirc',
+        x: [-100, 75],
+      });
+    }
   },
   watch: {},
   created: function () {},
   mounted: function () {
+    this.initMain();
     this.initIntro();
   }
 }

@@ -22,7 +22,7 @@ import {
   setBlocks,
   getRows,
   getCols,
-  getNavIDs
+  getNavIDs,
 } from '../grid';
 
 export default {
@@ -77,7 +77,7 @@ export default {
     },
     resizing: function () {
       if (this.resizing) {
-        anime.set('.block', {opacity: 1,});
+        anime.set('.block', {opacity: 1});
         
         if (this.navOpen) {
           // anime.remove('.block');

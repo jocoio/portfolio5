@@ -46,15 +46,15 @@ export function reID (blocks) {
 // Sets size range for blocks based on screen width and height
 export function getBlockIdeal () {
 
-  let smallest = Math.min(window.innerWidth, window.innerHeight);
+  let width = window.innerWidth;
 
-  if (smallest <= 450) {
+  if (width <= 450) {
     return 75;
   }
-  else if (smallest < 600) {
+  else if (width < 600) {
     return 100;
   }
-  else if (smallest < 1000) {
+  else if (width < 1000) {
     return 175;
   }
   else {

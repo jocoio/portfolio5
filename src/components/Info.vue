@@ -1,7 +1,7 @@
 <template>
   <div class="info" ref="content">
       <h1>Hi, I'm Jon</h1>
-      <h3>I’m creative developer working at Sosolimited. I use art and technology to share stories and build unique experiences.</h3>
+      <h3>I’m creative developer working with art and technology to share stories and build unique experiences.</h3>
   </div>
 </template>
 
@@ -50,7 +50,8 @@
         easing: 'easeOutExpo',
         delay: anime.stagger(100),
         opacity: [0,1],
-        marginLeft: [-15, 0]
+        marginLeft: [-15, 0],
+        marginRight: [15, 0]
       })
     }
   },
@@ -63,7 +64,8 @@
 
 <style scoped>
   .info {
-    padding: 2rem;
+    max-width: 300px;
+    padding: 0 2rem;
     text-align: left;
     overflow: scroll;
   }

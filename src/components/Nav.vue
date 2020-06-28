@@ -1,6 +1,6 @@
 <template>
   <div class="nav" @click="toggleNav">
-      <Logo v-if="activeIcon === 'logo'" ref="logo"/>
+      <Logo v-if="activeIcon === 'logo'" ref="logo" :style="open_sty"/>
       <Info v-if="navOpen && !naving" />
   </div>
 </template>
@@ -16,7 +16,6 @@
   data: function () {
     return {
       activeIcon: 'logo',
-      open: false,
     }
   },
   components: {
@@ -28,6 +27,14 @@
       'naving',
       'navOpen'
     ]),
+    open () {
+      return this.navOpen & !this.naving
+    },
+    open_sty () {
+      return {
+        width: this.open ? '33%' : '100%'
+      }
+    }
   },
   watch: {
   },
