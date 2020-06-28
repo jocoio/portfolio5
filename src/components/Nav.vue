@@ -49,15 +49,6 @@
 </script>
 
 <style scoped>
-  .nav {
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-
-  .nav.open > .icon {
-    background-color: red;
-  }
 
   .icon {
     display: flex;
@@ -65,7 +56,6 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: #000000;
     opacity: 1;
   }
 

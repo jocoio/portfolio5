@@ -80,8 +80,7 @@ export default {
         anime.set('.block', {opacity: 1});
         
         if (this.navOpen) {
-          // anime.remove('.block');
-          anime.set('#block_1', {width: '100%', height: '100%'})
+          document.getElementById('block_1').style.width = '';
           this.$store.commit('toggleNav');
         }
 
@@ -104,7 +103,7 @@ export default {
       }
       else {
         if (!this.resizing) {
-          anime.set('#block_1', {width: '100%'})
+          document.getElementById('block_1').style.width = '';
           this.animNav.play();
         }
       } 

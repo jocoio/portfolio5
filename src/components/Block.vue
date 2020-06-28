@@ -61,7 +61,6 @@ export default {
 </script>
 
 <style>
-  
   .block>div {
     width: 100%;
     height: 100%;
