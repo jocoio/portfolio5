@@ -35,7 +35,11 @@ export default new Vuex.Store({
 
 
     // ----- NAVIGATION ----- //
-    
+
+    // # of rows nav will take up
+    navRows: 3,
+    // # of cols nav will take up
+    navCols: 3,
     // Is the nav open
     navOpen: false
 
@@ -84,13 +88,14 @@ export default new Vuex.Store({
       context.commit('setMode', context.state.modes[Math.floor(Math.random() * 3)]);
       context.commit('setTransitioning', false);
     },
-    // Change nav state
-    changeNav (context) {
-      context.commit('toggleNav');
-    },
     // Nav transition done 
     navComplete (context) {
       context.commit('setNaving', false);
-    }
+    },
+    // Change nav state
+    changeNav (context) {
+      context.commit('setNaving', true);
+      context.commit('toggleNav');
+    },
   }
 })

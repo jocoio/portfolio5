@@ -49,18 +49,19 @@ export default {
     Block
   },
   computed: {
+    ...mapState([
+      'resizing',
+      'introing',
+      'transitioning',
+      'navOpen',
+      'naving'
+    ]),
     container_style () {
       return  {
         gridTemplateRows: 'repeat(' + this.numRows + ', 1fr)',
         gridTemplateColumns: 'repeat(' + this.numCols + ', 1fr)'
       }
     },
-    ...mapState([
-      'resizing',
-      'introing',
-      'transitioning',
-      'navOpen'
-    ])
   },
   watch: {
     numCols: function () {
@@ -76,72 +77,59 @@ export default {
     },
     resizing: function () {
       if (this.resizing) {
+        anime.set('.block', {opacity: 1,});
+        
+        if (this.navOpen) {
+          // anime.remove('.block');
+          anime.set('#block_1', {width: '100%', height: '100%'})
+          this.$store.commit('toggleNav');
+        }
+
         clearInterval(this.randomAnimator);
       }
       else {
         this.startRandomAnimator();
+
       }
     },
     transitioning: function () {
       this.transitioning ? 
-      this.stagger() :
+      this.initPlayTransition() :
       this.animTransition.reset();
     },
     navOpen() {
-      this.navOpen ? 
-      this.initNav() :
-      this.animNav.play();
-    }
+      if (this.navOpen) {
+        this.initNav();
+        this.animNav.play();
+      }
+      else {
+        if (!this.resizing) {
+          anime.set('#block_1', {width: '100%'})
+          this.animNav.play();
+        }
+      } 
+    },
   },
   mounted() {
     // Create the grid
     this.makeGrid();
     this.blocks = reID(this.blocks);
-    
+
     // Run the intro
     setTimeout(() => {
-      this.intro();
+      this.initIntro();
+      this.animIntro.play();
     }, 500);
 
     // Register an event listener when the Vue component is ready
     window.addEventListener('resize', this.resizeGrid)
+
   },
   methods: {
-    stagger: function () {
-      this.animTransition = anime({
-        targets: '.block',
-        easing: 'easeOutExpo',
-        autoplay: false,
-        opacity: (el, i) => { return i !== 0 ? 0 : 1},
-        duration: 250,
-        delay: anime.stagger(75, {grid: [this.numCols, this.numRows], from: 0}),
-        complete: () => {
-          this.$store.dispatch('outroComplete');
-          this.animTransition.reset();
-        }
-      });
 
-      this.animTransition.play();
-    },
+    // ANIMATION INITIALIZATION //
 
-    initNav: function () {
-      this.animNav = anime({
-        targets: getNavIDs(this.numRows, this.numCols),
-        easing: 'easeOutExpo',
-        autoplay: false,
-        opacity: (el, i) => { return i !== 0 ? 0 : 1},
-        duration: 300,
-        delay: anime.stagger(100, {grid: [3, this.numRows], from: 0}),
-        complete: () => {
-          this.$store.dispatch('navComplete');
-          this.animNav.reverse();
-        }
-      });
-
-      this.animNav.play();
-    },
-
-    intro: function () {
+    initIntro: function () {
       this.animIntro = anime.timeline({
         targets: '.block',
         easing: 'easeOutExpo',
@@ -162,8 +150,45 @@ export default {
         borderWidth: '0px',
         duration: 750
       });
+    },
 
-      this.animIntro.play();
+    initPlayTransition: function () {
+      this.animTransition = anime({
+        targets: '.block',
+        easing: 'easeOutExpo',
+        autoplay: false,
+        opacity: (el, i) => { return i !== 0 ? 0 : 1},
+        duration: 250,
+        delay: anime.stagger(75, {grid: [this.numCols, this.numRows], from: 0}),
+        complete: () => {
+          this.$store.dispatch('outroComplete');
+          this.animTransition.reset();
+        }
+      });
+
+      // this.animTransition.play();
+    },
+
+    initNav: function () {
+      this.animNav = anime({
+        targets: getNavIDs(this.numRows, this.numCols),
+        easing: 'easeOutExpo',
+        autoplay: false,
+        opacity: (el, i) => { return i !== 0 ? 0 : 1},
+        duration: 300,
+        delay: anime.stagger(100, {grid: [3, this.numRows], from: 0}),
+        complete: () => {
+          this.animNav.reverse();
+          this.handlePostNav();
+          this.$store.dispatch('navComplete');
+        }
+      });
+    },
+
+    handlePostNav: function () {
+      if (this.navOpen) {
+        anime.set('#block_1', {width: '300%'});
+      }
     },
 
     // Set the number of blocks, and row/col counts for window size

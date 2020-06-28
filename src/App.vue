@@ -6,6 +6,7 @@
 
 <script>
 import Grid from './components/Grid.vue'
+import './styles/fonts.css';
 
 export default {
   name: 'App',

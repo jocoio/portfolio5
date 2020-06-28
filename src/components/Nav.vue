@@ -1,11 +1,14 @@
 <template>
   <div class="nav" @click="toggleNav">
       <Logo v-if="activeIcon === 'logo'" ref="logo"/>
+      <Info v-if="navOpen && !naving" />
   </div>
 </template>
 
 <script>
   // import anime from 'animejs';
+  import { mapState } from 'vuex';
+  import Info from './Info';
   import Logo from '../assets/Logo';
 
   export default {
@@ -17,7 +20,14 @@
     }
   },
   components: {
+    Info,
     Logo
+  },
+  computed: {
+    ...mapState([
+      'naving',
+      'navOpen'
+    ]),
   },
   watch: {
   },
