@@ -1,7 +1,7 @@
 <template>
   <div class="info" ref="content">
       <h1>Hi, I'm Jon</h1>
-      <h3>I’m creative developer working with art and technology to share stories and build unique experiences.</h3>
+      <h3 id="intro">I’m creative developer working with art and technology to share stories and build unique experiences.</h3>
   </div>
 </template>
 
@@ -64,9 +64,13 @@
 
 <style scoped>
   .info {
-    max-width: 300px;
+    
     padding: 0 2rem;
     text-align: left;
     overflow: scroll;
+  }
+
+  #intro {
+    max-width: 300px;
   }
 </style>

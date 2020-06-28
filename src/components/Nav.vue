@@ -32,7 +32,7 @@
     },
     open_sty () {
       return {
-        width: this.open ? '33%' : '100%'
+        width: this.open ? '33.33333%' : '100%'
       }
     }
   },
