@@ -8,7 +8,9 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="150" height="150" :fill="pri"/>
-    <rect x="25" y="75" width="70.7107" height="70.7107" transform="rotate(-45 25 75)" :fill="sec"/>
+    <g ref="diamond">
+          <rect ref="diamond" x="25" y="75" width="63.66" height="63.66" transform="rotate(-45 25 75)" :fill="sec"/>
+    </g>
   </svg>
 </template>
 
@@ -31,30 +33,48 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating ' + this.$options.name);
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
       this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
+        targets: this.$refs.diamond,
         easing: 'easeInOutQuad',
         loop: false,
         autoplay: false,
-        opacity: [0, 1]
-      }) 
+        duration: 300,
+        scale: [0, 1]
+      });
     },
-    initMain: function () {}
+    initMain: function () {
+      this.animMain = anime.timeline({
+        targets: this.$refs.diamond,
+        duration: 300,
+        easing: 'easeInOutQuad',
+        loop: false,
+        autoplay: false,
+      })
+      .add({
+        scale: [1,0]
+      })
+      .add({
+        scale: [0,1]
+      })
+    }
   },
   watch: {},
   created: function () {},
   mounted: function () {
+    this.initMain();
     this.initIntro();
   }
 }
 </script>
 
 <style scoped>
+  g {
+    transform-origin: center;
+  }
 </style>

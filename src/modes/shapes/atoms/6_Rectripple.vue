@@ -1,6 +1,5 @@
 <template>
   <svg 
-    ref="svg"
     width="100%" 
     height="100%" 
     viewBox="0 0 150 150" 
@@ -8,15 +7,17 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="150" height="150" :fill="pri"/>
-    <rect x="-6.62254" y="115.173" width="168.234" height="167.11" transform="rotate(-45 -6.62254 115.173)" fill="none" :stroke="sec" stroke-width="10"/>
-    <rect x="-35.3401" y="116.236" width="210.22" height="209.999" transform="rotate(-45 -35.3401 116.236)" fill="none" :stroke="sec" stroke-width="10"/>
-    <rect x="-65.1212" y="116.204" width="251.549" height="250.879" transform="rotate(-45 -65.1212 116.204)" fill="none" :stroke="sec" stroke-width="10"/>
-    <rect x="22.095" y="115.173" width="127.036" height="128.419" transform="rotate(-45 22.095 115.173)" fill="none" :stroke="sec" stroke-width="10"/>
-    <rect x="49.7489" y="115.173" width="87.683" height="90.4799" transform="rotate(-45 49.7489 115.173)" fill="none" :stroke="sec" stroke-width="10"/>
-    <rect x="78.4663" y="115.173" width="44.2222" height="50" transform="rotate(-45 78.4663 115.173)" fill="none" :stroke="sec" stroke-width="10"/>
-    <rect x="-95.9659" y="115.173" width="294.826" height="293.779" transform="rotate(-45 -95.9659 115.173)" fill="none" :stroke="sec" stroke-width="10"/>
-    <rect x="-126.093" y="115.727" width="338.717" height="335.342" transform="rotate(-45 -126.093 115.727)" fill="none" :stroke="sec" stroke-width="10"/>
-    <rect x="-156.929" y="117.864" width="382.959" height="375.57" transform="rotate(-45 -156.929 117.864)" fill="none" :stroke="sec" stroke-width="10"/>
+    <g ref="rects">
+      <rect x="-83.6699" y="74.6295" width="223.869" height="223.869" transform="rotate(-45 -83.6699 74.6295)" :stroke="sec" stroke-width="10" fill="none"/>
+      <rect x="-65.792" y="74.6295" width="198.586" height="198.586" transform="rotate(-45 -65.792 74.6295)" :stroke="sec" stroke-width="10" fill="none" />
+      <rect x="-47.9142" y="74.6295" width="173.303" height="173.303" transform="rotate(-45 -47.9142 74.6295)" :stroke="sec" stroke-width="10" fill="none"/>
+      <rect x="-30.0362" y="74.6295" width="148.02" height="148.02" transform="rotate(-45 -30.0362 74.6295)" :stroke="sec" stroke-width="10" fill="none"/>
+      <rect x="-12.1584" y="74.6295" width="122.737" height="122.737" transform="rotate(-45 -12.1584 74.6295)" :stroke="sec" stroke-width="10" fill="none"/>
+      <rect x="5.71963" y="74.6295" width="97.4534" height="97.4534" transform="rotate(-45 5.71963 74.6295)" :stroke="sec" stroke-width="10" fill="none"/>
+      <rect x="23.5976" y="74.6295" width="72.1702" height="72.1702" transform="rotate(-45 23.5976 74.6295)" :stroke="sec" stroke-width="10" fill="none"/>
+      <rect x="41.4754" y="74.6295" width="46.8871" height="46.8871" transform="rotate(-45 41.4754 74.6295)" :stroke="sec" stroke-width="10" fill="none"/>
+      <rect x="59.3532" y="74.6295" width="21.6039" height="21.6039" transform="rotate(-45 59.3532 74.6295)" :stroke="sec" stroke-width="10" fill="none"/>
+    </g>
   </svg>
 </template>
 
@@ -39,26 +40,46 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating ' + this.$options.name);
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
       this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        duration: 300,
+        targets: this.$refs.rects.children,
         loop: false,
         autoplay: false,
-        opacity: [0, 1]
+        easing: 'easeInOutQuad',
+        delay: anime.stagger(100),
+        opacity: [0, 1],
+        strokeWidth: [0,3]
       }) 
     },
-    initMain: function () {}
+    initMain: function () {
+      this.animMain = anime.timeline({
+        targets: this.$refs.rects.children,
+        loop: false,
+        autoplay: false,
+        duration: 300,
+      })
+      .add({
+        easing: 'easeInOutQuad',
+        strokeWidth: [3,10],
+        delay: anime.stagger(50)
+      })
+      .add({
+        easing: 'easeInOutQuad',
+        strokeWidth: [10,3],
+        delay: anime.stagger(50)
+      })
+    }
   },
   watch: {},
   created: function () {},
   mounted: function () {
+    this.initMain();
     this.initIntro();
   }
 }

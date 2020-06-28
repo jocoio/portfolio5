@@ -12,9 +12,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-// import anime from 'animejs';
-
 import Vines from './atoms/1_Vines';
 import Halfmoon from './atoms/2_Halfmoon';
 import Diamond from './atoms/3_Diamond';
@@ -38,11 +35,7 @@ export default {
       flipped: true
     }
   },
-  computed: {
-    ...mapState([
-      'transitioning'
-    ])
-  },
+  computed: {},
   props: {
     num: Number
   },
@@ -95,14 +88,7 @@ export default {
       this.flipped = false;
     }
   },
-  watch: {
-    // transitioning: function () {
-    //   if (!this.transitioning) {
-    //     this.animIntro.reset();
-    //     this.animIntro.play();
-    //   } 
-    // }
-  },
+  watch: {},
   created: function () {
     this.setAtom(Math.floor(Math.random() * 8));
     this.setFlipped(Math.round(Math.random()) === 1);
