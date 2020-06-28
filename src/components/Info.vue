@@ -65,7 +65,7 @@
 <style scoped>
   .info {
     
-    padding: 0 2rem;
+    padding: 0 12.5%;
     text-align: left;
     overflow: scroll;
   }

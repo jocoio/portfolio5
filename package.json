@@ -2,10 +2,12 @@
   "name": "portfolio5",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/jocoio/portfolio5",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "node ./node_modules/vue-gh-pages/index.js"
   },
   "dependencies": {
     "@types/animejs": "^3.1.1",
@@ -21,6 +23,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "vue-gh-pages": "^1.19.1",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
