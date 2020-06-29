@@ -1,7 +1,8 @@
 <template>
-  <div class="nav" @click="toggleNav">
-      <Logo v-if="activeIcon === 'logo'" ref="logo" :style="open_sty"/>
+  <div id="nav">
+      <Logo v-if="activeIcon === 'logo'" ref="logo" :style="open_sty" @click.native="toggleNav"/>
       <Info v-if="navOpen && !naving" />
+      <Modes v-if="navOpen && !naving" />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
   import { mapState } from 'vuex';
   import Info from './Info';
   import Logo from '../assets/Logo';
+  import Modes from './Modes';
 
   export default {
   name: 'Nav',
@@ -20,7 +22,8 @@
   },
   components: {
     Info,
-    Logo
+    Logo,
+    Modes
   },
   computed: {
     ...mapState([
@@ -32,7 +35,8 @@
     },
     open_sty () {
       return {
-        width: this.open ? '33.33333%' : '100%'
+        width: this.open ? '33.33333%' : '100%',
+        height: this.open ? '33.33333%' : '100%',
       }
     }
   },
@@ -51,6 +55,7 @@
 <style scoped>
 
   .icon {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;

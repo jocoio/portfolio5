@@ -30,7 +30,7 @@ export default {
       prime: '#000000',
       second: '#FFFFFF',
       palettes: [
-        ['#318E40', '#FFFFFF']
+        ['#4066EC', '#FFFFFF']
       ],
       flipped: true
     }
@@ -65,9 +65,9 @@ export default {
       setTimeout(() => {
         this.$refs[this.num].playIntro();
       }, Math.random() * 1000)
-      // setTimeout(() => {
-      //   this.setColors(this.palettes[0]);
-      // }, 3000)
+      setTimeout(() => {
+        this.setColors(this.palettes[0]);
+      }, 2500)
     },
     setAtom: function (num) {
       this.atom = num;

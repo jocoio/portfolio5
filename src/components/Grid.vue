@@ -80,7 +80,10 @@ export default {
         anime.set('.block', {opacity: 1});
         
         if (this.navOpen) {
-          document.getElementById('block_1').style.width = '';
+          let nav = document.getElementById('block_1');
+          nav.style.width = '';
+          nav.style.height = '';
+          nav.style.zIndex = '';
           this.$store.commit('toggleNav');
         }
 
@@ -103,7 +106,10 @@ export default {
       }
       else {
         if (!this.resizing) {
-          document.getElementById('block_1').style.width = '';
+          let nav = document.getElementById('block_1');
+          nav.style.width = '';
+          nav.style.height = '';
+          nav.style.zIndex = '';
           this.animNav.play();
         }
       } 
@@ -186,7 +192,7 @@ export default {
 
     handlePostNav: function () {
       if (this.navOpen) {
-        anime.set('#block_1', {width: '300%'});
+        anime.set('#block_1', {width: '300%', height: '300%', zIndex: 1});
       }
     },
 

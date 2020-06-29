@@ -1,36 +1,12 @@
 <template>
-  <div class="info" ref="content">
-      <div id="intro">
-        <h1>Hi, I'm Jon</h1>
-        <h3>I’m creative developer working with art and technology to share stories and build unique experiences.</h3>
-        <h5>Full resume<RightArrow/></h5>
-      </div>
-      <div id="work">
-        <h6>Recent work</h6>
-        <a href="https://wikn.herokuapp.com/" target="_blank">
-          <h2>What I Know Now  <span>↗&#xFE0E;</span></h2>
-          <!-- <h6>Vue</h6>
-          <h6>Anime</h6>
-          <h6>Mongodb</h6> -->
-        </a>
-        <a href="https://togetherapart.sosolimited.com/" target="_blank">
-          <h2>Together Apart  <span>↗&#xFE0E;</span></h2>
-          <!-- <h6>React</h6>
-          <h6>Sanity.io</h6>
-          <h6>Twitter API</h6> -->
-        </a>
-        <a href="https://www.sosolimited.com/" target="_blank">
-          <h2>Sosolimited.com  <span>↗&#xFE0E;</span></h2>
-          <!-- <h6>PHP</h6> -->
-        </a>
-      </div>
+  <div id="modes" ref="modes">
+      <!-- <h6>Grid Modes</h6> -->
   </div>
 </template>
 
 <script>
   import anime from 'animejs';
   import { mapState } from 'vuex';
-  import RightArrow from '../assets/RightArrow';
 
   export default {
   name: 'Nav',
@@ -39,9 +15,7 @@
       animIntro: null
     }
   },
-  components: {
-    RightArrow
-  },
+  components: {},
   computed: {
     ...mapState([
       'naving',
@@ -88,11 +62,11 @@
 </script>
 
 <style scoped>
-  .info {
-    width: 75%;
-    margin-top: -10%;
-    padding: 0 10%;
+  #modes {
+    position: absolute;
     text-align: left;
+    bottom: 8%;
+    left: 8%;
     overflow: scroll;
   }
 
