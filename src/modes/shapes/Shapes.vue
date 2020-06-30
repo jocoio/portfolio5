@@ -1,37 +1,26 @@
 <template>
   <div class="shape" ref="shape" v-bind:class="{'flipped': flipped}" @click="animate">
-    <Vines v-if="atom === 0" :ref="num" :pri="prime" :sec="second"/>
-    <Halfmoon v-else-if="atom === 1" :ref="num" :pri="prime" :sec="second"/>
-    <Diamond v-else-if="atom === 2" :ref="num" :pri="prime" :sec="second"/>
-    <Trigrow v-else-if="atom === 3" :ref="num" :pri="prime" :sec="second"/>
-    <Pinwheel v-else-if="atom === 4" :ref="num" :pri="prime" :sec="second"/>
-    <Rectripple v-else-if="atom === 5" :ref="num" :pri="prime" :sec="second"/>
-    <Halfblack v-else-if="atom === 6" :ref="num" :pri="prime" :sec="second"/>
-    <Bullseye v-else-if="atom === 7" :ref="num" :pri="prime" :sec="second"/>
-    <ArrowMax v-else-if="atom === 8" :ref="num" :pri="prime" :sec="second"/>
-    <Dot v-else-if="atom === 9" :ref="num" :pri="prime" :sec="second"/>
-    <QuarterCirc v-else-if="atom === 10" :ref="num" :pri="prime" :sec="second"/>
-    <TriFour v-else-if="atom === 11" :ref="num" :pri="prime" :sec="second"/>
-    <CircOutline v-else-if="atom === 12" :ref="num" :pri="prime" :sec="second"/>
-    <Grid v-else-if="atom === 13" :ref="num" :pri="prime" :sec="second"/>
+    <component v-bind:is="'_' + atom" :ref="num" :pri="prime" :sec="second" />
   </div>
 </template>
 
 <script>
-import Vines from './atoms/1_Vines';
-import Halfmoon from './atoms/2_Halfmoon';
-import Diamond from './atoms/3_Diamond';
-import Trigrow from './atoms/4_Trigrow';
-import Pinwheel from './atoms/5_Pinwheel';
-import Rectripple from './atoms/6_Rectripple';
-import Halfblack from './atoms/7_Halfblack';
-import Bullseye from './atoms/8_Bullseye';
-import ArrowMax from './atoms/9_ArrowMax';
-import Dot from './atoms/10_Dot';
-import QuarterCirc from './atoms/13_QuarterCirc';
-import TriFour from './atoms/14_TriFour';
-import CircOutline from './atoms/15_CircOutline';
-import Grid from './atoms/16_Grid';
+import _1 from './atoms/1_Vines';
+import _2 from './atoms/2_Halfmoon';
+import _3 from './atoms/3_Diamond';
+import _4 from './atoms/4_Trigrow';
+import _5 from './atoms/5_Pinwheel';
+import _6 from './atoms/6_Rectripple';
+import _7 from './atoms/7_Halfblack';
+import _8 from './atoms/8_Bullseye';
+import _9 from './atoms/9_ArrowMax';
+import _10 from './atoms/10_Dot';
+import _11 from './atoms/11_Star'
+import _12 from './atoms/12_TriStalks';
+import _13 from './atoms/13_QuarterCirc';
+import _14 from './atoms/14_TriFour';
+import _15 from './atoms/15_CircOutline';
+import _16 from './atoms/16_Grid';
 
 export default {
   name: 'Shapes',
@@ -52,20 +41,8 @@ export default {
     num: Number
   },
   components: {
-    Vines,
-    Halfmoon,
-    Diamond,
-    Trigrow,
-    Pinwheel,
-    Rectripple,
-    Halfblack,
-    Bullseye,
-    ArrowMax,
-    Dot,
-    QuarterCirc,
-    TriFour,
-    CircOutline,
-    Grid
+    _1, _2, _3, _4, _5, _6, _7, _8,
+    _9, _10, _11, _12, _13, _14, _15, _16
   },
   methods: {
     animate: function () {
@@ -108,7 +85,7 @@ export default {
   },
   watch: {},
   created: function () {
-    this.setAtom(Math.floor(Math.random() * 14));
+    this.setAtom(Math.ceil(Math.random() * 15));
     this.setFlipped(Math.round(Math.random()) === 1);
   },
   mounted: function () {
