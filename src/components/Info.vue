@@ -3,7 +3,9 @@
       <div id="intro">
         <h1>Hi, I'm Jon</h1>
         <h3>I’m creative developer working with art and technology to share stories and build unique experiences.</h3>
-        <h5>Full resume<RightArrow/></h5>
+        <a id="resume" target="_blank" href="https://drive.google.com/file/d/1jx0GsIA13JdBJ2InMw6bHblS1Ef3yLRh/view?usp=sharing">
+          <h5 >Full resume</h5> <RightArrow/>
+        </a>
       </div>
       <div id="work">
         <h6>Recent work</h6>
@@ -94,6 +96,10 @@
     padding: 0 10%;
     text-align: left;
     overflow: scroll;
+  }
+
+  #resume>h5 {
+    display: inline-block;
   }
 
   #intro>h1 {

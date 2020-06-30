@@ -22,6 +22,6 @@ export default {
 <style scoped>
   #right {
     display: inline-block;
-    padding-left: 10px;
+    padding-left: 5px;
   }
 </style>
