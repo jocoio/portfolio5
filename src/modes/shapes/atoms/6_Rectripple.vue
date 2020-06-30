@@ -25,7 +25,6 @@
 import anime from 'animejs';
 
 export default {
-  name: 'Rectripple',
   data: function () {
     return {
       animIntro: null,

@@ -33,7 +33,6 @@
 import anime from 'animejs';
 
 export default {
-  name: 'Pinwheel',
   data: function () {
     return {
       animIntro: null,

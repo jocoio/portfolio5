@@ -8,6 +8,12 @@
     <Rectripple v-else-if="atom === 5" :ref="num" :pri="prime" :sec="second"/>
     <Halfblack v-else-if="atom === 6" :ref="num" :pri="prime" :sec="second"/>
     <Bullseye v-else-if="atom === 7" :ref="num" :pri="prime" :sec="second"/>
+    <ArrowMax v-else-if="atom === 8" :ref="num" :pri="prime" :sec="second"/>
+    <Dot v-else-if="atom === 9" :ref="num" :pri="prime" :sec="second"/>
+    <QuarterCirc v-else-if="atom === 10" :ref="num" :pri="prime" :sec="second"/>
+    <TriFour v-else-if="atom === 11" :ref="num" :pri="prime" :sec="second"/>
+    <CircOutline v-else-if="atom === 12" :ref="num" :pri="prime" :sec="second"/>
+    <Grid v-else-if="atom === 13" :ref="num" :pri="prime" :sec="second"/>
   </div>
 </template>
 
@@ -20,6 +26,12 @@ import Pinwheel from './atoms/5_Pinwheel';
 import Rectripple from './atoms/6_Rectripple';
 import Halfblack from './atoms/7_Halfblack';
 import Bullseye from './atoms/8_Bullseye';
+import ArrowMax from './atoms/9_ArrowMax';
+import Dot from './atoms/10_Dot';
+import QuarterCirc from './atoms/13_QuarterCirc';
+import TriFour from './atoms/14_TriFour';
+import CircOutline from './atoms/15_CircOutline';
+import Grid from './atoms/16_Grid';
 
 export default {
   name: 'Shapes',
@@ -47,7 +59,13 @@ export default {
     Pinwheel,
     Rectripple,
     Halfblack,
-    Bullseye
+    Bullseye,
+    ArrowMax,
+    Dot,
+    QuarterCirc,
+    TriFour,
+    CircOutline,
+    Grid
   },
   methods: {
     animate: function () {
@@ -90,7 +108,7 @@ export default {
   },
   watch: {},
   created: function () {
-    this.setAtom(Math.floor(Math.random() * 8));
+    this.setAtom(Math.floor(Math.random() * 14));
     this.setFlipped(Math.round(Math.random()) === 1);
   },
   mounted: function () {

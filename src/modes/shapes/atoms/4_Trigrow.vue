@@ -19,7 +19,6 @@
 import anime from 'animejs';
 
 export default {
-  name: 'Trigrow',
   data: function () {
     return {
       animIntro: null,

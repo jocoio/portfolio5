@@ -51,7 +51,6 @@
 import anime from 'animejs';
 
 export default {
-  name: 'Vines',
   data: function () {
     return {
       animIntro: null,

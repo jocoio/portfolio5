@@ -18,7 +18,6 @@
 import anime from 'animejs';
 
 export default {
-  name: 'Diamond',
   data: function () {
     return {
       animIntro: null,

@@ -16,7 +16,6 @@
 import anime from 'animejs';
 
 export default {
-  name: 'Halfblack',
   data: function () {
     return {
       animIntro: null,
