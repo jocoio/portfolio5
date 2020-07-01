@@ -40,6 +40,9 @@ export default new Vuex.Store({
     navRows: 3,
     // # of cols nav will take up
     navCols: 3,
+    // Width of the nav
+    // --> needs to be manually calculated for browser support
+    navWidth: 0,
     // Is the nav open
     navOpen: false
 
@@ -76,6 +79,9 @@ export default new Vuex.Store({
     },
     toggleNav (state) {
       state.navOpen = !state.navOpen;
+    },
+    setNavWidth(state, width) {
+      state.navWidth = width;
     }
   },
   actions : {

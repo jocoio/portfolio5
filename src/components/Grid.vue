@@ -1,5 +1,5 @@
 <template>
-  <div id="grid-container" :style="container_style">
+  <div id="grid-container" :style="container_style" ref="grid">
     <Block 
       class="block"
       v-bind:class="{'intro-style': introing, 'resize-style': resizing}"
@@ -23,6 +23,7 @@ import {
   getRows,
   getCols,
   getNavIDs,
+  getNavWidth
 } from '../grid';
 
 export default {
@@ -119,9 +120,11 @@ export default {
     },
   },
   mounted() {
+
     // Create the grid
     this.makeGrid();
     this.blocks = reID(this.blocks);
+    this.$store.commit('setNavWidth', getNavWidth());
 
     // Run the intro
     setTimeout(() => {
@@ -195,12 +198,13 @@ export default {
 
     handlePostNav: function () {
       if (this.navOpen) {
-        anime.set('#block_1', {width: '300%', height: '300%', zIndex: 1});
+        // anime.set('#block_1', {width: '300%', height: '300%', zIndex: 1});
       }
     },
 
     // Set the number of blocks, and row/col counts for window size
     makeGrid: function () {
+      this.$refs.grid.style.height = window.innerHeight + 'px';
       this.blocks = setBlocks(this.blocks);
       this.numCols = getCols();
       this.numRows = getRows();
@@ -217,6 +221,7 @@ export default {
       clearTimeout(this.resizeTimer);
       this.resizeTimer = setTimeout(() => {
         this.$store.commit('setResizing', false);
+        this.$store.commit('setNavWidth', getNavWidth());
         this.blocks = reID(this.blocks);
       }, 500);
 
@@ -241,7 +246,6 @@ export default {
     display: grid;
     margin: 0;
     width: 100vw;
-    height: 100vh;
     background-color: #000000;
   }
 

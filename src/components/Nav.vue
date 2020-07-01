@@ -1,8 +1,10 @@
 <template>
   <div id="nav">
       <Logo v-if="activeIcon === 'logo'" ref="logo" :style="open_sty" @click.native="toggleNav"/>
-      <Info v-if="navOpen && !naving" />
-      <Modes v-if="navOpen && !naving" />
+      <div id="navContent" v-if="navOpen && !naving" :style="size_style">
+        <Info  />
+        <Modes />
+      </div>
   </div>
 </template>
 
@@ -28,15 +30,22 @@
   computed: {
     ...mapState([
       'naving',
-      'navOpen'
+      'navOpen',
+      'navWidth'
     ]),
     open () {
       return this.navOpen & !this.naving
     },
     open_sty () {
       return {
-        width: this.open ? '33.33333%' : '100%',
-        height: this.open ? '33.33333%' : '100%',
+        width: '100%',
+        height: '100%',
+      }
+    },
+    size_style () {
+      return {
+        width: this.navWidth + 'px',
+        height: '100vh',
       }
     }
   },
@@ -53,6 +62,15 @@
 </script>
 
 <style scoped>
+
+  #navContent {
+    position: absolute;
+    margin-top: -50px;
+    text-align: left;
+    overflow: scroll;
+    z-index: 1;
+  }
+
 
   .icon {
     cursor: pointer;

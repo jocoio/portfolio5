@@ -30,6 +30,6 @@ export default {
 
   .icon>svg {
     margin: auto;
-    width: 50%;
+    width: 40%;
   }
 </style>

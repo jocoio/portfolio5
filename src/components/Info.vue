@@ -1,8 +1,8 @@
 <template>
-  <div class="info" ref="content">
+  <div id="info" ref="content">
       <div id="intro">
         <h1>Hi, I'm Jon</h1>
-        <h3>I’m creative developer working with art and technology to share stories and build unique experiences.</h3>
+        <h3>I’m a creative developer currently in San Diego. I love working with art and technology to share stories and build unique experiences.</h3>
         <a id="resume" target="_blank" href="https://drive.google.com/file/d/1jx0GsIA13JdBJ2InMw6bHblS1Ef3yLRh/view?usp=sharing">
           <h5 >Full resume</h5> <RightArrow/>
         </a>
@@ -10,20 +10,20 @@
       <div id="work">
         <h6>Recent work</h6>
         <a href="https://wikn.herokuapp.com/" target="_blank">
-          <h2>What I Know Now  <span>↗&#xFE0E;</span></h2>
+          <h2>What I Know Now<span class="arrow">↗&#xFE0E;</span></h2>
           <!-- <h6>Vue</h6>
           <h6>Anime</h6>
           <h6>Mongodb</h6> -->
         </a>
-        <a href="https://togetherapart.sosolimited.com/" target="_blank">
-          <h2>Together Apart  <span>↗&#xFE0E;</span></h2>
+        <a href="https://www.sosolimited.com/" target="_blank">
+          <h2>Sosolimited.com<span class="arrow">↗&#xFE0E;</span></h2>
+          <!-- <h6>PHP</h6> -->
+        </a>
+        <a href="https://miraj-web.herokuapp.com/" target="_blank">
+          <h2>Miraj<span class="arrow">↗&#xFE0E;</span></h2>
           <!-- <h6>React</h6>
           <h6>Sanity.io</h6>
           <h6>Twitter API</h6> -->
-        </a>
-        <a href="https://www.sosolimited.com/" target="_blank">
-          <h2>Sosolimited.com  <span>↗&#xFE0E;</span></h2>
-          <!-- <h6>PHP</h6> -->
         </a>
       </div>
   </div>
@@ -50,13 +50,7 @@
       'navOpen',
       'navCols',
       'navRows',
-    ]),
-    size_style () {
-      return {
-        width: (100 * this.navCols) + '%',
-        height: (100 * this.navRows) + '%'
-      }
-    }
+    ])
   },
   watch: {
     naving: function () {
@@ -80,6 +74,9 @@
         marginLeft: [-15, 0],
         marginRight: [15, 0]
       })
+    },
+    handleHover() {
+
     }
   },
   mounted () {
@@ -90,12 +87,13 @@
 </script>
 
 <style scoped>
-  .info {
-    width: 75%;
-    margin-top: -10%;
+
+  #info {
     padding: 0 10%;
-    text-align: left;
-    overflow: scroll;
+  }
+
+  .arrow {
+    margin-left: 10px;
   }
 
   #resume>h5 {
@@ -118,8 +116,17 @@
     margin-bottom: 20px;
   }
 
-  #work>a>h2 {
-    width: fit-content;
+  #resume:hover > #right {
+    margin-left: 10px;
+  }
+
+  #work>a:hover>h2>.arrow {
+    margin-left: 20px;
+    margin-bottom: 10px
+  }
+
+  .arrow, #right {
+    transition: margin 100ms
   }
 
   .work>a>h6 {

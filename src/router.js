@@ -11,6 +11,9 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
+      meta: {
+        title: 'Jon Corbett'
+      },
       component: Home
     },
     {

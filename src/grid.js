@@ -72,6 +72,10 @@ export function getNavIDs (rows, cols) {
   return ids;
 }
 
+export function getNavWidth () {
+  return Math.floor(window.innerWidth * 3 / getCols())
+}
+
 // Gets number of columns needed based on current width
 export function getCols () { 
   return Math.floor(window.innerWidth / getBlockIdeal());

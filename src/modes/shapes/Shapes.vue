@@ -1,26 +1,26 @@
 <template>
   <div class="shape" ref="shape" v-bind:class="{'flipped': flipped}" @click="animate">
-    <component v-bind:is="'_' + atom" :ref="num" :pri="prime" :sec="second" />
+    <component v-bind:is="'s_' + atom" :ref="num" :pri="prime" :sec="second" />
   </div>
 </template>
 
 <script>
-import _1 from './atoms/1_Vines';
-import _2 from './atoms/2_Halfmoon';
-import _3 from './atoms/3_Diamond';
-import _4 from './atoms/4_Trigrow';
-import _5 from './atoms/5_Pinwheel';
-import _6 from './atoms/6_Rectripple';
-import _7 from './atoms/7_Halfblack';
-import _8 from './atoms/8_Bullseye';
-import _9 from './atoms/9_ArrowMax';
-import _10 from './atoms/10_Dot';
-import _11 from './atoms/11_Star'
-import _12 from './atoms/12_TriStalks';
-import _13 from './atoms/13_QuarterCirc';
-import _14 from './atoms/14_TriFour';
-import _15 from './atoms/15_CircOutline';
-import _16 from './atoms/16_Grid';
+import s_1 from './atoms/1_Vines';
+import s_2 from './atoms/2_Halfmoon';
+import s_3 from './atoms/3_Diamond';
+import s_4 from './atoms/4_Trigrow';
+import s_5 from './atoms/5_Pinwheel';
+import s_6 from './atoms/6_Rectripple';
+import s_7 from './atoms/7_Halfblack';
+import s_8 from './atoms/8_Bullseye';
+import s_9 from './atoms/9_ArrowMax';
+import s_10 from './atoms/10_Dot';
+import s_11 from './atoms/11_Star'
+import s_12 from './atoms/12_TriStalks';
+import s_13 from './atoms/13_QuarterCirc';
+import s_14 from './atoms/14_TriFour';
+import s_15 from './atoms/15_CircOutline';
+import s_16 from './atoms/16_Grid';
 
 export default {
   name: 'Shapes',
@@ -41,8 +41,8 @@ export default {
     num: Number
   },
   components: {
-    _1, _2, _3, _4, _5, _6, _7, _8,
-    _9, _10, _11, _12, _13, _14, _15, _16
+    s_1, s_2, s_3, s_4, s_5, s_6, s_7, s_8,
+    s_9, s_10, s_11, s_12, s_13, s_14, s_15, s_16
   },
   methods: {
     animate: function () {
