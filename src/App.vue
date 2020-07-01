@@ -1,32 +1,30 @@
 <template>
-  <div id="app">
-    <Grid />
-  </div>
+  <transition name="fade">
+    <router-view></router-view>
+  </transition>
 </template>
 
 <script>
-import Grid from './components/Grid.vue'
 import './styles/fonts.css';
 
 export default {
   name: 'App',
   components: {
-    Grid
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-body {
-  margin: 0;
-  overflow: hidden;
-}
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
 </style>

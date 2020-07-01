@@ -45,6 +45,9 @@ export default {
       randomAnimator: null
     }
   },
+  props: {
+    mode: String
+  },
   components: {
     Block
   },
@@ -141,7 +144,7 @@ export default {
         
         complete: () => {
           this.$store.commit("setIntroing", false);
-          this.$store.commit("setMode", 'shapes');
+          this.$store.commit("setMode", this.mode ? this.mode : 'shapes');
         }
       })
       .add({

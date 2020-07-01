@@ -1,6 +1,5 @@
 <template>
   <div id="modes" ref="modes">
-      <!-- <h6>Grid Modes</h6> -->
   </div>
 </template>
 
@@ -44,7 +43,7 @@
   methods: {
     initIntro() {
       this.animIntro = anime({
-        targets: this.$refs.content.children,
+        targets: this.$refs.modes,
         duration: 500,
         easing: 'easeOutExpo',
         delay: anime.stagger(100),
