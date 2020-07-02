@@ -49,13 +49,13 @@ export function getBlockIdeal () {
   let width = window.innerWidth;
 
   if (width <= 450) {
-    return 75;
-  }
-  else if (width < 600) {
     return 100;
   }
-  else if (width < 1000) {
-    return 175;
+  else if (width < 1024) {
+    return 125;
+  }
+  else if (width < 1440) {
+    return 150;
   }
   else {
     return 200;
@@ -73,7 +73,12 @@ export function getNavIDs (rows, cols) {
 }
 
 export function getNavWidth () {
-  return Math.floor(window.innerWidth * 3 / getCols())
+  if (window.innerWidth < 480) {
+    return window.innerWidth;
+  }
+  else {
+    return Math.floor(window.innerWidth * 3 / getCols())
+  } 
 }
 
 // Gets number of columns needed based on current width

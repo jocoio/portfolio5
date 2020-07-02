@@ -54,6 +54,8 @@ export default {
   },
   computed: {
     ...mapState([
+      'rows',
+      'cols',
       'resizing',
       'introing',
       'transitioning',
@@ -62,17 +64,17 @@ export default {
     ]),
     container_style () {
       return  {
-        gridTemplateRows: 'repeat(' + this.numRows + ', 1fr)',
-        gridTemplateColumns: 'repeat(' + this.numCols + ', 1fr)'
+        gridTemplateRows: 'repeat(' + this.rows + ', 1fr)',
+        gridTemplateColumns: 'repeat(' + this.cols + ', 1fr)'
       }
     },
   },
   watch: {
     numCols: function () {
-      this.$store.commit('setCols', this.numCols);
+      this.$store.commit('setCols', this.cols);
     },
     numRows: function () {
-      this.$store.commit('setRows', this.numRows);
+      this.$store.commit('setRows', this.rows);
     },
     introing: function () {
       if (!this.introing) {
@@ -154,7 +156,7 @@ export default {
         borderColor: '#FFFFFF',
         borderWidth: '1px',
         duration: 750,
-        delay: anime.stagger(130, {grid: [this.numCols, this.numRows], from: 0}),
+        delay: anime.stagger(130, {grid: [this.cols, this.rows], from: 0}),
       })
       .add({
         borderColor: 'rgba(255, 255, 255, 0)',
@@ -170,7 +172,7 @@ export default {
         autoplay: false,
         opacity: (el, i) => { return i !== 0 ? 0 : 1},
         duration: 250,
-        delay: anime.stagger(75, {grid: [this.numCols, this.numRows], from: 0}),
+        delay: anime.stagger(75, {grid: [this.cols, this.rows], from: 0}),
         complete: () => {
           this.$store.dispatch('outroComplete');
           this.animTransition.reset();
@@ -182,12 +184,12 @@ export default {
 
     initNav: function () {
       this.animNav = anime({
-        targets: getNavIDs(this.numRows, this.numCols),
+        targets: getNavIDs(this.rows, this.cols),
         easing: 'easeOutExpo',
         autoplay: false,
         opacity: (el, i) => { return i !== 0 ? 0 : 1},
         duration: 300,
-        delay: anime.stagger(100, {grid: [3, this.numRows], from: 0}),
+        delay: anime.stagger(100, {grid: [3, this.rows], from: 0}),
         complete: () => {
           this.animNav.reverse();
           this.handlePostNav();
@@ -197,17 +199,14 @@ export default {
     },
 
     handlePostNav: function () {
-      if (this.navOpen) {
-        // anime.set('#block_1', {width: '300%', height: '300%', zIndex: 1});
-      }
     },
 
     // Set the number of blocks, and row/col counts for window size
     makeGrid: function () {
       this.$refs.grid.style.height = window.innerHeight + 'px';
       this.blocks = setBlocks(this.blocks);
-      this.numCols = getCols();
-      this.numRows = getRows();
+      this.$store.commit('setCols', getCols());
+      this.$store.commit('setRows', getRows());
     },
 
     // Called on every resize, multiple times per resize
@@ -232,7 +231,7 @@ export default {
     startRandomAnimator: function () {
       let idx = 0;
       this.randomAnimator = setInterval(() => {
-        idx = Math.floor(Math.random() * (this.numRows * this.numCols));
+        idx = Math.floor(Math.random() * (this.rows * this.cols));
         if (idx > 1) this.$refs[idx][0].animate();
       }, 3000)
     }

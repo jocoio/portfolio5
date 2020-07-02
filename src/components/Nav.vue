@@ -85,4 +85,10 @@
   .icon>svg {
     height: 30%;
   }
+
+  @media only screen and (max-width: 768px) {
+    #navContent {
+      margin-top: 0px;
+    }
+  }
 </style>
