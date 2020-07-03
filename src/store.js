@@ -19,7 +19,7 @@ export default new Vuex.Store({
     // Global grid mode
     mode: 'intro',
     // Array of available grid modes
-    modes: ['shapes', 'photos', 'mono'],
+    modes: ['shapes', 'photos'],
     // Next mode to load
     next: 0,
 

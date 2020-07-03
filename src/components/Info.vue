@@ -27,9 +27,6 @@
         </a>
         <a href="https://youtu.be/x537ydNKKtE" target="_blank">
           <h2>Video Reel<span class="arrow">↗&#xFE0E;</span></h2>
-          <!-- <h6>React</h6>
-          <h6>Sanity.io</h6>
-          <h6>Twitter API</h6> -->
         </a>
       </div>
   </div>
@@ -37,7 +34,6 @@
 
 <script>
   import anime from 'animejs';
-  import { mapState } from 'vuex';
   import RightArrow from '../assets/icons/RightArrow';
 
   export default {
@@ -50,22 +46,8 @@
   components: {
     RightArrow
   },
-  computed: {
-    ...mapState([
-      'naving',
-      'navOpen',
-    ])
-  },
+  computed: {},
   watch: {
-    naving: function () {
-      if (!this.naving && this.navOpen) {
-        console.log('nav: should set nav block');
-        
-      }
-      else if (this.naving && !this.navOpen) {
-        console.log("nav: should be reset");
-      }
-    }
   },
   methods: {
     initIntro() {
@@ -79,9 +61,6 @@
         marginRight: [15, 0]
       })
     },
-    handleHover() {
-
-    }
   },
   mounted () {
     this.initIntro();

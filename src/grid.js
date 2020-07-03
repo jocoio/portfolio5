@@ -49,13 +49,13 @@ export function getBlockIdeal () {
   let width = window.innerWidth;
 
   if (width <= 450) {
-    return 100;
-  }
-  else if (width < 1024) {
     return 125;
   }
-  else if (width < 1440) {
+  else if (width < 1024) {
     return 150;
+  }
+  else if (width < 1440) {
+    return 175;
   }
   else {
     return 200;

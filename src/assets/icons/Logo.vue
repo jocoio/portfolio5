@@ -13,11 +13,10 @@
 
 export default {
   name: 'Logo',
-  data: function () {
+  data: () => {
     return {}
   },
   methods: {
-    animate: function () {}
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
-      <Logo v-if="activeIcon === 'logo'" @click.native="toggleNav"/>  
-      <div id="navContent" v-if="open" :style="width_sty">
+      <Logo @click.native="togNav"/>  
+      <div id="navContent" ref="content" v-if="open" :style="width_sty">
         <Modes id="modes" v-if="open" :style="block_sty"/>
         <Info />
       </div>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  // import anime from 'animejs';
+  import anime from 'animejs';
   import { mapState, mapGetters } from 'vuex';
   import Info from './Info';
   import Logo from '../assets/icons/Logo';
@@ -19,7 +19,7 @@
   name: 'Nav',
   data: function () {
     return {
-      activeIcon: 'logo',
+      animOutro: null
     }
   },
   components: {
@@ -31,7 +31,10 @@
     ...mapState([
       'naving',
       'navOpen',
-      'navWidth'
+      'navWidth',
+      'introing',
+      'transitioning',
+      'naving'
     ]),
     ...mapGetters([
       'blockWidth',
@@ -39,12 +42,6 @@
     ]),
     open () {
       return this.navOpen & !this.naving
-    },
-    open_sty () {
-      return {
-        width: '100%',
-        height: '100%',
-      }
     },
     width_sty () {
       return {
@@ -59,14 +56,37 @@
       }
     }
   },
-  watch: {},
-  methods: {
-    toggleNav: function () {
-      this.$store.dispatch('changeNav');
+  watch: {
+    naving () {
+      // We are naving but want to close
+      if (this.naving && !this.navOpen) {
+        this.playOutro();
+      }
+    },
+    transitioning () {
+      if (this.transitioning) {
+        this.playOutro();
+      }
     }
   },
-  mounted () {
-  }
+  methods: {
+    togNav () {
+      if (!this.introing) {
+        this.$store.dispatch('changeNav');
+      }
+    },
+    playOutro () {
+      this.animOutro = anime({
+        duration: 250,
+        targets: this.$refs.content,
+        easing: 'easeInExpo',
+        opacity: [1, 0],
+      })
+
+      this.animOutro.play();
+    }
+  },
+  mounted () {}
 }
 </script>
 

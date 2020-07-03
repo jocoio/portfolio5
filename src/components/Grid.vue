@@ -57,8 +57,8 @@ export default {
       'resizing',
       'introing',
       'transitioning',
+      'naving',
       'navOpen',
-      'naving'
     ]),
     container_style () {
       return  {
@@ -75,39 +75,27 @@ export default {
     },
     resizing: function () {
       if (this.resizing) {
-        anime.set('.block', {opacity: 1});
-        
-        if (this.navOpen) {
-          let nav = document.getElementById('block_1');
-          nav.style.width = '';
-          nav.style.height = '';
-          nav.style.zIndex = '';
-          this.$store.commit('toggleNav');
-        }
-
         clearInterval(this.randomAnimator);
+        this.resetGrid();
       }
       else {
         this.startRandomAnimator();
-
       }
     },
     transitioning: function () {
       this.transitioning ? 
-      this.initPlayTransition() :
+      this.playTransition() :
       this.animTransition.reset();
     },
     navOpen() {
+      // Should be opened
       if (this.navOpen) {
         this.initNav();
         this.animNav.play();
       }
+      // Should be closed
       else {
-        if (!this.resizing) {
-          let nav = document.getElementById('block_1');
-          nav.style.width = '';
-          nav.style.height = '';
-          nav.style.zIndex = '';
+        if (!this.resizing && this.naving) {
           this.animNav.play();
         }
       } 
@@ -145,19 +133,19 @@ export default {
         }
       })
       .add({
-        borderColor: '#FFFFFF',
-        borderWidth: '1px',
+        outlineColor: '#FFFFFF',
+        outlineWidth: '1px',
         duration: 750,
         delay: anime.stagger(130, {grid: [this.cols, this.rows], from: 0}),
       })
       .add({
-        borderColor: 'rgba(255, 255, 255, 0)',
-        borderWidth: '0px',
+        outlineColor: 'rgba(255, 255, 255, 0)',
+        outlineWidth: '0px',
         duration: 750
       });
     },
 
-    initPlayTransition: function () {
+    playTransition: function () {
       this.animTransition = anime({
         targets: '.block',
         easing: 'easeOutExpo',
@@ -166,8 +154,9 @@ export default {
         duration: 250,
         delay: anime.stagger(75, {grid: [this.cols, this.rows], from: 0}),
         complete: () => {
+          // TODO: Reset the nav animation effect somehow
           this.$store.dispatch('outroComplete');
-          this.animTransition.reset();
+          this.resetGrid();      
         }
       });
 
@@ -179,18 +168,20 @@ export default {
         targets: getNavIDs(this.rows, this.cols),
         easing: 'easeOutExpo',
         autoplay: false,
-        opacity: (el, i) => { return i !== 0 ? 0 : 1},
+        opacity: [1, (el, i) => { return i !== 0 ? 0 : 1}],
         duration: 300,
         delay: anime.stagger(100, {grid: [3, this.rows], from: 0}),
         complete: () => {
           this.animNav.reverse();
-          this.handlePostNav();
           this.$store.dispatch('navComplete');
         }
       });
     },
 
-    handlePostNav: function () {
+    resetGrid () {
+      anime.remove('.block')
+      anime.set('.block', {opacity: 1});
+      this.$store.commit('setNavOpen', false);
     },
 
     // Set the number of blocks, and row/col counts for window size
@@ -231,7 +222,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
   #grid-container {
     display: grid;
@@ -241,8 +231,8 @@ export default {
   }
 
   .block {
-    border-style: solid;
-    border-width: 0px;
+    outline-style: solid;
+    outline-width: 0px;
     background-color: #000000; 
     display: flex;
     justify-content: center;
@@ -252,12 +242,12 @@ export default {
   }
 
   .block.intro-style {
-    border-color: #000000;
-    border-width: 1px;
+    outline-color: #000000;
+    outline-width: 1px;
   }
 
   .block.resize-style {
-    border-width: 1px !important;
-    border: 1px solid #FFFFFF !important;
+    outline-width: 1px !important;
+    outline: 1px solid #FFFFFF !important;
   }
 </style>

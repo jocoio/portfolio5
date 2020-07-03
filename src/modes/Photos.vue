@@ -1,6 +1,6 @@
 <template>
   <div :id="num" :ref="num">
-    <img src="../assets/photos/0.jpg" />
+    <img :src="url" />
   </div>
 </template>
 
@@ -14,13 +14,18 @@ export default {
   data: function () {
     return {
       color: '#b06262',
+      idx: 0,
       animIntro: null
     }
   },
   computed: {
     ...mapState([
       'transitioning'
-    ])
+    ]),
+    url () {
+      var images = require.context('../assets/photos/', false, /\.jpg$/)
+      return images('./' + (this.num - 1) % 29 + ".jpg")
+    }
   },
   props: {
     num: Number
@@ -49,7 +54,9 @@ export default {
       } 
     }
   },
-  created: function () {},
+  created: function () {
+    this.idx = Math.floor(Math.random() * 20);
+  },
   mounted: function () {
     this.intro();
   }
@@ -58,6 +65,7 @@ export default {
 
 <style>
   img {
+    object-fit: cover;
     width: 100%;
     height: 100%;
   }
