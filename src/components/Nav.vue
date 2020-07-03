@@ -1,16 +1,16 @@
 <template>
   <div id="nav">
-      <Logo v-if="activeIcon === 'logo'" ref="logo" :style="open_sty" @click.native="toggleNav"/>
-      <div id="navContent" v-if="navOpen && !naving" :style="size_style">
-        <Info  />
-        <Modes />
+      <Logo v-if="activeIcon === 'logo'" @click.native="toggleNav"/>  
+      <div id="navContent" v-if="open" :style="width_sty">
+        <Modes id="modes" v-if="open" :style="block_sty"/>
+        <Info />
       </div>
   </div>
 </template>
 
 <script>
   // import anime from 'animejs';
-  import { mapState } from 'vuex';
+  import { mapState, mapGetters } from 'vuex';
   import Info from './Info';
   import Logo from '../assets/Logo';
   import Modes from './Modes';
@@ -33,6 +33,10 @@
       'navOpen',
       'navWidth'
     ]),
+    ...mapGetters([
+      'blockWidth',
+      'blockHeight'
+    ]),
     open () {
       return this.navOpen & !this.naving
     },
@@ -42,15 +46,20 @@
         height: '100%',
       }
     },
-    size_style () {
+    width_sty () {
       return {
         width: this.navWidth + 'px',
-        height: '100vh',
+      }
+    },
+    block_sty () {
+      return {
+        width: this.blockWidth + 'px',
+        height: this.blockHeight + 'px',
+        top: '-' + this.blockHeight + 'px'
       }
     }
   },
-  watch: {
-  },
+  watch: {},
   methods: {
     toggleNav: function () {
       this.$store.dispatch('changeNav');
@@ -63,14 +72,25 @@
 
 <style scoped>
 
-  #navContent {
-    position: absolute;
-    margin-top: -50px;
-    text-align: left;
-    overflow: scroll;
-    z-index: 1;
+  #navButtons {
+    width: 100%;
+    height: 100%;
   }
 
+  #modes {
+    position: absolute;
+    top: 0;
+    right: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  #navContent {
+    position: absolute;
+    text-align: left;
+    z-index: 1;
+  }
 
   .icon {
     cursor: pointer;

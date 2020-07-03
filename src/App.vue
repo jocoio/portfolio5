@@ -2,7 +2,7 @@
   <!-- <transition name="fade">
    <router-view></router-view>
   </transition> -->
-  <Grid mode="shapes" />
+  <Grid mode=0 />
 </template>
 
 <script>

@@ -1,5 +1,10 @@
 <template>
-  <div id="modes" ref="modes">
+  <div>
+    <div id="cont" ref="modes">
+      <div class="mode" v-bind:class="{'active' : this.next === 0}" @click="handleClick(0)"></div>
+      <div class="mode" v-bind:class="{'active' : this.next === 1}" @click="handleClick(1)"></div>
+      <div class="mode" v-bind:class="{'active' : this.next === 2}" @click="handleClick(2)"></div>
+    </div>
   </div>
 </template>
 
@@ -17,17 +22,12 @@
   components: {},
   computed: {
     ...mapState([
+      'mode',
+      'next',
+      'modes',
       'naving',
       'navOpen',
-      'navCols',
-      'navRows',
-    ]),
-    size_style () {
-      return {
-        width: (100 * this.navCols) + '%',
-        height: (100 * this.navRows) + '%'
-      }
-    }
+    ])
   },
   watch: {
     naving: function () {
@@ -41,15 +41,17 @@
     }
   },
   methods: {
-    initIntro() {
+    handleClick (mode) {
+      this.$store.commit('setTransitioning', true);
+      this.$store.commit('setNext', mode);
+    },
+    initIntro () {
       this.animIntro = anime({
-        targets: this.$refs.modes,
-        duration: 500,
+        targets: this.$refs.modes.children,
+        duration: 2000,
         easing: 'easeOutExpo',
         delay: anime.stagger(100),
-        opacity: [0,1],
-        marginLeft: [-15, 0],
-        marginRight: [15, 0]
+        opacity: [0,'inherit']
       })
     }
   },
@@ -61,46 +63,21 @@
 </script>
 
 <style scoped>
-  #modes {
-    position: absolute;
-    text-align: left;
-    bottom: 8%;
-    left: 8%;
-    overflow: scroll;
+
+  #cont > .mode {
+    opacity: 0.5;
   }
 
-  #intro>h1 {
-    margin-bottom: 7px;
+  #cont > .mode.active {
+    opacity: 1;
   }
 
-  #intro>h3 {
-    margin-bottom: 21px;
-  }
-
-  #work {
-    margin-top: 50px;
-  }
-
-  #work>h6 {
-    margin-bottom: 20px;
-  }
-
-  #work>a>h2 {
-    width: fit-content;
-  }
-
-  .work>a>h6 {
+  .mode {
     display: inline-block;
-    width: min-content;
-    margin-right: 7px;
-    margin-bottom: 6px;
-    border: 1px solid;
-    background-color: initial;
-    border-radius: 5px;
-    white-space: nowrap;
-    padding: 4px 8px 4px 8px;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.7px;
+    width: 15px;
+    height: 15px;
+    margin: 5px;
+    background-color: #FFFFFF;
+    transition: opacity 150ms translateY 5000ms;
   }
 </style>

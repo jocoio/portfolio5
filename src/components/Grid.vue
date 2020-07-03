@@ -33,8 +33,6 @@ export default {
     return {
       // Grid stuff
       blocks: [],
-      numCols: 0,
-      numRows: 0,
 
       // Animation stuff
       animIntro: null,
@@ -70,12 +68,6 @@ export default {
     },
   },
   watch: {
-    numCols: function () {
-      this.$store.commit('setCols', this.cols);
-    },
-    numRows: function () {
-      this.$store.commit('setRows', this.rows);
-    },
     introing: function () {
       if (!this.introing) {
         this.startRandomAnimator();
@@ -149,7 +141,7 @@ export default {
         
         complete: () => {
           this.$store.commit("setIntroing", false);
-          this.$store.commit("setMode", this.mode ? this.mode : 'shapes');
+          this.$store.commit("setMode", this.mode ? this.mode : 0);
         }
       })
       .add({
@@ -179,7 +171,7 @@ export default {
         }
       });
 
-      // this.animTransition.play();
+      this.animTransition.play();
     },
 
     initNav: function () {

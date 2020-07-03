@@ -19,8 +19,9 @@ export default new Vuex.Store({
     // Global grid mode
     mode: 'intro',
     // Array of available grid modes
-    modes: ['solids', 'mono', 'shapes'],
-
+    modes: ['shapes', 'solids', 'mono'],
+    // Next mode to load
+    next: 0,
 
     // ----- ANIMATION FLAGS ----- //
 
@@ -47,7 +48,14 @@ export default new Vuex.Store({
     navOpen: false
 
   },
-  getters: {},
+  getters: {
+    blockWidth (state) {
+      return Math.floor(window.innerWidth / state.cols);
+    },
+    blockHeight (state) {
+      return Math.floor(window.innerHeight / state.rows);
+    },
+  },
   mutations: {
     // ----- GRID ----- //
     setRows (state, rows) {
@@ -57,8 +65,11 @@ export default new Vuex.Store({
       state.cols = cols;
     }, 
     // ----- MODE ----- //
-    setMode (state, mode) {
-      state.mode = mode;
+    setMode (state, idx) {
+      state.mode = state.modes[idx];
+    },
+    setNext(state, next) {
+      state.next = next;
     },
     // ----- ANIMATION FLAGS ----- //
     setIntroing (state, bool) {
@@ -91,7 +102,7 @@ export default new Vuex.Store({
     },
     // Grid-wide transition done
     outroComplete (context) {
-      context.commit('setMode', context.state.modes[Math.floor(Math.random() * 3)]);
+      context.commit('setMode', context.state.next);
       context.commit('setTransitioning', false);
     },
     // Nav transition done 

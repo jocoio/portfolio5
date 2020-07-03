@@ -25,6 +25,12 @@
           <h6>Sanity.io</h6>
           <h6>Twitter API</h6> -->
         </a>
+        <a href="https://youtu.be/x537ydNKKtE" target="_blank">
+          <h2>Video Reel<span class="arrow">↗&#xFE0E;</span></h2>
+          <!-- <h6>React</h6>
+          <h6>Sanity.io</h6>
+          <h6>Twitter API</h6> -->
+        </a>
       </div>
   </div>
 </template>
@@ -48,8 +54,6 @@
     ...mapState([
       'naving',
       'navOpen',
-      'navCols',
-      'navRows',
     ])
   },
   watch: {
