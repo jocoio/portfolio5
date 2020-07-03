@@ -12,6 +12,7 @@ h1 {
 }
 
 h2 {
+  font-size: 1.3rem;
   padding-top: 10px;
   letter-spacing: .5px;
 }
@@ -19,6 +20,7 @@ h2 {
 h3 {
   font-size: 1.1rem;
   font-weight: 400;
+  letter-spacing: 0.2px;
 }
 
 h4 {

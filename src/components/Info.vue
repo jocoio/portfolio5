@@ -38,7 +38,7 @@
 <script>
   import anime from 'animejs';
   import { mapState } from 'vuex';
-  import RightArrow from '../assets/RightArrow';
+  import RightArrow from '../assets/icons/RightArrow';
 
   export default {
   name: 'Nav',
@@ -94,6 +94,7 @@
 
   #info {
     padding: 0 10%;
+    margin-top: -15px;
   }
 
   .arrow {

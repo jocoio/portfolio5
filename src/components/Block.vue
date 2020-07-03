@@ -1,20 +1,21 @@
 <template>
   <div :id="'block_' + id">
       <Nav v-if="first" :ref="id" />
+      <div v-else-if="mode === 'intro'" />
       <div v-else-if="resizing"></div>
-      <Mono v-else-if="mode==='mono'" :num="id" :ref="id" />
-      <Solids v-else-if="mode==='solids'" :num="id" :ref="id" />
-      <Shapes v-else-if="mode==='shapes'" :num="id" :ref="id" />
+      <component v-else v-bind:is="mode" :num="id" :ref="id" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
-import Mono from '../modes/Mono';
+import mono from '../modes/Mono';
 import Nav from './Nav';
-import Solids from '../modes/Solids';
-import Shapes from '../modes/shapes/Shapes';
+import solids from '../modes/Solids';
+import photos from '../modes/Photos';
+import shapes from '../modes/Shapes';
+
 
 export default {
   name: 'Block',
@@ -24,10 +25,11 @@ export default {
     }
   },
   components: {
-    Mono,
+    mono,
     Nav,
-    Solids,
-    Shapes
+    photos,
+    solids,
+    shapes
   },
   props: {
     id: Number

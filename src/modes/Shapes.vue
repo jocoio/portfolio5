@@ -5,22 +5,22 @@
 </template>
 
 <script>
-import s_1 from './atoms/1_Vines';
-import s_2 from './atoms/2_Halfmoon';
-import s_3 from './atoms/3_Diamond';
-import s_4 from './atoms/4_Trigrow';
-import s_5 from './atoms/5_Pinwheel';
-import s_6 from './atoms/6_Rectripple';
-import s_7 from './atoms/7_Halfblack';
-import s_8 from './atoms/8_Bullseye';
-import s_9 from './atoms/9_ArrowMax';
-import s_10 from './atoms/10_Dot';
-import s_11 from './atoms/11_Star'
-import s_12 from './atoms/12_TriStalks';
-import s_13 from './atoms/13_QuarterCirc';
-import s_14 from './atoms/14_TriFour';
-import s_15 from './atoms/15_CircOutline';
-import s_16 from './atoms/16_Grid';
+import s_1 from '../assets/shapes/1_Vines';
+import s_2 from '../assets/shapes/2_Halfmoon';
+import s_3 from '../assets/shapes/3_Diamond';
+import s_4 from '../assets/shapes/4_Trigrow';
+import s_5 from '../assets/shapes/5_Pinwheel';
+import s_6 from '../assets/shapes/6_Rectripple';
+import s_7 from '../assets/shapes/7_Halfblack';
+import s_8 from '../assets/shapes/8_Bullseye';
+import s_9 from '../assets/shapes/9_ArrowMax';
+import s_10 from '../assets/shapes/10_Dot';
+import s_11 from '../assets/shapes/11_Star'
+import s_12 from '../assets/shapes/12_TriStalks';
+import s_13 from '../assets/shapes/13_QuarterCirc';
+import s_14 from '../assets/shapes/14_TriFour';
+import s_15 from '../assets/shapes/15_CircOutline';
+import s_16 from '../assets/shapes/16_Grid';
 
 export default {
   name: 'Shapes',

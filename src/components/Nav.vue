@@ -12,7 +12,7 @@
   // import anime from 'animejs';
   import { mapState, mapGetters } from 'vuex';
   import Info from './Info';
-  import Logo from '../assets/Logo';
+  import Logo from '../assets/icons/Logo';
   import Modes from './Modes';
 
   export default {
