@@ -31,11 +31,12 @@ export default {
       prime: '#000000',
       second: '#FFFFFF',
       palettes: [
-        ['#4066EC', '#FFFFFF']
+        ['#F9F9F9', '#FFC90B', '#FE3E02', '#0A89FE']
       ],
       flipped: true
     }
   },
+  
   computed: {},
   props: {
     num: Number
@@ -70,14 +71,12 @@ export default {
     setColors: function (palette) {
       if (Math.round(Math.random()) === 1) {
         this.prime = palette[0];
-        this.second = palette[1];
+        this.second = palette[Math.ceil(Math.random() * (palette.length - 1))];
       }
       else {
-        this.prime = palette[1];
+        this.prime = palette[Math.ceil(Math.random() * (palette.length - 1))];
         this.second = palette[0];
       }
-      
-      
     },
     setFlipped: function () {
       this.flipped = false;

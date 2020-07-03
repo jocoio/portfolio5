@@ -71,7 +71,7 @@
   },
   methods: {
     togNav () {
-      if (!this.introing) {
+      if (!this.introing && !this.naving) {
         this.$store.dispatch('changeNav');
       }
     },
