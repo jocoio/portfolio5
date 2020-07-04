@@ -61,14 +61,11 @@ export default {
       'navOpen',
     ]),
     container_style () {
-      return  {
+      return {
         gridTemplateRows: 'repeat(' + this.rows + ', 1fr)',
         gridTemplateColumns: 'repeat(' + this.cols + ', 1fr)'
       }
     },
-    route_mode () {
-      return this.$route.name
-    }
   },
   watch: {
     resizing: function () {
@@ -78,6 +75,7 @@ export default {
       }
       else {
         this.startRandomAnimator();
+
       }
     },
     transitioning: function () {
@@ -108,15 +106,16 @@ export default {
     this.makeGrid();
     this.blocks = reID(this.blocks);
     this.$store.commit('setNavWidth', getNavWidth());
+    
+    // Animation intro
+    setTimeout(() => {
+      this.initIntro();
+      this.animIntro.play();
+    }, 500);
 
-    // Run the intro if this is the first time on the page
-    if (!this.introd) {
-          
-      setTimeout(() => {
-        this.initIntro();
-        this.animIntro.play();
-      }, 500);
-    }
+    // Photo mode initing
+    this.$store.dispatch('initPhotos');
+    this.$store.dispatch('shufflePhotos');
 
     // Resizer & Random Animator
     window.addEventListener('resize', this.resizeGrid);
@@ -152,6 +151,21 @@ export default {
       });
     },
 
+    initNav: function () {
+      this.animNav = anime({
+        targets: getNavIDs(this.rows, this.cols),
+        easing: 'easeOutExpo',
+        autoplay: false,
+        opacity: [1, (el, i) => { return i !== 0 ? 0 : 1}],
+        duration: 300,
+        delay: anime.stagger(100, {grid: [3, this.rows], from: 0}),
+        complete: () => {
+          this.animNav.reverse();
+          this.$store.dispatch('navComplete');
+        }
+      });
+    },
+
     playTransition: function () {
       this.animTransition = anime({
         targets: '.block',
@@ -169,25 +183,14 @@ export default {
       this.animTransition.play();
     },
 
-    initNav: function () {
-      this.animNav = anime({
-        targets: getNavIDs(this.rows, this.cols),
-        easing: 'easeOutExpo',
-        autoplay: false,
-        opacity: [1, (el, i) => { return i !== 0 ? 0 : 1}],
-        duration: 300,
-        delay: anime.stagger(100, {grid: [3, this.rows], from: 0}),
-        complete: () => {
-          this.animNav.reverse();
-          this.$store.dispatch('navComplete');
-        }
-      });
-    },
-
+    // Reset the grid blocks from any animated state
     resetGrid () {
       anime.remove('.block')
       anime.set('.block', {opacity: 1});
       this.$store.commit('setNavOpen', false);
+      if (this.mode === 'photos') {
+        this.$store.dispatch('shufflePhotos');
+      }
     },
 
     // Set the number of blocks, and row/col counts for window size
@@ -222,8 +225,8 @@ export default {
       this.randomAnimator = setInterval(() => {
         idx = Math.floor(Math.random() * (this.rows * this.cols));
         if (idx > 1) this.$refs[idx][0].animate();
-      }, 3000)
-    }
+      }, 3000);
+    },
   }
 }
 </script>
@@ -231,8 +234,6 @@ export default {
 <style>
   #grid-container {
     display: grid;
-    margin: 0;
-    width: 100vw;
     background-color: #000000;
   }
 

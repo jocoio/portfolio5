@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import router from './router';
-
+import _ from 'underscore';
 
 Vue.use(Vuex)
 
@@ -47,8 +46,16 @@ export default new Vuex.Store({
     // --> needs to be manually calculated for browser support
     navWidth: 0,
     // Is the nav open
-    navOpen: false
+    navOpen: false,
 
+
+    // ----- PHOTO MODE ----- //
+
+    // Array of ints representing available photos
+    // Will be shuffled
+    photos: [],
+    // Number of available photos
+    numPhotos: 29
   },
   getters: {
     blockWidth (state) {
@@ -95,6 +102,10 @@ export default new Vuex.Store({
     },
     setNavWidth(state, width) {
       state.navWidth = width;
+    },
+    // ----- PHOTO MODE ----- //
+    setPhotos (state, arr) {
+      state.photos = arr;
     }
   },
   actions : {
@@ -106,7 +117,6 @@ export default new Vuex.Store({
     outroComplete (context) {
       context.commit('setMode', context.state.next);
       context.commit('setTransitioning', false);
-      // router.push({ name: context.state.next });
     },
     // Nav transition done 
     navComplete (context) {
@@ -120,6 +130,17 @@ export default new Vuex.Store({
     changeMode (context, mode) {
       context.commit('setTransitioning', true);
       context.commit('setNext', mode);
+    },
+    initPhotos({ commit, state }) {
+      let arr = [];
+      for (let i = 0; i < state.numPhotos; i++) {
+        arr.push(i);
+      }
+      commit('setPhotos', arr);
+    },
+    shufflePhotos ({ commit, state }) {
+      let arr = _.shuffle(state.photos);
+      commit('setPhotos', arr);
     }
   }
 })

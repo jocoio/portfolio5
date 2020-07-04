@@ -1,8 +1,5 @@
 <template>
-  <div id="container" :ref="num">
-    <img :src="url" ref="photo"/>
-    <!-- <div id="cover" ref="cover"/> -->
-  </div>
+  <img :src="url" ref="photo"/>
 </template>
 
 <script>
@@ -14,18 +11,20 @@ export default {
   name: 'Photo',
   data: function () {
     return {
-      color: '#b06262',
       idx: 0,
       animIntro: null
     }
   },
   computed: {
     ...mapState([
-      'transitioning'
+      'transitioning',
+      'photos',
+      'numPhotos'
     ]),
     url () {
       var images = require.context('../assets/photos/', false, /\.jpg$/)
-      return images('./' + (this.num - 1) % 29 + ".jpg")
+      console.log(this.photos);
+      return images('./' + this.photos[this.num % this.numPhotos]  + ".jpg")
     }
   },
   props: {
@@ -71,23 +70,7 @@ export default {
 </script>
 
 <style>
-
-  #container {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  #cover {
-    grid-row-start: 1;
-    grid-column-start: 1;
-    background-color: #000000;
-    width: 100%;
-    bottom: 0;
-  }
-
   img {
-    grid-row-start: 1;
-    grid-column-start: 1;
     object-fit: cover;
     width: 100%;
     height: 100%;
