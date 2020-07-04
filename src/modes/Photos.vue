@@ -1,6 +1,7 @@
 <template>
-  <div :id="num" :ref="num">
-    <img :src="url" />
+  <div id="container" :ref="num">
+    <img :src="url" ref="photo"/>
+    <div id="cover" ref="cover"/>
   </div>
 </template>
 
@@ -36,16 +37,15 @@ export default {
     animate: function () {
       console.log('animating ' + this.num);
     },
-    intro: function () {
+    initIntro: function () {
       this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs[this.num],
-        easing: 'easeInOutQuad',
+        duration: 300,
+        targets: this.$refs.cover,
+        easing: 'easeOutQuad',
         loop: false,
         autoplay: false,
-        opacity: [0, 1]
+        height: ['100%', '0%']
       });
-      this.animIntro.play();
     }
   },
   watch: {
@@ -60,13 +60,33 @@ export default {
     this.idx = Math.floor(Math.random() * 20);
   },
   mounted: function () {
-    this.intro();
+    this.initIntro();
+    this.$refs.photo.onload = () => {   
+      setTimeout(() => {
+        this.animIntro.play();
+      }, Math.random() * 2000)
+    }
   }
 }
 </script>
 
 <style>
+
+  #container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  #cover {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    background-color: #000000;
+    width: 100%;
+  }
+
   img {
+    grid-row-start: 1;
+    grid-column-start: 1;
     object-fit: cover;
     width: 100%;
     height: 100%;
