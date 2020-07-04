@@ -106,7 +106,7 @@ export default {
   mounted() {
     // Create the grid
     this.makeGrid();
-      this.blocks = reID(this.blocks);
+    this.blocks = reID(this.blocks);
     this.$store.commit('setNavWidth', getNavWidth());
 
     // Run the intro if this is the first time on the page
@@ -120,7 +120,6 @@ export default {
 
     // Resizer & Random Animator
     window.addEventListener('resize', this.resizeGrid);
-    this.startRandomAnimator();
   },
   beforeDestroy () {
     clearInterval(this.randomAnimator);
@@ -137,6 +136,7 @@ export default {
         complete: () => {
           this.$store.commit("setIntrod", true);
           this.$store.commit("setMode", this.mode ? this.mode : 'shapes');
+          setTimeout(this.startRandomAnimator(), 1000);
         }
       })
       .add({
