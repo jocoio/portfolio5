@@ -2,7 +2,7 @@
   <div id="grid-container" :style="container_style" ref="grid">
     <Block 
       class="block"
-      v-bind:class="{'intro-style': introing, 'resize-style': resizing}"
+      v-bind:class="{'intro-style': !introd, 'resize-style': resizing}"
       v-for="block in blocks"
       :key="block.id"
       :id="block.id"
@@ -55,7 +55,7 @@ export default {
       'rows',
       'cols',
       'resizing',
-      'introing',
+      'introd',
       'transitioning',
       'naving',
       'navOpen',
@@ -66,13 +66,11 @@ export default {
         gridTemplateColumns: 'repeat(' + this.cols + ', 1fr)'
       }
     },
+    route_mode () {
+      return this.$route.name
+    }
   },
   watch: {
-    introing: function () {
-      if (!this.introing) {
-        this.startRandomAnimator();
-      }
-    },
     resizing: function () {
       if (this.resizing) {
         clearInterval(this.randomAnimator);
@@ -100,23 +98,32 @@ export default {
         }
       } 
     },
+    mode () {
+      this.$store.dispatch('changeMode', this.mode)
+    }
   },
+  created () {},
   mounted() {
-
     // Create the grid
     this.makeGrid();
-    this.blocks = reID(this.blocks);
+      this.blocks = reID(this.blocks);
     this.$store.commit('setNavWidth', getNavWidth());
 
-    // Run the intro
-    setTimeout(() => {
-      this.initIntro();
-      this.animIntro.play();
-    }, 500);
+    // Run the intro if this is the first time on the page
+    if (!this.introd) {
+          
+      setTimeout(() => {
+        this.initIntro();
+        this.animIntro.play();
+      }, 500);
+    }
 
-    // Register an event listener when the Vue component is ready
-    window.addEventListener('resize', this.resizeGrid)
-
+    // Resizer & Random Animator
+    window.addEventListener('resize', this.resizeGrid);
+    this.startRandomAnimator();
+  },
+  beforeDestroy () {
+    clearInterval(this.randomAnimator);
   },
   methods: {
 
@@ -128,8 +135,8 @@ export default {
         easing: 'easeOutExpo',
         
         complete: () => {
-          this.$store.commit("setIntroing", false);
-          this.$store.commit("setMode", this.mode ? this.mode : 0);
+          this.$store.commit("setIntrod", true);
+          this.$store.commit("setMode", this.mode ? this.mode : 'shapes');
         }
       })
       .add({
@@ -154,7 +161,6 @@ export default {
         duration: 250,
         delay: anime.stagger(75, {grid: [this.cols, this.rows], from: 0}),
         complete: () => {
-          // TODO: Reset the nav animation effect somehow
           this.$store.dispatch('outroComplete');
           this.resetGrid();      
         }

@@ -1,8 +1,8 @@
 <template>
   <div>
     <div id="cont" ref="modes">
-      <div class="mode" v-bind:class="{'active' : this.next === 0}" @click="handleClick(0)"></div>
-      <div class="mode" v-bind:class="{'active' : this.next === 1}" @click="handleClick(1)"></div>
+      <div class="mode" v-bind:class="{'active' : active(0)}" @click="handleClick(0)"></div>
+      <div class="mode" v-bind:class="{'active' : active(1)}" @click="handleClick(1)"></div>
     </div>
   </div>
 </template>
@@ -10,6 +10,7 @@
 <script>
   import anime from 'animejs';
   import { mapState } from 'vuex';
+  import router from '../router';
 
   export default {
   name: 'Nav',
@@ -22,16 +23,20 @@
   computed: {
     ...mapState([
       'mode',
-      'next',
       'modes',
       'naving',
-    ])
+    ]),
   },
   watch: {},
   methods: {
-    handleClick (mode) {
-      this.$store.commit('setTransitioning', true);
-      this.$store.commit('setNext', mode);
+    active (idx) {
+      return this.modes[idx] === this.mode;
+    },
+    handleClick (idx) {
+      if (!this.active(idx)) {
+        // this.$store.dispatch('changeMode', this.modes[idx]);
+        router.push({ name: this.modes[idx] });
+      }
     },
     initIntro () {
       this.animIntro = anime({
@@ -51,6 +56,10 @@
 </script>
 
 <style scoped>
+
+  .mode:not(.active) {
+    cursor: pointer;
+  }
 
   #cont > .mode {
     opacity: 0.5;

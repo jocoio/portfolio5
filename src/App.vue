@@ -1,8 +1,5 @@
 <template>
-  <!-- <transition name="fade">
-   <router-view></router-view>
-  </transition> -->
-  <Grid mode=0 />
+  <Grid :mode="$route.name"/>
 </template>
 
 <script>

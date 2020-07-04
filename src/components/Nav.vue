@@ -32,7 +32,7 @@
       'naving',
       'navOpen',
       'navWidth',
-      'introing',
+      'introd',
       'transitioning',
       'naving'
     ]),
@@ -71,7 +71,7 @@
   },
   methods: {
     togNav () {
-      if (!this.introing && !this.naving) {
+      if (this.introd && !this.naving) {
         this.$store.dispatch('changeNav');
       }
     },

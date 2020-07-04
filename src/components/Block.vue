@@ -20,9 +20,7 @@ import shapes from '../modes/Shapes';
 export default {
   name: 'Block',
   data: function () {
-    return {
-      width: '200%'
-    }
+    return {}
   },
   components: {
     mono,

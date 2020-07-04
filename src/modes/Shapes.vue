@@ -5,6 +5,8 @@
 </template>
 
 <script>
+// import anime from 'animejs';
+
 import s_1 from '../assets/shapes/1_Vines';
 import s_2 from '../assets/shapes/2_Halfmoon';
 import s_3 from '../assets/shapes/3_Diamond';
@@ -31,12 +33,13 @@ export default {
       prime: '#000000',
       second: '#FFFFFF',
       palettes: [
-        ['#F9F9F9', '#FFC90B', '#FE3E02', '#0A89FE']
+        ['#F8F8F8', '#FFC90B', '#FE3E02', '#0A89FE']
       ],
-      flipped: true
+      flipped: true,
+      colorTimer: null,
+      introTimer: null,
     }
   },
-  
   computed: {},
   props: {
     num: Number
@@ -45,25 +48,39 @@ export default {
     s_1, s_2, s_3, s_4, s_5, s_6, s_7, s_8,
     s_9, s_10, s_11, s_12, s_13, s_14, s_15, s_16
   },
+  watch: {},
+  created: function () {
+    this.setAtom(Math.ceil(Math.random() * 15));
+    this.setFlipped(Math.round(Math.random()) === 1);
+  },
+  mounted: function () {
+    this.playIntro();
+
+    this.colorTimer = setTimeout(() => {
+      this.setColors(this.palettes[0]);
+    }, 2500)
+  },
+  beforeDestroy () {
+    clearTimeout(this.colorTimer);
+    clearTimeout(this.introTimer);
+  },
   methods: {
     animate: function () {
       this.$refs[this.num].playMain();
     },
     playIntro: function () {
+      // console.log('playing intro');
       // this.animIntro = anime({
       //   duration: 500,
       //   targets: this.$refs.shape,
       //   easing: 'easeInOutQuad',
       //   loop: false,
       //   autoplay: false,
-      //   opacity: 1
+      //   opacity: [0, 1]
       // });
-      setTimeout(() => {
+      this.introTimer = setTimeout(() => {
         this.$refs[this.num].playIntro();
       }, Math.random() * 1000)
-      setTimeout(() => {
-        this.setColors(this.palettes[0]);
-      }, 2500)
     },
     setAtom: function (num) {
       this.atom = num;
@@ -81,22 +98,11 @@ export default {
     setFlipped: function () {
       this.flipped = false;
     }
-  },
-  watch: {},
-  created: function () {
-    this.setAtom(Math.ceil(Math.random() * 15));
-    this.setFlipped(Math.round(Math.random()) === 1);
-  },
-  mounted: function () {
-    this.playIntro();
   }
 }
 </script>
 
 <style>
-  .shape {
-    opacity: 1;
-  }
   .shape.flipped {
     transform: rotate(180deg);
   }

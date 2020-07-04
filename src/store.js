@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+// import router from './router';
+
 
 Vue.use(Vuex)
 
@@ -26,7 +28,7 @@ export default new Vuex.Store({
     // ----- ANIMATION FLAGS ----- //
 
     // Initial intro animation
-    introing: true,
+    introd: false,
     // Window resizing?
     resizing: false,
     // Mode transition
@@ -65,15 +67,15 @@ export default new Vuex.Store({
       state.cols = cols;
     }, 
     // ----- MODE ----- //
-    setMode (state, idx) {
-      state.mode = state.modes[idx];
+    setMode (state, mode) {
+      state.mode = mode;
     },
     setNext(state, next) {
       state.next = next;
     },
     // ----- ANIMATION FLAGS ----- //
-    setIntroing (state, bool) {
-      state.introing = bool;
+    setIntrod (state, bool) {
+      state.introd = bool;
     },
     setResizing (state, bool) {
       state.resizing = bool;
@@ -98,12 +100,13 @@ export default new Vuex.Store({
   actions : {
     // One time page intro done
     introComplete (context) {
-      context.commit('setIntroing', false);
+      context.commit('setIntrod', true);
     },
     // Grid-wide transition done
     outroComplete (context) {
       context.commit('setMode', context.state.next);
       context.commit('setTransitioning', false);
+      // router.push({ name: context.state.next });
     },
     // Nav transition done 
     navComplete (context) {
@@ -114,5 +117,9 @@ export default new Vuex.Store({
       context.commit('setNaving', true);
       context.commit('toggleNav');
     },
+    changeMode (context, mode) {
+      context.commit('setTransitioning', true);
+      context.commit('setNext', mode);
+    }
   }
 })

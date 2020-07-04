@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router';
 
-import Home from './pages/Home';
-import Hello from './pages/HelloMonday';
+// import Home from './pages/Home';
+import Grid from './components/Grid';
 
 Vue.use(Router)
 
@@ -10,17 +10,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      meta: {
-        title: 'Jon Corbett'
-      },
-      component: Home
+      name: 'shapes',
+      component: Grid,
     },
     {
-      path: '/hello',
-      name: 'Hello',
-      component: Hello
+      path: '/photos',
+      name: 'photos',
+      component: Grid,
     }
   ],
-  mode: 'history'
+  mode: 'history',
 })

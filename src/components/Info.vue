@@ -15,10 +15,6 @@
           <h6>Anime</h6>
           <h6>Mongodb</h6> -->
         </a>
-        <a href="https://www.sosolimited.com/" target="_blank">
-          <h2>Sosolimited.com<span class="arrow">↗&#xFE0E;</span></h2>
-          <!-- <h6>PHP</h6> -->
-        </a>
         <a href="https://miraj-web.herokuapp.com/" target="_blank">
           <h2>Miraj<span class="arrow">↗&#xFE0E;</span></h2>
           <!-- <h6>React</h6>
