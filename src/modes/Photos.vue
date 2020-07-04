@@ -1,7 +1,7 @@
 <template>
   <div id="container" :ref="num">
     <img :src="url" ref="photo"/>
-    <div id="cover" ref="cover"/>
+    <!-- <div id="cover" ref="cover"/> -->
   </div>
 </template>
 
@@ -39,12 +39,12 @@ export default {
     },
     initIntro: function () {
       this.animIntro = anime({
-        duration: 300,
-        targets: this.$refs.cover,
+        duration: 500,
+        targets: this.$refs.photo,
         easing: 'easeOutQuad',
         loop: false,
         autoplay: false,
-        height: ['100%', '0%']
+        opacity: [0, 1],
       });
     }
   },
@@ -64,7 +64,7 @@ export default {
     this.$refs.photo.onload = () => {   
       setTimeout(() => {
         this.animIntro.play();
-      }, Math.random() * 2000)
+      }, Math.random() * 1000)
     }
   }
 }
@@ -82,6 +82,7 @@ export default {
     grid-column-start: 1;
     background-color: #000000;
     width: 100%;
+    bottom: 0;
   }
 
   img {
