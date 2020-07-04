@@ -1,4 +1,6 @@
-# portfolio5
+![grid](https://raw.githubusercontent.com/jocoio/portfolio5/master/src/assets/grid.png)
+
+# Portfolio 5
 The fifth iteration of my portfolio. Built with:
 - [Vue](https://vuejs.org/)
 - [Anime](https://animejs.com/)
