@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="150" height="150" :fill="pri"/>
-    <circle cx="150" cy="150" r="128" :stroke="sec" :fill="pri" stroke-width="44"/>
+    <circle ref="circ" cx="150" cy="150" r="128" :stroke="sec" :fill="pri" stroke-width="44"/>
   </svg>
 </template>
 
@@ -30,36 +30,35 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating ' + this.$options.name);
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
       this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
-        loop: false,
+        duration: 200,
+        targets: this.$refs.circ,
+        easing: 'easeOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        strokeWidth: [0, 44]
       }) 
     },
     initMain: function () {
       this.animMain = anime.timeline({
-        targets: this.$refs.svg,
-        loop: false,
+        targets: this.$refs.circ,
         autoplay: false,
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
+        duration: 250,
+        easing: 'easeOutQuad',
+        strokeWidth: [44, 175]
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
+        duration: 250,
+        delay: 300,
+        easing: 'easeInQuad',
+        strokeWidth: [175, 44]
       })
     }
   },

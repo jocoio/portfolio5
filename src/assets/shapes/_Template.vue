@@ -53,12 +53,12 @@ export default {
       .add({
         duration: 500,
         easing: 'easeInOutQuad',
-        opacity: [0, 1]
+        opacity: [1, 0]
       })
       .add({
         duration: 500,
         easing: 'easeInOutQuad',
-        opacity: [1, 0]
+        opacity: [0, 1]
       })
     }
   },

@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="150" height="150" :fill="pri"/>
-    <path d="M75.0001 150L6.10352e-05 150L6.75919e-05 75L75.0001 8.70209e-06L75.0001 75L150 75L75.0001 150Z" :fill="sec"/>
+    <path ref="arrow" d="M75.0001 150L6.10352e-05 150L6.75919e-05 75L75.0001 8.70209e-06L75.0001 75L150 75L75.0001 150Z" :fill="sec"/>
   </svg>
 </template>
 
@@ -30,7 +30,7 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating ' + this.$options.name);
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
@@ -38,29 +38,27 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        targets: this.$refs.arrow,
+        easing: 'easeOutQuad',
         loop: false,
         autoplay: false,
-        opacity: [0, 1]
+        translateX: [150, 0],
+        translateY: [-150, 0]
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 500,
+        targets: this.$refs.arrow,
+        easing: 'easeInOutQuad',
         loop: false,
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
+        translateX: [0, -150],
+        translateY: [0, 150],
+        complete: () => {
+          this.animIntro.play();
+        }
+      });
     }
   },
   watch: {},

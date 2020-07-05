@@ -9,7 +9,7 @@
   >
     <rect width="150" height="150" :fill="pri"/>
     <g ref="diamond">
-          <rect ref="diamond" x="25" y="75" width="63.66" height="63.66" transform="rotate(-45 25 75)" :fill="sec"/>
+        <rect ref="diamond" x="25" y="75" width="63.66" height="63.66" transform="rotate(-45 25 75)" :fill="sec"/>
     </g>
   </svg>
 </template>
