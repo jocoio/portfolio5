@@ -7,25 +7,45 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
-<rect x="66.6666" y="100" width="16.6667" height="50" :fill="sec"/>
-<rect x="50" y="116.667" width="50" height="16.6667" :fill="sec"/>
-<rect x="116.667" y="100" width="16.6667" height="50" :fill="sec"/>
-<rect x="100" y="116.667" width="50" height="16.6667" :fill="sec"/>
-<rect x="66.6666" y="50" width="16.6667" height="50" :fill="sec"/>
-<rect x="50" y="66.6667" width="50" height="16.6667" :fill="sec"/>
-<rect x="116.667" y="50" width="16.6667" height="50" :fill="sec"/>
-<rect x="100" y="66.6667" width="50" height="16.6667" :fill="sec"/>
-<rect x="66.6666" width="16.6667" height="50" :fill="sec"/>
-<rect x="50" y="16.6667" width="50" height="16.6667" :fill="sec"/>
-<rect x="116.667" width="16.6667" height="50" :fill="sec"/>
-<rect x="100" y="16.6667" width="50" height="16.6667" :fill="sec"/>
-<rect x="16.6666" y="50" width="16.6667" height="50" :fill="sec"/>
-<rect y="66.6667" width="50" height="16.6667" :fill="sec"/>
-<rect x="16.6666" width="16.6667" height="50" :fill="sec"/>
-<rect y="16.6667" width="50" height="16.6667" :fill="sec"/>
-<rect x="16.6666" y="100" width="16.6667" height="50" :fill="sec"/>
-<rect y="116.667" width="50" height="16.6667" :fill="sec"/>
+  <rect width="150" height="150" :fill="pri"/>
+  <g ref="crosses">
+    <g>
+      <rect x="16.6666" width="16.6667" height="50" :fill="sec"/>
+      <rect y="16.6667" width="50" height="16.6667" :fill="sec"/>
+    </g>
+    <g>
+      <rect x="66.6666" width="16.6667" height="50" :fill="sec"/>
+      <rect x="50" y="16.6667" width="50" height="16.6667" :fill="sec"/>
+    </g>
+    <g>
+      <rect x="116.667" width="16.6667" height="50" :fill="sec"/>
+      <rect x="100" y="16.6667" width="50" height="16.6667" :fill="sec"/>
+    </g>
+    <g>
+      <rect x="16.6666" y="50" width="16.6667" height="50" :fill="sec"/>
+      <rect y="66.6667" width="50" height="16.6667" :fill="sec"/>
+    </g>
+    <g>
+      <rect x="66.6666" y="50" width="16.6667" height="50" :fill="sec"/>
+      <rect x="50" y="66.6667" width="50" height="16.6667" :fill="sec"/>
+    </g>
+    <g>
+      <rect x="116.667" y="50" width="16.6667" height="50" :fill="sec"/>
+      <rect x="100" y="66.6667" width="50" height="16.6667" :fill="sec"/>
+    </g>
+    <g>
+      <rect x="16.6666" y="100" width="16.6667" height="50" :fill="sec"/>
+      <rect y="116.667" width="50" height="16.6667" :fill="sec"/>
+    </g>
+    <g>
+      <rect x="66.6666" y="100" width="16.6667" height="50" :fill="sec"/>
+      <rect x="50" y="116.667" width="50" height="16.6667" :fill="sec"/>
+    </g>
+    <g>
+      <rect x="116.667" y="100" width="16.6667" height="50" :fill="sec"/>
+      <rect x="100" y="116.667" width="50" height="16.6667" :fill="sec"/>
+    </g>
+  </g>
 </svg>
 </template>
 
@@ -47,35 +67,33 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
       this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        duration: 150,
+        targets: this.$refs.crosses.children,
+        easing: 'easeOutQuad',
         autoplay: false,
+        delay: anime.stagger(130, {grid: [3, 3], from: 0}),
         opacity: [0, 1]
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 150,
+        targets: this.$refs.crosses.children,
+        easing: 'easeInQuad',
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        delay: anime.stagger(130, {grid: [3, 3], from: 0}),
+        opacity: [1, 0],
+        complete: () => {
+          this.animIntro.play();
+        }
+      }) 
     }
   },
   watch: {},

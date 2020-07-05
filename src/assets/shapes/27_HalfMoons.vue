@@ -7,9 +7,10 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
-<path d="M75 75C75 116.421 108.579 150 150 150L150 -7.62939e-06C108.579 -9.43998e-06 75 33.5786 75 75Z" :fill="sec"/>
-<path d="M1.19804e-05 75C1.01698e-05 116.421 33.5786 150 75 150L75 -3.8147e-06C33.5787 -5.62528e-06 1.3791e-05 33.5786 1.19804e-05 75Z" :fill="sec"/>
+  <rect width="150" height="150" :fill="pri"/>
+
+  <path ref="h1" d="M75 75C75 116.421 108.579 150 150 150L150 -7.62939e-06C108.579 -9.43998e-06 75 33.5786 75 75Z" :fill="sec"/>
+  <path ref="h2" d="M1.19804e-05 75C1.01698e-05 116.421 33.5786 150 75 150L75 -3.8147e-06C33.5787 -5.62528e-06 1.3791e-05 33.5786 1.19804e-05 75Z" :fill="sec"/>
 </svg>
 </template>
 
@@ -31,35 +32,43 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
-      this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+      this.animIntro = anime.timeline({
+        duration: 400,
+        easing: 'easeOutCubic',
         autoplay: false,
-        opacity: [0, 1]
-      }) 
+      })
+      .add({
+        targets: this.$refs.h1,
+        translateY: [150, 0]
+      }, 0)
+      .add({
+        targets: this.$refs.h2,
+        translateY: [-150, 0]
+      }, 0)
     },
     initMain: function () {
       this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+        duration: 400,
+        easing: 'easeInCubic',
         autoplay: false,
+        complete: () => {
+          this.animIntro.play();
+        }
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
+        targets: this.$refs.h1,
+        translateY: [0, -150]
+      }, 0)
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        targets: this.$refs.h2,
+        translateY: [0, 150]
+      }, 0)
     }
   },
   watch: {},

@@ -7,29 +7,16 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
-<rect x="45.5" y="92" width="12.5" height="12.5" :fill="sec"/>
-<path d="M45.5 117L45.5 104.5L58 104.5L45.5 117Z" :fill="sec"/>
-<path d="M45.5 92L45.5 104.5L33 104.5L45.5 92Z" :fill="sec"/>
-<rect x="75.5" y="62" width="12.5" height="12.5" :fill="sec"/>
-<path d="M75.5 87L75.5 74.5L88 74.5L75.5 87Z" :fill="sec"/>
-<path d="M75.5 62L75.5 74.5L63 74.5L75.5 62Z" :fill="sec"/>
-<rect x="45.5" y="62" width="12.5" height="12.5" :fill="sec"/>
-<path d="M45.5 87L45.5 74.5L58 74.5L45.5 87Z" :fill="sec"/>
-<path d="M45.5 62L45.5 74.5L33 74.5L45.5 62Z" :fill="sec"/>
-<rect x="75.5" y="32" width="12.5" height="12.5" :fill="sec"/>
-<path d="M75.5 57L75.5 44.5L88 44.5L75.5 57Z" :fill="sec"/>
-<path d="M75.5 32L75.5 44.5L63 44.5L75.5 32Z" :fill="sec"/>
-<rect x="75.5" y="92" width="12.5" height="12.5" :fill="sec"/>
-<path d="M75.5 117L75.5 104.5L88 104.5L75.5 117Z" :fill="sec"/>
-<path d="M75.5 92L75.5 104.5L63 104.5L75.5 92Z" :fill="sec"/>
-<rect x="105.5" y="62" width="12.5" height="12.5" :fill="sec"/>
-<path d="M105.5 87L105.5 74.5L118 74.5L105.5 87Z" :fill="sec"/>
-<path d="M105.5 62L105.5 74.5L93 74.5L105.5 62Z" :fill="sec"/>
-<path d="M105.5 32H118V44.5H105.5V32Z" :fill="sec"/>
-<path d="M105.5 57L105.5 44.5L118 44.5L105.5 57Z" :fill="sec"/>
-<path d="M105.5 32L105.5 44.5L93 44.5L105.5 32Z" :fill="sec"/>
-
+  <rect width="150" height="150" :fill="pri"/>
+  <g ref="flock">
+    <path d="M58 104.5V92H45.5L33 104.5H45.5V117L58 104.5Z" fill="white"/>
+    <path d="M58 74.5V62H45.5L33 74.5H45.5V87L58 74.5Z" fill="white"/>
+    <path d="M88 104.5V92H75.5L63 104.5H75.5V117L88 104.5Z" fill="white"/>
+    <path d="M88 74.5V62H75.5L63 74.5H75.5V87L88 74.5Z" fill="white"/>
+    <path d="M118 74.5V62H105.5L93 74.5H105.5V87L118 74.5Z" fill="white"/>
+    <path d="M88 44.5V32H75.5L63 44.5H75.5V57L88 44.5Z" fill="white"/>
+    <path d="M118 44.5V32H105.5L93 44.5H105.5V57L118 44.5Z" fill="white"/>
+  </g>
 </svg>
 </template>
 
@@ -51,35 +38,37 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
       this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        duration: 250,
+        targets: this.$refs.flock.children,
+        easing: 'easeOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        delay: anime.stagger(50),
+        opacity: [0, 1],
+        translateX: [-10, 0],
+        translateY: [10, 0]
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 350,
+        targets: this.$refs.flock.children,
+        easing: 'easeInQuad',
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        delay: anime.stagger(50, {direction: 'reverse'}),
+        opacity: [1, 0],
+        translateX: [0, 10],
+        translateY: [0, -10],
+        complete: () => {
+          this.animIntro.play();
+        }
+      }) 
     }
   },
   watch: {},

@@ -8,19 +8,21 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
-<rect x="120" y="120" width="30" height="30" :fill="sec"/>
-<rect x="60" y="120" width="30" height="30" :fill="sec"/>
-<rect y="120" width="30" height="30" :fill="sec"/>
-<rect x="90" y="90" width="30" height="30" :fill="sec"/>
-<rect x="30" y="90" width="30" height="30" :fill="sec"/>
-<rect x="120" y="60" width="30" height="30" :fill="sec"/>
-<rect x="60" y="60" width="30" height="30" :fill="sec"/>
-<rect y="60" width="30" height="30" :fill="sec"/>
-<rect x="90" y="30" width="30" height="30" :fill="sec"/>
-<rect x="30" y="30" width="30" height="30" :fill="sec"/>
-<rect x="120" width="30" height="30" :fill="sec"/>
-<rect x="60" width="30" height="30" :fill="sec"/>
-<rect width="30" height="30" :fill="sec"/>
+<g ref="board">
+  <rect x="120" y="120" width="30" height="30" :fill="sec"/>
+  <rect x="60" y="120" width="30" height="30" :fill="sec"/>
+  <rect y="120" width="30" height="30" :fill="sec"/>
+  <rect x="90" y="90" width="30" height="30" :fill="sec"/>
+  <rect x="30" y="90" width="30" height="30" :fill="sec"/>
+  <rect x="120" y="60" width="30" height="30" :fill="sec"/>
+  <rect x="60" y="60" width="30" height="30" :fill="sec"/>
+  <rect y="60" width="30" height="30" :fill="sec"/>
+  <rect x="90" y="30" width="30" height="30" :fill="sec"/>
+  <rect x="30" y="30" width="30" height="30" :fill="sec"/>
+  <rect x="120" width="30" height="30" :fill="sec"/>
+  <rect x="60" width="30" height="30" :fill="sec"/>
+  <rect width="30" height="30" :fill="sec"/>
+</g>
 
 </svg>
 </template>
@@ -43,35 +45,35 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
       this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        duration: 200,
+        targets: this.$refs.board.children,
+        easing: 'easeOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        translateY: [15, 0],
+        opacity: [0, 1],
+        delay: anime.stagger(75)
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 200,
+        targets: this.$refs.board.children,
+        easing: 'easeInQuad',
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        translateY: [0, -30],
+        opacity: [1, 0],
+        delay: anime.stagger(50, {direction: 'reverse'}),
+        complete: () => {
+          this.animIntro.play();
+        }
+      }) 
     }
   },
   watch: {},

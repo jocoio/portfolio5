@@ -40,9 +40,9 @@
     watch: {},
     created: function () {
       // For testing individual blocks
-      // this.setAtom(24);
+      this.setAtom(32);
       // For random block selection
-      this.setAtom(Math.ceil(Math.random() * 24));
+      // this.setAtom(Math.ceil(Math.random() * 24));
       this.setFlipped(Math.round(Math.random()) === 1);
     },
     mounted: function () {

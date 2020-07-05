@@ -7,9 +7,9 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
-<rect x="50" width="50" height="150" :fill="sec"/>
-<rect y="50" width="150" height="50" :fill="sec"/>
+  <rect width="150" height="150" :fill="pri"/>
+  <rect ref="cross1" x="50" width="50" height="150" :fill="sec"/>
+  <rect ref="cross2" y="50" width="150" height="50" :fill="sec"/>
 </svg>
 </template>
 
@@ -31,34 +31,42 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
-      this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+      this.animIntro = anime.timeline({
         autoplay: false,
-        opacity: [0, 1]
-      }) 
+        duration: 300,
+        easing: 'easeOutQuart',
+      })
+      .add({
+        targets: this.$refs.cross1,
+        height: [0, 150]
+      })
+      .add({
+        targets: this.$refs.cross2,
+        width: [0, 150]
+      })
     },
     initMain: function () {
       this.animMain = anime.timeline({
-        targets: this.$refs.svg,
         autoplay: false,
+        duration: 400,
+        easing: 'easeOutQuart',
+        complete: () => {
+          this.animIntro.play();
+        }
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
+        targets: this.$refs.cross1,
+        height: [150, 0]
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
+        targets: this.$refs.cross2,
+        width: [150, 0]
       })
     }
   },

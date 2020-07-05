@@ -7,10 +7,9 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
-<path d="M75 -1.69281e-05L75 75L1.31134e-05 75L75 -1.69281e-05Z" :fill="sec"/>
-<path d="M75 150L75 75L150 75L75 150Z" :fill="sec"/>
-
+  <rect width="150" height="150" :fill="pri"/>
+  <path ref="r1" d="M75 -1.69281e-05L75 75L1.31134e-05 75L75 -1.69281e-05Z" :fill="sec"/>
+  <path ref="r2" d="M75 150L75 75L150 75L75 150Z" :fill="sec"/>
 </svg>
 </template>
 
@@ -32,35 +31,43 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
-      this.animIntro = anime({
+      this.animIntro = anime.timeline({
         duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        easing: 'easeOutCubic',
         autoplay: false,
-        opacity: [0, 1]
-      }) 
+      })
+      .add({
+        targets: this.$refs.r1,
+        translateY: [150, 0]
+      }, 0)
+      .add({
+        targets: this.$refs.r2,
+        translateY: [-150, 0]
+      }, 0)
     },
     initMain: function () {
       this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+        duration: 500,
+        easing: 'easeInCubic',
         autoplay: false,
+        complete: () => {
+          this.animIntro.play();
+        }
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
+        targets: this.$refs.r1,
+        translateX: [0, 200]
+      }, 0)
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        targets: this.$refs.r2,
+        translateX: [0, -200]
+      }, 0)
     }
   },
   watch: {},
