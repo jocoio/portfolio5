@@ -9,7 +9,7 @@
 >
 <rect width="150" height="150" :fill="pri"/>
 <g>
-<rect width="150" height="150" fill="black"/>
+<rect width="150" height="150" :fill="pri"/>
 <path d="M75 135L60 135L60 120L75 135Z" fill="white"/>
 <rect x="75" y="150" width="15" height="15" transform="rotate(-180 75 150)" fill="white"/>
 <path d="M75 135L90 135L90 120L75 135Z" fill="white"/>

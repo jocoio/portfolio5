@@ -9,15 +9,15 @@
 >
 <rect width="150" height="150" :fill="pri"/>
 <g>
-<circle cx="150.5" cy="149.5" r="37.5" fill="black"/>
-<circle cx="75.5" cy="149.5" r="37.5" fill="black"/>
-<circle cx="0.5" cy="149.5" r="37.5" fill="black"/>
-<circle cx="150.5" cy="74.5" r="37.5" fill="black"/>
-<circle cx="75.5" cy="74.5" r="37.5" fill="black"/>
-<circle cx="0.5" cy="74.5" r="37.5" fill="black"/>
-<circle cx="150.5" cy="-0.5" r="37.5" fill="black"/>
-<circle cx="75.5" cy="-0.5" r="37.5" fill="black"/>
-<circle cx="0.5" cy="-0.5" r="37.5" fill="black"/>
+<circle cx="150.5" cy="149.5" r="37.5" :fill="pri"/>
+<circle cx="75.5" cy="149.5" r="37.5" :fill="pri"/>
+<circle cx="0.5" cy="149.5" r="37.5" :fill="pri"/>
+<circle cx="150.5" cy="74.5" r="37.5" :fill="pri"/>
+<circle cx="75.5" cy="74.5" r="37.5" :fill="pri"/>
+<circle cx="0.5" cy="74.5" r="37.5" :fill="pri"/>
+<circle cx="150.5" cy="-0.5" r="37.5" :fill="pri"/>
+<circle cx="75.5" cy="-0.5" r="37.5" :fill="pri"/>
+<circle cx="0.5" cy="-0.5" r="37.5" :fill="pri"/>
 </g>
 </svg>
 </template>

@@ -7,12 +7,12 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
   >
+    <rect width="150" height="150" :fill="pri"/>
     <g>
-      <rect width="150" height="150" fill="black"/>
-      <circle cx="150" cy="150" r="75" fill="white"/>
-      <circle cy="150" r="75" fill="white"/>
-      <circle cx="150" r="75" fill="white"/>
-      <circle r="75" fill="white"/>
+      <circle ref="circ1" r="75" fill="white"/>
+      <circle ref="circ2" cx="150" r="75" fill="white"/>
+      <circle ref="circ3" cy="150" r="75" fill="white"/>
+      <circle ref="circ4" cx="150" cy="150" r="75" fill="white"/>
     </g>
   </svg>
 </template>
@@ -35,35 +35,65 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
-      this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+      this.animIntro = anime.timeline({
         autoplay: false,
-        opacity: [0, 1]
-      }) 
+        duration: 500,
+        easing: 'easeOutQuad',
+      })
+      .add({
+        targets: this.$refs.circ1,
+        translateX: [-75, 0],
+        translateY: [-75, 0]
+      }, 0)
+      .add({
+        targets: this.$refs.circ2,
+        translateX: [75, 0],
+        translateY: [-75, 0]
+      }, 0)
+      .add({
+        targets: this.$refs.circ3,
+        translateX: [-75, 0],
+        translateY: [75, 0]
+      }, 0)
+      .add({
+        targets: this.$refs.circ4,
+        translateX: [75, 0],
+        translateY: [75, 0]
+      }, 0)
     },
     initMain: function () {
       this.animMain = anime.timeline({
-        targets: this.$refs.svg,
         autoplay: false,
+        duration: 450,
+        direction: 'alternate',
+        easing: 'easeOutExpo',
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
+        targets: this.$refs.circ1,
+        translateX: [0, 10],
+        translateY: [0, 10]
+      }, 0)
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        targets: this.$refs.circ2,
+        translateX: [0, -10],
+        translateY: [0, 10]
+      }, 0)
+      .add({
+        targets: this.$refs.circ3,
+        translateX: [0, 10],
+        translateY: [0, -10]
+      }, 0)
+      .add({
+        targets: this.$refs.circ4,
+        translateX: [0, -10],
+        translateY: [0, -10]
+      }, 0)
     }
   },
   watch: {},

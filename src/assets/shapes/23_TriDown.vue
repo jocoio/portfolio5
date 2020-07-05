@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
 >
   <rect width="150" height="150" :fill="pri"/>
-  <path d="M75 150L4.3631e-05 -1.31134e-05L150 0L75 150Z" fill="white"/>
+  <path ref="tri" d="M75 150L4.3631e-05 -1.31134e-05L150 0L75 150Z" :fill="sec"/>
 </svg>
 </template>
 
@@ -30,7 +30,7 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
@@ -38,27 +38,23 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        targets: this.$refs.tri,
+        easing: 'easeOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        translateY: [-150, 0]
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 600,
+        targets: this.$refs.tri,
+        easing: 'easeInQuad',
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        translateY: [0, 300],
+        complete: () => {
+          this.animIntro.play();
+        }
+      }) 
     }
   },
   watch: {},

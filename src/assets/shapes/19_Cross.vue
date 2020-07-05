@@ -8,10 +8,10 @@
     xmlns="http://www.w3.org/2000/svg"
 >
   <rect width="150" height="150" :fill="pri"/>
-  <svg width="107" height="107" viewBox="0 0 107 107" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="18.1448" y="35.8223" width="25" height="75" transform="rotate(-45 18.1448 35.8223)" fill="white"/>
-  <rect x="18.1448" y="71.1777" width="75" height="25" transform="rotate(-45 18.1448 71.1777)" fill="white"/>
-  </svg>
+  <g>
+    <rect ref="cross1" x="40.1448" y="57.8223" width="25" height="75" transform="rotate(-45 40.1448 57.8223)" fill="white"/>
+    <rect ref="cross2" x="40.1448" y="93.1777" width="75" height="25" transform="rotate(-45 40.1448 93.1777)" fill="white"/>
+  </g>
 </svg>
 </template>
 
@@ -33,34 +33,42 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
-      this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+      this.animIntro = anime.timeline({
         autoplay: false,
-        opacity: [0, 1]
-      }) 
+        duration: 300,
+        easing: 'easeOutQuart',
+      })
+      .add({
+        targets: this.$refs.cross1,
+        height: [0, 75]
+      })
+      .add({
+        targets: this.$refs.cross2,
+        width: [0, 75]
+      })
     },
     initMain: function () {
       this.animMain = anime.timeline({
-        targets: this.$refs.svg,
         autoplay: false,
+        duration: 300,
+        easing: 'easeOutQuart',
+        complete: () => {
+          this.animIntro.play();
+        }
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
+        targets: this.$refs.cross1,
+        height: [75, 0]
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
+        targets: this.$refs.cross2,
+        width: [75, 0]
       })
     }
   },

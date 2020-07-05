@@ -65,19 +65,17 @@ export default {
     initMain: function () {
       this.animMain = anime.timeline({
         autoplay: false,
+        duration: 450,
+        easing: 'easeOutExpo',
         direction: 'alternate'
       })
       .add({
         targets: this.$refs.horizontal.children,
-        duration: 450,
-        easing: 'easeOutExpo',
         y1: (el, i) => {return i < 3 ? 70 + (7.5 * (i + 1)) : 100 - (7.5 * (i + 1))},
         y2: (el, i) => {return i < 3 ? 70 + (7.5  * (i + 1)) : 100 - (7.5 * (i + 1))},
       }, 50)
       .add({
         targets: this.$refs.vertical.children,
-        duration: 450,
-        easing: 'easeOutExpo',
         x1: (el, i) => {return i < 3 ? 70 + (7.5  * (i + 1)) : 100 - (7.5 * (i + 1))},
         x2: (el, i) => {return i < 3 ? 70 + (7.5  * (i + 1)) : 100 - (7.5 * (i + 1))},
       }, 50)

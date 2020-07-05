@@ -7,8 +7,8 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect width="150" height="150" transform="translate(0 150) rotate(-90)" fill="black"/>
-    <path d="M-6.55671e-06 0L150 -6.55671e-06L150 150L-6.55671e-06 0Z" fill="white"/>
+    <rect width="150" height="150" transform="translate(0 150) rotate(-90)" :fill="pri"/>
+    <path ref="tri" d="M-6.55671e-06 0L150 -6.55671e-06L150 150L-6.55671e-06 0Z" fill="white"/>
   </svg>
 </template>
 
@@ -30,7 +30,7 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
@@ -38,26 +38,22 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        targets: this.$refs.tri,
+        easing: 'easeOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        translateY: [150, 0]
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 500,
+        easing: 'easeInQuad',
+        targets: this.$refs.tri,
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
+        translateX: [0, 300],
+        complete: () => {
+          this.animIntro.play();
+        }
       })
     }
   },
