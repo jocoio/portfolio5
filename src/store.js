@@ -55,7 +55,7 @@ export default new Vuex.Store({
     // Will be shuffled
     photos: [],
     // Number of available photos
-    numPhotos: 29
+    numPhotos: 100
   },
   getters: {
     blockWidth (state) {

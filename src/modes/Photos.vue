@@ -1,5 +1,8 @@
 <template>
-  <img :src="url" ref="photo"/>
+  <div>
+    <!-- <div>{{num - 2}}</div> -->
+    <img :src="url" ref="photo"/>
+  </div>
 </template>
 
 <script>
@@ -23,8 +26,7 @@ export default {
     ]),
     url () {
       var images = require.context('../assets/photos/', false, /\.jpg$/)
-      console.log(this.photos);
-      return images('./' + this.photos[this.num % this.numPhotos]  + ".jpg")
+      return images('./' + this.photos[(this.num - 2) % this.numPhotos]  + ".jpg")
     }
   },
   props: {
