@@ -60,9 +60,6 @@ export default {
         delay: anime.stagger(100),
         direction: 'alternate',
         strokeDashoffset: [0, anime.setDashoffset],
-        complete: () => {
-          this.animIntro.play();
-        }
       }) 
     }
   },
