@@ -8,6 +8,18 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
+<g>
+<path d="M0 135L150 135" stroke="white" stroke-width="3"/>
+<path d="M0 120L150 120" stroke="white" stroke-width="3"/>
+<path d="M0 105L150 105" stroke="white" stroke-width="3"/>
+<path d="M0 90L150 90" stroke="white" stroke-width="3"/>
+<path d="M0 75L150 75" stroke="white" stroke-width="3"/>
+<path d="M0 60L150 60" stroke="white" stroke-width="3"/>
+<path d="M0 45L150 45" stroke="white" stroke-width="3"/>
+<path d="M0 30L150 30" stroke="white" stroke-width="3"/>
+<path d="M0 15L150 15" stroke="white" stroke-width="3"/>
+</g>
+
 </svg>
 </template>
 

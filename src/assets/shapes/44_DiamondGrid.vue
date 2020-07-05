@@ -8,6 +8,17 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
+<g>
+<rect x="97.9116" y="110.184" width="18" height="18" transform="rotate(-45 97.9116 110.184)" fill="white"/>
+<rect x="62.4558" y="110.184" width="18" height="18" transform="rotate(-45 62.4558 110.184)" fill="white"/>
+<rect x="27" y="110.456" width="18" height="18" transform="rotate(-45 27 110.456)" fill="white"/>
+<rect x="97.9116" y="74.4559" width="18" height="18" transform="rotate(-45 97.9116 74.4559)" fill="white"/>
+<rect x="62.4558" y="74.4559" width="18" height="18" transform="rotate(-45 62.4558 74.4559)" fill="white"/>
+<rect x="27" y="74.728" width="18" height="18" transform="rotate(-45 27 74.728)" fill="white"/>
+<rect x="98.1837" y="38.7279" width="18" height="18" transform="rotate(-45 98.1837 38.7279)" fill="white"/>
+<rect x="62.7279" y="38.7279" width="18" height="18" transform="rotate(-45 62.7279 38.7279)" fill="white"/>
+<rect x="27.2721" y="39" width="18" height="18" transform="rotate(-45 27.2721 39)" fill="white"/>
+</g>
 </svg>
 </template>
 

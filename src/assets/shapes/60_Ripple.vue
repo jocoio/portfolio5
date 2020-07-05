@@ -8,6 +8,16 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
+<g>
+<circle cx="150" r="148.5" stroke="white" stroke-width="3"/>
+<circle cx="150" cy="-0.00012207" r="128.161" stroke="white" stroke-width="3"/>
+<circle cx="150" cy="1.52588e-05" r="107.822" stroke="white" stroke-width="3"/>
+<circle cx="150" cy="-0.000106812" r="87.483" stroke="white" stroke-width="3"/>
+<circle cx="150" cy="-8.39233e-05" r="69.6864" stroke="white" stroke-width="3"/>
+<circle cx="150" cy="-6.10352e-05" r="51.8898" stroke="white" stroke-width="3"/>
+<circle cx="150" cy="-4.19617e-05" r="34.0932" stroke="white" stroke-width="3"/>
+<circle cx="150" cy="-2.09808e-05" r="16.2966" stroke="white" stroke-width="3"/>
+</g>
 </svg>
 </template>
 

@@ -7,7 +7,9 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
+  <rect width="150" height="150" :fill="pri"/>
+  <circle cx="75" r="75" fill="black"/>
+  <circle cx="75" cy="150" r="75" fill="black"/>
 </svg>
 </template>
 

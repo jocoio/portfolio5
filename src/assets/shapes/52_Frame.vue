@@ -8,6 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
+<rect x="20" y="20" width="109" height="109" stroke="white" stroke-width="40"/>
 </svg>
 </template>
 

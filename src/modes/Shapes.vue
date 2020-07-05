@@ -48,8 +48,8 @@
     },
     watch: {},
     created: function () {
-      this.setAtom(16);
-      // this.setAtom(Math.ceil(Math.random() * 16));
+      // this.setAtom(16);
+      this.setAtom(Math.ceil(Math.random() * 16));
       this.setFlipped(Math.round(Math.random()) === 1);
     },
     mounted: function () {

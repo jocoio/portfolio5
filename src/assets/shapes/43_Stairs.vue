@@ -8,6 +8,11 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
+  <rect y="120" width="150" height="30" fill="white"/>
+  <rect y="90" width="120" height="30" fill="white"/>
+  <rect y="60" width="90" height="30" fill="white"/>
+  <rect y="30" width="60" height="30" fill="white"/>
+  <rect width="30" height="30" fill="white"/>
 </svg>
 </template>
 

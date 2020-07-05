@@ -6,9 +6,15 @@
     viewBox="0 0 150 150" 
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
->
-<rect width="150" height="150" :fill="pri"/>
-</svg>
+  >
+    <g>
+      <rect width="150" height="150" fill="black"/>
+      <circle cx="150" cy="150" r="75" fill="white"/>
+      <circle cy="150" r="75" fill="white"/>
+      <circle cx="150" r="75" fill="white"/>
+      <circle r="75" fill="white"/>
+    </g>
+  </svg>
 </template>
 
 <script>

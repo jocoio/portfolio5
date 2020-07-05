@@ -8,6 +8,18 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
+<path d="M100 150L150 125L150 175L100 150Z" fill="white"/>
+<path d="M-1.09278e-06 150L50 125L50 175L-1.09278e-06 150Z" fill="white"/>
+<path d="M50 125L100 100L100 150L50 125Z" fill="white"/>
+<path d="M100 100L150 75L150 125L100 100Z" fill="white"/>
+<path d="M-1.09278e-06 100L50 75L50 125L-1.09278e-06 100Z" fill="white"/>
+<path d="M50 75L100 50L100 100L50 75Z" fill="white"/>
+<path d="M100 -7.62939e-06L150 -25L150 25L100 -7.62939e-06Z" fill="white"/>
+<path d="M100 50L150 25L150 75L100 50Z" fill="white"/>
+<path d="M3.27835e-06 0L50 -25L50 25L3.27835e-06 0Z" fill="white"/>
+<path d="M-1.09278e-06 50L50 25L50 75L-1.09278e-06 50Z" fill="white"/>
+<path d="M50 25L100 6.55671e-06L100 50L50 25Z" fill="white"/>
+
 </svg>
 </template>
 

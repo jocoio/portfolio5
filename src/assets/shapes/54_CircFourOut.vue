@@ -8,6 +8,14 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
+<g>
+<circle cx="150" cy="150" r="62.5" stroke="white" stroke-width="25"/>
+<circle cy="150" r="62.5" stroke="white" stroke-width="25"/>
+<circle cx="150" r="62.5" stroke="white" stroke-width="25"/>
+<circle r="62.5" stroke="white" stroke-width="25"/>
+</g>
+
+
 </svg>
 </template>
 

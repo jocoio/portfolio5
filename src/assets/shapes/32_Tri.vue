@@ -8,6 +8,8 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
+<path d="M75.5 44L113 106H38L75.5 44Z" fill="white"/>
+
 </svg>
 </template>
 

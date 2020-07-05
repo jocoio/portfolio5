@@ -6,9 +6,10 @@
     viewBox="0 0 150 150" 
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
->
-<rect width="150" height="150" :fill="pri"/>
-</svg>
+  >
+    <rect width="150" height="150" transform="translate(0 150) rotate(-90)" fill="black"/>
+    <path d="M-6.55671e-06 0L150 -6.55671e-06L150 150L-6.55671e-06 0Z" fill="white"/>
+  </svg>
 </template>
 
 <script>

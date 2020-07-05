@@ -7,7 +7,8 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
+  <rect width="150" height="150" :fill="pri"/>
+  <path d="M75 150L4.3631e-05 -1.31134e-05L150 0L75 150Z" fill="white"/>
 </svg>
 </template>
 

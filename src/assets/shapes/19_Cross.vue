@@ -7,7 +7,11 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
+  <rect width="150" height="150" :fill="pri"/>
+  <svg width="107" height="107" viewBox="0 0 107 107" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="18.1448" y="35.8223" width="25" height="75" transform="rotate(-45 18.1448 35.8223)" fill="white"/>
+  <rect x="18.1448" y="71.1777" width="75" height="25" transform="rotate(-45 18.1448 71.1777)" fill="white"/>
+  </svg>
 </svg>
 </template>
 
