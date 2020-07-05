@@ -8,24 +8,24 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
-<rect x="66.6666" y="100" width="16.6667" height="50" fill="white"/>
-<rect x="50" y="116.667" width="50" height="16.6667" fill="white"/>
-<rect x="116.667" y="100" width="16.6667" height="50" fill="white"/>
-<rect x="100" y="116.667" width="50" height="16.6667" fill="white"/>
-<rect x="66.6666" y="50" width="16.6667" height="50" fill="white"/>
-<rect x="50" y="66.6667" width="50" height="16.6667" fill="white"/>
-<rect x="116.667" y="50" width="16.6667" height="50" fill="white"/>
-<rect x="100" y="66.6667" width="50" height="16.6667" fill="white"/>
-<rect x="66.6666" width="16.6667" height="50" fill="white"/>
-<rect x="50" y="16.6667" width="50" height="16.6667" fill="white"/>
-<rect x="116.667" width="16.6667" height="50" fill="white"/>
-<rect x="100" y="16.6667" width="50" height="16.6667" fill="white"/>
-<rect x="16.6666" y="50" width="16.6667" height="50" fill="white"/>
-<rect y="66.6667" width="50" height="16.6667" fill="white"/>
-<rect x="16.6666" width="16.6667" height="50" fill="white"/>
-<rect y="16.6667" width="50" height="16.6667" fill="white"/>
-<rect x="16.6666" y="100" width="16.6667" height="50" fill="white"/>
-<rect y="116.667" width="50" height="16.6667" fill="white"/>
+<rect x="66.6666" y="100" width="16.6667" height="50" :fill="sec"/>
+<rect x="50" y="116.667" width="50" height="16.6667" :fill="sec"/>
+<rect x="116.667" y="100" width="16.6667" height="50" :fill="sec"/>
+<rect x="100" y="116.667" width="50" height="16.6667" :fill="sec"/>
+<rect x="66.6666" y="50" width="16.6667" height="50" :fill="sec"/>
+<rect x="50" y="66.6667" width="50" height="16.6667" :fill="sec"/>
+<rect x="116.667" y="50" width="16.6667" height="50" :fill="sec"/>
+<rect x="100" y="66.6667" width="50" height="16.6667" :fill="sec"/>
+<rect x="66.6666" width="16.6667" height="50" :fill="sec"/>
+<rect x="50" y="16.6667" width="50" height="16.6667" :fill="sec"/>
+<rect x="116.667" width="16.6667" height="50" :fill="sec"/>
+<rect x="100" y="16.6667" width="50" height="16.6667" :fill="sec"/>
+<rect x="16.6666" y="50" width="16.6667" height="50" :fill="sec"/>
+<rect y="66.6667" width="50" height="16.6667" :fill="sec"/>
+<rect x="16.6666" width="16.6667" height="50" :fill="sec"/>
+<rect y="16.6667" width="50" height="16.6667" :fill="sec"/>
+<rect x="16.6666" y="100" width="16.6667" height="50" :fill="sec"/>
+<rect y="116.667" width="50" height="16.6667" :fill="sec"/>
 </svg>
 </template>
 

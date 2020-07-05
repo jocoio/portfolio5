@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect width="150" height="150" transform="translate(0 150) rotate(-90)" :fill="pri"/>
-    <path ref="tri" d="M-6.55671e-06 0L150 -6.55671e-06L150 150L-6.55671e-06 0Z" fill="white"/>
+    <path ref="tri" d="M-6.55671e-06 0L150 -6.55671e-06L150 150L-6.55671e-06 0Z" :fill="sec"/>
   </svg>
 </template>
 

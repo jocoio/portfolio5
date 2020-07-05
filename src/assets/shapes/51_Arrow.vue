@@ -9,9 +9,9 @@
 >
 <rect width="150" height="150" :fill="pri"/>
 <g>
-<rect x="74.5" y="46" width="37.5" height="37.5" fill="white"/>
-<path d="M74.5 121L74.5 83.5L112 83.5L74.5 121Z" fill="white"/>
-<path d="M74.5 46L74.5 83.5L37 83.5L74.5 46Z" fill="white"/>
+<rect x="74.5" y="46" width="37.5" height="37.5" :fill="sec"/>
+<path d="M74.5 121L74.5 83.5L112 83.5L74.5 121Z" :fill="sec"/>
+<path d="M74.5 46L74.5 83.5L37 83.5L74.5 46Z" :fill="sec"/>
 </g>
 
 </svg>

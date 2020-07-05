@@ -9,13 +9,13 @@
 >
   <rect width="150" height="150" :fill="pri"/>
   <g>
-    <ellipse cx="48.5" cy="60" rx="10.5" ry="11" fill="white"/>
-    <circle cx="48.5" cy="89.5" r="10.5" fill="white"/>
-    <circle cx="75.5" cy="104.5" r="10.5" fill="white"/>
-    <circle cx="102.5" cy="89.5" r="10.5" fill="white"/>
-    <ellipse cx="102.5" cy="60" rx="10.5" ry="11" fill="white"/>
-    <circle cx="75.5" cy="45.5" r="10.5" fill="white"/>
-    <ellipse cx="75.5" cy="75" rx="10.5" ry="11" fill="white"/>
+    <ellipse cx="48.5" cy="60" rx="10.5" ry="11" :fill="sec"/>
+    <circle cx="48.5" cy="89.5" r="10.5" :fill="sec"/>
+    <circle cx="75.5" cy="104.5" r="10.5" :fill="sec"/>
+    <circle cx="102.5" cy="89.5" r="10.5" :fill="sec"/>
+    <ellipse cx="102.5" cy="60" rx="10.5" ry="11" :fill="sec"/>
+    <circle cx="75.5" cy="45.5" r="10.5" :fill="sec"/>
+    <ellipse cx="75.5" cy="75" rx="10.5" ry="11" :fill="sec"/>
   </g>
 </svg>
 </template>

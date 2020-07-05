@@ -9,10 +9,10 @@
   >
     <rect width="150" height="150" :fill="pri"/>
     <g>
-      <circle ref="circ1" r="75" fill="white"/>
-      <circle ref="circ2" cx="150" r="75" fill="white"/>
-      <circle ref="circ3" cy="150" r="75" fill="white"/>
-      <circle ref="circ4" cx="150" cy="150" r="75" fill="white"/>
+      <circle ref="circ1" r="75" :fill="sec"/>
+      <circle ref="circ2" cx="150" r="75" :fill="sec"/>
+      <circle ref="circ3" cy="150" r="75" :fill="sec"/>
+      <circle ref="circ4" cx="150" cy="150" r="75" :fill="sec"/>
     </g>
   </svg>
 </template>

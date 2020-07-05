@@ -8,8 +8,8 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
-<rect x="50" width="50" height="150" fill="white"/>
-<rect y="50" width="150" height="50" fill="white"/>
+<rect x="50" width="50" height="150" :fill="sec"/>
+<rect y="50" width="150" height="50" :fill="sec"/>
 </svg>
 </template>
 

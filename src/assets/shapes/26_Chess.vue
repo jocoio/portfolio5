@@ -8,19 +8,19 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
-<rect x="120" y="120" width="30" height="30" fill="white"/>
-<rect x="60" y="120" width="30" height="30" fill="white"/>
-<rect y="120" width="30" height="30" fill="white"/>
-<rect x="90" y="90" width="30" height="30" fill="white"/>
-<rect x="30" y="90" width="30" height="30" fill="white"/>
-<rect x="120" y="60" width="30" height="30" fill="white"/>
-<rect x="60" y="60" width="30" height="30" fill="white"/>
-<rect y="60" width="30" height="30" fill="white"/>
-<rect x="90" y="30" width="30" height="30" fill="white"/>
-<rect x="30" y="30" width="30" height="30" fill="white"/>
-<rect x="120" width="30" height="30" fill="white"/>
-<rect x="60" width="30" height="30" fill="white"/>
-<rect width="30" height="30" fill="white"/>
+<rect x="120" y="120" width="30" height="30" :fill="sec"/>
+<rect x="60" y="120" width="30" height="30" :fill="sec"/>
+<rect y="120" width="30" height="30" :fill="sec"/>
+<rect x="90" y="90" width="30" height="30" :fill="sec"/>
+<rect x="30" y="90" width="30" height="30" :fill="sec"/>
+<rect x="120" y="60" width="30" height="30" :fill="sec"/>
+<rect x="60" y="60" width="30" height="30" :fill="sec"/>
+<rect y="60" width="30" height="30" :fill="sec"/>
+<rect x="90" y="30" width="30" height="30" :fill="sec"/>
+<rect x="30" y="30" width="30" height="30" :fill="sec"/>
+<rect x="120" width="30" height="30" :fill="sec"/>
+<rect x="60" width="30" height="30" :fill="sec"/>
+<rect width="30" height="30" :fill="sec"/>
 
 </svg>
 </template>

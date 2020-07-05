@@ -9,8 +9,8 @@
 >
   <rect width="150" height="150" :fill="pri"/>
   <g>
-    <rect ref="cross1" x="40.1448" y="57.8223" width="25" height="75" transform="rotate(-45 40.1448 57.8223)" fill="white"/>
-    <rect ref="cross2" x="40.1448" y="93.1777" width="75" height="25" transform="rotate(-45 40.1448 93.1777)" fill="white"/>
+    <rect ref="cross1" x="40.1448" y="57.8223" width="25" height="75" transform="rotate(-45 40.1448 57.8223)" :fill="sec"/>
+    <rect ref="cross2" x="40.1448" y="93.1777" width="75" height="25" transform="rotate(-45 40.1448 93.1777)" :fill="sec"/>
   </g>
 </svg>
 </template>
