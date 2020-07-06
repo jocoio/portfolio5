@@ -9,10 +9,7 @@
 >
 <rect width="150" height="150" :fill="pri"/>
 <g>
-<path d="M0.000112233 150L75.0273 150L75.0273 75L0.000112233 150Z" :fill="sec"/>
-<path d="M150 75.0003L74.9728 75.0003L74.9728 150L150 75.0003Z" :fill="sec"/>
-<path d="M-3.28075e-06 0.000259399L75.0272 0.000256122L75.0272 75L-3.28075e-06 0.000259399Z" :fill="sec"/>
-<path d="M150 74.9997L74.9727 74.9997L74.9728 -8.76833e-06L150 74.9997Z" :fill="sec"/>
+  <path ref="tri" d="M75.0272 150L-1.96749e-05 150L74.9729 74.9867L-0.00012207 2.20506e-06L74.9999 2.20326e-06C99.9999 24.9955 150 74.992 150 75.0137C150 75.0353 100.018 125.014 75.0272 150Z" fill="white"/>
 </g>
 
 
@@ -37,7 +34,7 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
@@ -45,26 +42,22 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        targets: this.$refs.tri,
+        easing: 'easeOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        translateX: [-150, 0]
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 500,
+        easing: 'easeInQuad',
+        targets: this.$refs.tri,
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
+        translateX: [0, 300],
+        complete: () => {
+          this.animIntro.play();
+        }
       })
     }
   },

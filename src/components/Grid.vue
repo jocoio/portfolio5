@@ -119,6 +119,8 @@ export default {
 
     // Resizer & Random Animator
     window.addEventListener('resize', this.resizeGrid);
+    window.addEventListener('blur', this.clearRandomAnimator)
+    window.addEventListener('focus', this.restartRandomAnimator)
   },
   beforeDestroy () {
     clearInterval(this.randomAnimator);
@@ -227,6 +229,14 @@ export default {
         if (idx > 1) this.$refs[idx][0].animate();
       }, 3000);
     },
+    clearRandomAnimator: function () {
+      clearInterval(this.randomAnimator);
+    },
+    restartRandomAnimator: function () {
+      if (this.introd) {
+        this.startRandomAnimator();
+      }
+    }
   }
 }
 </script>

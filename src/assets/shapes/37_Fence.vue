@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
-<g>
+<g ref="r1">
 <line x1="57.2914" y1="198.414" x2="172.198" y2="-0.610358" stroke="white" stroke-width="3"/>
 <line x1="73.524" y1="207.786" x2="188.431" y2="8.76147" stroke="white" stroke-width="3"/>
 <line x1="89.7565" y1="217.158" x2="204.664" y2="18.1333" stroke="white" stroke-width="3"/>
@@ -54,7 +54,7 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
@@ -62,27 +62,22 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,
-        targets: this.$refs.svg,
+        targets: this.$refs.r1.children,
         easing: 'easeInOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        delay: anime.stagger(30),
+        strokeDashoffset: [anime.setDashoffset, 0],
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 500,
+        targets: this.$refs.r1.children,
+        easing: 'easeInQuad',
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        direction: 'alternate',
+        strokeDashoffset: [0, anime.setDashoffset],
+      }) 
     }
   },
   watch: {},
