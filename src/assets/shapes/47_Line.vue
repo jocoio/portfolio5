@@ -7,8 +7,8 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
-<rect width="150" height="50" :fill="sec"/>
+  <rect width="150" height="150" :fill="pri"/>
+  <rect ref="r1" y="50" width="150" height="50" fill="#F9F9F9"/>
 </svg>
 </template>
 
@@ -30,35 +30,29 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
       this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        duration: 400,
+        targets: this.$refs.r1,
+        easing: 'easeOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        width: [0, 250]
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 400,
+        targets: this.$refs.r1,
+        easing: 'easeOutQuart',
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        direction: 'alternate',
+        width: [250, -10]
+      }) 
     }
   },
   watch: {},

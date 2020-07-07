@@ -7,12 +7,14 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
-  <rect y="120" width="150" height="30" :fill="sec"/>
-  <rect y="90" width="120" height="30" :fill="sec"/>
-  <rect y="60" width="90" height="30" :fill="sec"/>
-  <rect y="30" width="60" height="30" :fill="sec"/>
-  <rect width="30" height="30" :fill="sec"/>
+  <rect width="150" height="150" :fill="pri"/>
+  <g ref="r1">
+    <rect y="120" width="150" height="31" :fill="sec"/>
+    <rect y="90" width="120" height="31" :fill="sec"/>
+    <rect y="60" width="90" height="31" :fill="sec"/>
+    <rect y="30" width="60" height="31" :fill="sec"/>
+    <rect width="30" height="31" :fill="sec"/>
+  </g>
 </svg>
 </template>
 
@@ -34,7 +36,7 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
@@ -42,27 +44,25 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,
-        targets: this.$refs.svg,
+        targets: this.$refs.r1.children,
         easing: 'easeInOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        delay: anime.stagger(100),
+        translateX: [-150, 0]
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 500,
+        targets: this.$refs.r1.children,
+        easing: 'easeInOutQuad',
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        delay: anime.stagger(100),
+        translateX: [0, 150],
+        complete: () => {
+          this.animIntro.play();
+        }
+      }) 
     }
   },
   watch: {},

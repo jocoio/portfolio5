@@ -7,18 +7,22 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
-<g>
-<circle cx="150.5" cy="149.5" r="37.5" :fill="pri"/>
-<circle cx="75.5" cy="149.5" r="37.5" :fill="pri"/>
-<circle cx="0.5" cy="149.5" r="37.5" :fill="pri"/>
-<circle cx="150.5" cy="74.5" r="37.5" :fill="pri"/>
-<circle cx="75.5" cy="74.5" r="37.5" :fill="pri"/>
-<circle cx="0.5" cy="74.5" r="37.5" :fill="pri"/>
-<circle cx="150.5" cy="-0.5" r="37.5" :fill="pri"/>
-<circle cx="75.5" cy="-0.5" r="37.5" :fill="pri"/>
-<circle cx="0.5" cy="-0.5" r="37.5" :fill="pri"/>
-</g>
+  <rect width="150" height="150" :fill="pri"/>
+  <g ref="r1">
+    <circle cx="0.5" cy="-0.5" r="37.5" :fill="sec"/>
+    <circle cx="0.5" cy="74.5" r="37.5" :fill="sec"/>
+    <circle cx="0.5" cy="149.5" r="37.5" :fill="sec"/>
+  </g>
+  <g ref="r2">
+    <circle cx="75.5" cy="-0.5" r="37.5" :fill="sec"/>
+    <circle cx="75.5" cy="74.5" r="37.5" :fill="sec"/>
+    <circle cx="75.5" cy="149.5" r="37.5" :fill="sec"/>
+  </g>
+  <g ref="r3">
+    <circle cx="150.5" cy="-0.5" r="37.5" :fill="sec"/>
+    <circle cx="150.5" cy="74.5" r="37.5" :fill="sec"/>
+    <circle cx="150.5" cy="149.5" r="37.5" :fill="sec"/>
+  </g>
 </svg>
 </template>
 
@@ -40,35 +44,57 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
-      this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+      this.animIntro = anime.timeline({
+        duration: 600,
+        easing: 'easeOutQuad',
         autoplay: false,
-        opacity: [0, 1]
-      }) 
+      })
+      .add({
+        targets: this.$refs.r1.children,
+        translateY: [-200, 0],
+        delay: anime.stagger(100, {direction: 'reverse'})
+      }, 0)
+      .add({
+        targets: this.$refs.r2.children,
+        translateY: [200, 0],
+        delay: anime.stagger(100)
+      }, 0)
+      .add({
+        targets: this.$refs.r3.children,
+        translateY: [-200, 0],
+        delay: anime.stagger(100, {direction: 'reverse'})
+      }, 0)
     },
     initMain: function () {
       this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+        duration: 600,
+        easing: 'easeInQuad',
         autoplay: false,
+        complete: () => {
+          this.animIntro.play();
+        }
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
+        targets: this.$refs.r1.children,
+        translateY: [0, 250],
+        delay: anime.stagger(100, {direction: 'reverse'})
+      }, 0)
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        targets: this.$refs.r2.children,
+        translateY: [0, -250],
+        delay: anime.stagger(100)
+      }, 0)
+      .add({
+        targets: this.$refs.r3.children,
+        translateY: [0, 250],
+        delay: anime.stagger(100, {direction: 'reverse'})
+      }, 0)
     }
   },
   watch: {},

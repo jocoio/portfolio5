@@ -7,22 +7,20 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
-<g>
-
-<line x1="76.7658" y1="-72.5355" x2="228.794" y2="79.4924" stroke="white" stroke-width="10"/>
-<line x1="62.1787" y1="-57.9484" x2="214.207" y2="94.0795" stroke="white" stroke-width="10"/>
-<line x1="47.3295" y1="-43.0992" x2="199.357" y2="108.929" stroke="white" stroke-width="10"/>
-<line x1="32.4802" y1="-28.25" x2="184.508" y2="123.778" stroke="white" stroke-width="10"/>
-<line x1="17.631" y1="-13.4007" x2="169.659" y2="138.627" stroke="white" stroke-width="10"/>
-<line x1="3.48878" y1="2.15564" x2="154.81" y2="153.476" stroke="white" stroke-width="10"/>
-<line x1="-12.0675" y1="16.2978" x2="139.96" y2="168.326" stroke="white" stroke-width="10"/>
-<line x1="-26.9167" y1="31.147" x2="125.111" y2="183.175" stroke="white" stroke-width="10"/>
-<line x1="-41.766" y1="45.9963" x2="110.262" y2="198.024" stroke="white" stroke-width="10"/>
-<line x1="-56.6152" y1="60.8455" x2="95.4127" y2="212.873" stroke="white" stroke-width="10"/>
-<line x1="-71.4645" y1="75.6948" x2="80.5635" y2="227.723" stroke="white" stroke-width="10"/>
-</g>
-
+  <rect width="150" height="150" :fill="pri"/>
+  <g ref="r1">
+    <line x1="57.3224" y1="-91.2412" x2="248.241" y2="99.6777" stroke="#F9F9F9" stroke-width="10"/>
+    <line x1="42.473" y1="-76.3919" x2="233.392" y2="114.527" stroke="#F9F9F9" stroke-width="10"/>
+    <line x1="27.6239" y1="-61.5427" x2="218.543" y2="129.376" stroke="#F9F9F9" stroke-width="10"/>
+    <line x1="12.7745" y1="-46.6934" x2="203.693" y2="144.225" stroke="#F9F9F9" stroke-width="10"/>
+    <line x1="-2.07457" y1="-31.8442" x2="188.844" y2="159.075" stroke="#F9F9F9" stroke-width="10"/>
+    <line x1="-16.2167" y1="-16.2878" x2="173.995" y2="173.924" stroke="#F9F9F9" stroke-width="10"/>
+    <line x1="-31.7731" y1="-2.1457" x2="159.146" y2="188.773" stroke="#F9F9F9" stroke-width="10"/>
+    <line x1="-46.6224" y1="12.7035" x2="144.296" y2="203.622" stroke="#F9F9F9" stroke-width="10"/>
+    <line x1="-61.4715" y1="27.5528" x2="129.447" y2="218.472" stroke="#F9F9F9" stroke-width="10"/>
+    <line x1="-76.3209" y1="42.402" x2="114.598" y2="233.321" stroke="#F9F9F9" stroke-width="10"/>
+    <line x1="-91.17" y1="57.2513" x2="99.7488" y2="248.17" stroke="#F9F9F9" stroke-width="10"/>
+  </g>
 </svg>
 </template>
 
@@ -44,7 +42,7 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
@@ -52,26 +50,29 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        targets: this.$refs.r1.children,
+        easing: 'easeInQuad',
         autoplay: false,
-        opacity: [0, 1]
+        delay: anime.stagger(100),
+        strokeDashoffset: [anime.setDashoffset, 0],
       }) 
     },
     initMain: function () {
       this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+        targets: this.$refs.r1.children,
+        loop: false,
         autoplay: false,
+        duration: 250,
       })
       .add({
-        duration: 500,
         easing: 'easeInOutQuad',
-        opacity: [1, 0]
+        strokeWidth: [10,3],
+        delay: anime.stagger(30)
       })
       .add({
-        duration: 500,
         easing: 'easeInOutQuad',
-        opacity: [0, 1]
+        strokeWidth: [3,10],
+        delay: anime.stagger(30)
       })
     }
   },
