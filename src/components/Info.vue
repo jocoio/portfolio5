@@ -2,7 +2,12 @@
   <div id="info" ref="content">
       <div id="intro">
         <h1>Hi, I'm Jon</h1>
-        <h3>I’m a creative developer currently in San Diego. I love working with art and technology to share stories and build unique experiences.</h3>
+        <h3>
+          I’m a developer and creative currently in San Diego. I love working with 
+          <a href="https://www.instagram.com/joco.io" target="_blank">media</a>
+           and 
+          <a href="https://www.github.com/jocoio" target="_blank">technology</a> 
+          to share stories and build unique experiences.</h3>
         <a id="resume" target="_blank" href="https://drive.google.com/file/d/1jx0GsIA13JdBJ2InMw6bHblS1Ef3yLRh/view?usp=sharing">
           <h5 >Full resume</h5> <RightArrow/>
         </a>
@@ -25,6 +30,9 @@
           <h2>Video Reel<span class="arrow">↗&#xFE0E;</span></h2>
         </a>
       </div>
+      <a href="mailto:joco.hello@gmail.com" target="_blank" id="contact">
+        <h5 >Let's work together?</h5> <RightArrow/>
+      </a>
   </div>
 </template>
 
@@ -76,7 +84,7 @@
     margin-left: 10px;
   }
 
-  #resume>h5 {
+  #resume>h5, #contact>h5 {
     display: inline-block;
   }
 
@@ -86,6 +94,11 @@
 
   #intro>h3 {
     margin-bottom: 21px;
+    max-width: 80%;
+  }
+
+  #intro>h3>a {
+    font-weight: 600;
   }
 
   #work {
@@ -96,7 +109,7 @@
     margin-bottom: 20px;
   }
 
-  #resume:hover > #right {
+  #resume:hover > #right, #contact:hover > #right {
     margin-left: 10px;
   }
 
@@ -122,5 +135,10 @@
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.7px;
+  }
+
+  #contact {
+    position: fixed;
+    bottom: 50px;
   }
 </style>

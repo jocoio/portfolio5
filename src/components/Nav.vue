@@ -3,7 +3,7 @@
       <Logo @click.native="togNav"/>  
       <div id="navContent" ref="content" v-if="open" :style="width_sty">
         <Modes id="modes" v-if="open" :style="block_sty"/>
-        <Info />
+        <Info :style="info_sty"/>
       </div>
   </div>
 </template>
@@ -53,6 +53,11 @@
         width: this.blockWidth + 'px',
         height: this.blockHeight + 'px',
         top: '-' + this.blockHeight + 'px'
+      }
+    },
+    info_sty () {
+      return {
+        marginTop: (-this.blockHeight / 4) + 'px'
       }
     }
   },
