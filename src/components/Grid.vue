@@ -75,13 +75,18 @@ export default {
       }
       else {
         this.startRandomAnimator();
-
       }
     },
     transitioning: function () {
-      this.transitioning ? 
-      this.playTransition() :
-      this.animTransition.reset();
+      if (this.transitioning) {
+        this.playTransition();
+        this.clearRandomAnimator();
+      }
+      else {
+       
+        this.animTransition.reset();
+        this.restartRandomAnimator();
+      }
     },
     navOpen() {
       // Should be opened

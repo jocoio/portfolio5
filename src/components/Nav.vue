@@ -57,7 +57,8 @@
     },
     info_sty () {
       return {
-        marginTop: (-this.blockHeight / 4) + 'px'
+        marginTop: (-this.blockHeight / 5) + 'px',
+        padding: '0 10%'
       }
     }
   },

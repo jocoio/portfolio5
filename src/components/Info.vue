@@ -61,8 +61,7 @@
         easing: 'easeOutExpo',
         delay: anime.stagger(100),
         opacity: [0,1],
-        marginLeft: [-15, 0],
-        marginRight: [15, 0]
+        translateX: [-15, 0]
       })
     },
   },
@@ -74,11 +73,6 @@
 </script>
 
 <style scoped>
-
-  #info {
-    padding: 0 10%;
-    margin-top: -15px;
-  }
 
   .arrow {
     margin-left: 10px;
@@ -94,7 +88,7 @@
 
   #intro>h3 {
     margin-bottom: 21px;
-    max-width: 80%;
+    max-width: 85%;
   }
 
   #intro>h3>a {
