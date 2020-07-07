@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
-<circle cx="75" cy="75" r="75" :fill="sec"/>
+<circle ref="r1" cx="75" cy="75" r="75" :fill="sec"/>
 </svg>
 </template>
 
@@ -30,7 +30,7 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
@@ -38,26 +38,37 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        targets: this.$refs.r1,
+        easing: 'easeOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        r: [0, 75]
       }) 
     },
     initMain: function () {
       this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+        targets: this.$refs.r1,
         autoplay: false,
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
+        duration: 450,
+        easing: 'easeOutExpo',
+        r: [75, 5]
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
+        duration: 450,
+        easing: 'easeInExpo',
+        r: [5, 0]
+      })
+      .add({
+        duration: 1,
+        easing: 'easeInExpo',
+        translateY: [0, 150],
+        r: [0, 75]
+      })
+      .add({
+        duration: 450,
+        easing: 'easeOutExpo',
+        translateY: [150, 0]
       })
     }
   },

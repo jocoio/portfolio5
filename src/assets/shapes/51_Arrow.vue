@@ -7,13 +7,8 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
-<g>
-<rect x="74.5" y="46" width="37.5" height="37.5" :fill="sec"/>
-<path d="M74.5 121L74.5 83.5L112 83.5L74.5 121Z" :fill="sec"/>
-<path d="M74.5 46L74.5 83.5L37 83.5L74.5 46Z" :fill="sec"/>
-</g>
-
+  <rect width="150" height="150" :fill="pri"/>
+  <path ref="r1" d="M112 83.5V46H74.5L37 83.5H74.5V121L112 83.5Z" :fill="sec"/>
 </svg>
 </template>
 
@@ -35,7 +30,7 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
@@ -43,27 +38,27 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        targets: this.$refs.r1,
+        easing: 'easeOutQuad',
+        loop: false,
         autoplay: false,
-        opacity: [0, 1]
+        translateX: [-150, 0],
+        translateY: [150, 0]
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 500,
+        targets: this.$refs.r1,
+        easing: 'easeInOutQuad',
+        loop: false,
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        translateX: [0, 150],
+        translateY: [0, -150],
+        complete: () => {
+          this.animIntro.play();
+        }
+      });
     }
   },
   watch: {},

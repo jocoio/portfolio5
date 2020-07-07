@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
-<circle cx="75" cy="75" r="50" stroke="white" stroke-width="50"/>
+<circle ref="r1" cx="75" cy="75" r="50" stroke="white" stroke-width="50" :fill="pri"/>
 </svg>
 </template>
 
@@ -30,35 +30,30 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
       this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        duration: 300,
+        targets: this.$refs.r1,
+        easing: 'easeOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        strokeWidth: [0, 50]
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 550,
+        targets: this.$refs.r1,
+        easing: 'easeOutExpo',
+        direction: 'alternate',
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        r: [50, 73.5],
+        strokeWidth: [50, 3]
+      }) 
     }
   },
   watch: {},

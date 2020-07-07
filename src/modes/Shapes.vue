@@ -45,7 +45,7 @@
     watch: {},
     created: function () {
       // For testing individual blocks
-      // this.setAtom(48);
+      // this.setAtom(56);
       // For random block selection
       this.setAtom(this.shapes[this.num % this.numShapes] + 1);
       this.setFlipped(Math.round(Math.random()) === 1);

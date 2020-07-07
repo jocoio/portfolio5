@@ -53,7 +53,7 @@ export default new Vuex.Store({
     // Will be shuffled
     shapes: [],
     // Number of available photos
-    numShapes: 48,
+    numShapes: 56,
 
 
     // ----- PHOTO MODE ----- //

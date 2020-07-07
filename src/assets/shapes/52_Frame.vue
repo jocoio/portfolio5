@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
-<rect x="20" y="20" width="109" height="109" stroke="white" stroke-width="40"/>
+<rect ref="r1" x="20" y="20" width="110" height="110" :stroke="sec" stroke-width="40" :fill="pri"/>
 </svg>
 </template>
 
@@ -30,7 +30,7 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
@@ -38,27 +38,21 @@ export default {
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,
-        targets: this.$refs.svg,
+        targets: this.$refs.r1,
         easing: 'easeInOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        strokeWidth: [0, 40]
       }) 
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        duration: 450,
+        targets: this.$refs.r1,
+        easing: 'easeOutExpo',
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
-      })
+        strokeWidth: [40, 3],
+        direction: 'alternate'
+      }) 
     }
   },
   watch: {},
