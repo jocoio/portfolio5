@@ -57,7 +57,7 @@ export default {
         direction: 'alternate',
         autoplay: false,
         r: [50, 73.5],
-        strokeWidth: [50, 3]
+        strokeWidth: [25, 3]
       }) 
     }
   },

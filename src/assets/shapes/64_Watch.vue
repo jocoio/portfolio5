@@ -8,14 +8,14 @@
     xmlns="http://www.w3.org/2000/svg"
 >
   <rect width="150" height="150" :fill="pri"/>
-  <g>
-    <ellipse cx="48.5" cy="60" rx="10.5" ry="11" :fill="sec"/>
-    <circle cx="48.5" cy="89.5" r="10.5" :fill="sec"/>
-    <circle cx="75.5" cy="104.5" r="10.5" :fill="sec"/>
-    <circle cx="102.5" cy="89.5" r="10.5" :fill="sec"/>
-    <ellipse cx="102.5" cy="60" rx="10.5" ry="11" :fill="sec"/>
-    <circle cx="75.5" cy="45.5" r="10.5" :fill="sec"/>
-    <ellipse cx="75.5" cy="75" rx="10.5" ry="11" :fill="sec"/>
+  <g ref="r1">
+    <circle cx="47.5" cy="60.5" r="10.5" fill="#F9F9F9"/>
+    <circle cx="47.5" cy="90.5" r="10.5" fill="#F9F9F9"/>
+    <circle cx="74.5" cy="45.5" r="10.5" fill="#F9F9F9"/>
+    <circle cx="74.5" cy="74.5" r="10.5" fill="#F9F9F9"/>
+    <circle cx="74.5" cy="104.5" r="10.5" fill="#F9F9F9"/>
+    <circle cx="101.5" cy="60.5" r="10.5" fill="#F9F9F9"/>
+    <circle cx="101.5" cy="90.5" r="10.5" fill="#F9F9F9"/>
   </g>
 </svg>
 </template>
@@ -38,34 +38,34 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
       this.animIntro = anime({
+        targets: this.$refs.r1.children,
         duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        delay: anime.stagger(100),
+        easing: 'easeOutQuad',
         autoplay: false,
-        opacity: [0, 1]
-      }) 
+        opacity: [0, 1],
+        translateY: [10, 0]
+      })
     },
     initMain: function () {
-      this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+      this.animMain = anime({
+        targets: this.$refs.r1.children,
+        duration: 400,
+        delay: anime.stagger(75),
+        easing: 'easeInQuad',
         autoplay: false,
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
-      .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
+        opacity: [1, 0],
+        translateY: [0, -10],
+        complete: () => {
+          this.animIntro.play();
+        }
       })
     }
   },

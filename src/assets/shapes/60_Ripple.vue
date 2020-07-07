@@ -7,17 +7,17 @@
     preserveAspectRatio="none" 
     xmlns="http://www.w3.org/2000/svg"
 >
-<rect width="150" height="150" :fill="pri"/>
-<g>
-<circle cx="150" r="148.5" stroke="white" stroke-width="3"/>
-<circle cx="150" cy="-0.00012207" r="128.161" stroke="white" stroke-width="3"/>
-<circle cx="150" cy="1.52588e-05" r="107.822" stroke="white" stroke-width="3"/>
-<circle cx="150" cy="-0.000106812" r="87.483" stroke="white" stroke-width="3"/>
-<circle cx="150" cy="-8.39233e-05" r="69.6864" stroke="white" stroke-width="3"/>
-<circle cx="150" cy="-6.10352e-05" r="51.8898" stroke="white" stroke-width="3"/>
-<circle cx="150" cy="-4.19617e-05" r="34.0932" stroke="white" stroke-width="3"/>
-<circle cx="150" cy="-2.09808e-05" r="16.2966" stroke="white" stroke-width="3"/>
-</g>
+  <rect width="150" height="150" :fill="pri"/>
+  <g ref="r1">
+    <circle cx="150" r="148.5" stroke="white" stroke-width="3" fill="none"/>
+    <circle cx="150" cy="-0.00012207" r="128.161" stroke="white" stroke-width="3" fill="none"/>
+    <circle cx="150" cy="1.52588e-05" r="107.822" stroke="white" stroke-width="3" fill="none"/>
+    <circle cx="150" cy="-0.000106812" r="87.483" stroke="white" stroke-width="3" fill="none"/>
+    <circle cx="150" cy="-8.39233e-05" r="69.6864" stroke="white" stroke-width="3" fill="none"/>
+    <circle cx="150" cy="-6.10352e-05" r="51.8898" stroke="white" stroke-width="3" fill="none"/>
+    <circle cx="150" cy="-4.19617e-05" r="34.0932" stroke="white" stroke-width="3" fill="none"/>
+    <circle cx="150" cy="-2.09808e-05" r="16.2966" stroke="white" stroke-width="3" fill="none"/>
+  </g>
 </svg>
 </template>
 
@@ -39,34 +39,40 @@ export default {
   components: {},
   methods: {
     playMain: function () {
-      console.log('animating');
+      this.animMain.play();
     },
     playIntro: function () {
       this.animIntro.play();
     },
     initIntro: function () {
       this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs.svg,
-        easing: 'easeInOutQuad',
+        targets: this.$refs.r1.children,
+        duration: 150,
+        delay: anime.stagger(100, {direction: 'reverse'}),
+        easing: 'easeOutQuad',
         autoplay: false,
-        opacity: [0, 1]
+        translateX: [10, 0],
+        translateY: [-10, 0],
+        opacity: [0, 1],
       }) 
     },
     initMain: function () {
       this.animMain = anime.timeline({
-        targets: this.$refs.svg,
+        targets: this.$refs.r1.children,
+        easing: 'easeInOutQuad',
         autoplay: false,
+        complete: () => {
+          this.animIntro.play();
+        }
       })
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [1, 0]
-      })
+        duration: 900,
+        delay: anime.stagger(100),
+        r: '+=225',
+      }) 
       .add({
-        duration: 500,
-        easing: 'easeInOutQuad',
-        opacity: [0, 1]
+        duration: 1,
+        r: '-=225',
       })
     }
   },
