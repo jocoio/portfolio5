@@ -113,7 +113,9 @@ export default {
       this.animIntro.play();
     }, 500);
 
-    // Photo mode initing
+    // Shapes, Photo mode initing
+    this.$store.dispatch('initShapes');
+    this.$store.dispatch('shuffleShapes');
     this.$store.dispatch('initPhotos');
     this.$store.dispatch('shufflePhotos');
 
@@ -190,7 +192,10 @@ export default {
       anime.remove('.block')
       anime.set('.block', {opacity: 1});
       this.$store.commit('setNavOpen', false);
-      if (this.mode === 'photos') {
+      if (this.mode === 'shapes') {
+        this.$store.dispatch('shuffleShapes');
+      }      
+      else if (this.mode === 'photos') {
         this.$store.dispatch('shufflePhotos');
       }
     },

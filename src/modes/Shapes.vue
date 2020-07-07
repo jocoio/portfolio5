@@ -5,14 +5,14 @@
 </template>
 
 <script>
-
+  import { mapState } from 'vuex';
 
   export default {
     name: 'Shapes',
     data: function () {
       return {
         animIntro: null,
-        atom: 0,
+        atom: 1,
         prime: '#000000',
         second: '#FFFFFF',
         palettes: [
@@ -23,7 +23,12 @@
         introTimer: null,
       }
     },
-    computed: {},
+    computed: {
+      ...mapState([
+      'shapes',
+      'numShapes'
+    ]),
+    },
     props: {
       num: Number
     },
@@ -42,10 +47,11 @@
       // For testing individual blocks
       // this.setAtom(48);
       // For random block selection
-      this.setAtom(Math.ceil(Math.random() * 48));
+      this.setAtom(this.shapes[this.num % this.numShapes] + 1);
       this.setFlipped(Math.round(Math.random()) === 1);
     },
     mounted: function () {
+      
       this.playIntro();
 
       this.colorTimer = setTimeout(() => {
@@ -61,15 +67,6 @@
         this.$refs[this.num].playMain();
       },
       playIntro: function () {
-        // console.log('playing intro');
-        // this.animIntro = anime({
-        //   duration: 500,
-        //   targets: this.$refs.shape,
-        //   easing: 'easeInOutQuad',
-        //   loop: false,
-        //   autoplay: false,
-        //   opacity: [0, 1]
-        // });
         this.introTimer = setTimeout(() => {
           this.$refs[this.num].playIntro();
         }, Math.random() * 1000)

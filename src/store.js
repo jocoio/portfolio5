@@ -48,6 +48,13 @@ export default new Vuex.Store({
     // Is the nav open
     navOpen: false,
 
+    // ----- SHAPES MODE ----- //
+    // Array of ints representing available photos
+    // Will be shuffled
+    shapes: [],
+    // Number of available photos
+    numShapes: 48,
+
 
     // ----- PHOTO MODE ----- //
 
@@ -103,6 +110,10 @@ export default new Vuex.Store({
     setNavWidth(state, width) {
       state.navWidth = width;
     },
+    // ----- SHAPES MODE ----- //
+    setShapes (state, arr) {
+      state.shapes = arr;
+    },
     // ----- PHOTO MODE ----- //
     setPhotos (state, arr) {
       state.photos = arr;
@@ -131,6 +142,19 @@ export default new Vuex.Store({
       context.commit('setTransitioning', true);
       context.commit('setNext', mode);
     },
+    // ----- SHAPES MODE ----- //
+    initShapes({ commit, state }) {
+      let arr = [];
+      for (let i = 0; i < state.numShapes; i++) {
+        arr.push(i);
+      }
+      commit('setShapes', arr);
+    },
+    shuffleShapes ({ commit, state }) {
+      let arr = _.shuffle(state.shapes);
+      commit('setShapes', arr);
+    },
+    // ----- PHOTO MODE ----- //
     initPhotos({ commit, state }) {
       let arr = [];
       for (let i = 0; i < state.numPhotos; i++) {
