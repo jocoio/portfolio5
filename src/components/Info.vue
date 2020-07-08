@@ -1,9 +1,9 @@
 <template>
   <div id="info" ref="content">
       <div id="intro">
-        <h1>Hi, I'm Jon</h1>
+        <h1>Hi, I'm Jon<Notif /></h1>
         <h3>
-          I’m a developer and creative currently in San Diego. I love working with 
+          I’m a developer and creative originally from New England. I love working with 
           <a href="https://www.instagram.com/joco.io" target="_blank">media</a>
            and 
           <a href="https://www.github.com/jocoio" target="_blank">technology</a> 
@@ -30,14 +30,15 @@
           <h2>Video Reel<span class="arrow">↗&#xFE0E;</span></h2>
         </a>
       </div>
-      <a href="mailto:joco.hello@gmail.com" target="_blank" id="contact">
-        <h5 >Let's work together?</h5> <RightArrow/>
+      <a href="https://www.linkedin.com/in/jocoio/" target="_blank" id="contact">
+        <h5><Notif/> I'm looking for a new job!</h5><RightArrow/>
       </a>
   </div>
 </template>
 
 <script>
   import anime from 'animejs';
+  import Notif from '../assets/icons/Notif';
   import RightArrow from '../assets/icons/RightArrow';
 
   export default {
@@ -48,6 +49,7 @@
     }
   },
   components: {
+    Notif,
     RightArrow
   },
   computed: {},
@@ -55,14 +57,22 @@
   },
   methods: {
     initIntro() {
-      this.animIntro = anime({
-        targets: this.$refs.content.children,
-        duration: 500,
+      this.animIntro = anime.timeline()
+      .add({
+        targets: ['#intro', '#work'],
+        duration: 600,
+        delay: anime.stagger(150),
         easing: 'easeOutExpo',
-        delay: anime.stagger(100),
         opacity: [0,1],
         translateX: [-15, 0]
       })
+      .add({
+        targets: ['#dot', '#contact'],
+        duration: 500,
+        easing: 'easeOutExpo',
+        opacity: [0, 1],
+        translateY: [15, 0]
+      }, '+=1000')
     },
   },
   mounted () {
@@ -73,6 +83,11 @@
 </script>
 
 <style scoped>
+
+  h1 > #dot {
+    padding-bottom: 20px;
+    padding-left: 10px;
+  }
 
   .arrow {
     margin-left: 10px;
@@ -88,7 +103,7 @@
 
   #intro>h3 {
     margin-bottom: 21px;
-    max-width: 85%;
+    max-width: 83%;
   }
 
   #intro>h3>a {
@@ -100,7 +115,7 @@
   }
 
   #work>h6 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   #resume:hover > #right, #contact:hover > #right {
@@ -134,5 +149,16 @@
   #contact {
     position: fixed;
     bottom: 50px;
+  }
+
+  h5 > #dot {
+    padding-right: 5px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    #intro>h3 {
+      margin-bottom: 21px;
+      max-width: 100%;
+    }
   }
 </style>
