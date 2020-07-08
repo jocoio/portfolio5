@@ -74,6 +74,7 @@ export default {
         this.resetGrid();
       }
       else {
+        this.$store.dispatch('initColors');
         this.startRandomAnimator();
       }
     },
@@ -123,6 +124,7 @@ export default {
     this.$store.dispatch('shuffleShapes');
     this.$store.dispatch('initPhotos');
     this.$store.dispatch('shufflePhotos');
+    this.$store.dispatch('initColors');
 
     // Resizer & Random Animator
     window.addEventListener('resize', this.resizeGrid);

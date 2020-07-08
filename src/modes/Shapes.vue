@@ -15,9 +15,6 @@
         atom: 1,
         prime: '#000000',
         second: '#FFFFFF',
-        palettes: [
-          ['#F8F8F8', '#FFC90B', '#FE3E02', '#0A89FE']
-        ],
         flipped: true,
         colorTimer: null,
         introTimer: null,
@@ -26,7 +23,8 @@
     computed: {
       ...mapState([
       'shapes',
-      'numShapes'
+      'numShapes',
+      'colors',
     ]),
     },
     props: {
@@ -55,7 +53,7 @@
       this.playIntro();
 
       this.colorTimer = setTimeout(() => {
-        this.setColors(this.palettes[0]);
+        this.applyColors();
       }, 2500)
     },
     beforeDestroy () {
@@ -74,9 +72,9 @@
       setAtom: function (num) {
         this.atom = num;
       },
-      setColors: function (palette) {
-        this.prime = palette[Math.ceil(Math.random() * (palette.length - 1))];
-        this.second = palette[0];   
+      applyColors: function () {
+        this.prime = this.colors[this.num - 2];
+        this.second = '#F9F9F9';   
       },
       setFlipped: function () {
         this.flipped = false;

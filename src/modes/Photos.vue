@@ -35,9 +35,7 @@ export default {
   components: {
   },
   methods: {
-    animate: function () {
-      console.log('animating ' + this.num);
-    },
+    animate: function () {},
     initIntro: function () {
       this.animIntro = anime({
         duration: 500,

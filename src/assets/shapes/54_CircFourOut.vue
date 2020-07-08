@@ -9,10 +9,10 @@
 >
   <rect width="150" height="150" :fill="pri"/>
   <g ref="r1">
-    <circle cx="150" cy="150" r="62.5" stroke="white" stroke-width="25" :fill="pri" />
-    <circle cy="150" r="62.5" stroke="white" stroke-width="25" :fill="pri" />
-    <circle cx="150" r="62.5" stroke="white" stroke-width="25" :fill="pri" />
-    <circle r="62.5" stroke="white" stroke-width="25" :fill="pri" />
+    <circle cx="150" cy="150" r="62.5" stroke="white" stroke-width="25" fill="none" />
+    <circle cy="150" r="62.5" stroke="white" stroke-width="25" fill="none" />
+    <circle cx="150" r="62.5" stroke="white" stroke-width="25" fill="none" />
+    <circle r="62.5" stroke="white" stroke-width="25" fill="none" />
   </g>
 </svg>
 </template>

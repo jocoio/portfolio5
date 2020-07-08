@@ -8,7 +8,7 @@
     xmlns="http://www.w3.org/2000/svg"
 >
 <rect width="150" height="150" :fill="pri"/>
-<rect ref="r1" x="20" y="20" width="110" height="110" :stroke="sec" stroke-width="40" :fill="pri"/>
+<rect ref="r1" x="20" y="20" width="110" height="110" :stroke="sec" stroke-width="40" fill="none"/>
 </svg>
 </template>
 

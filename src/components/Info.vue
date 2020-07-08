@@ -8,7 +8,7 @@
            and 
           <a href="https://www.github.com/jocoio" target="_blank">technology</a> 
           to share stories and build unique experiences.</h3>
-        <a id="resume" target="_blank" href="https://drive.google.com/file/d/1jx0GsIA13JdBJ2InMw6bHblS1Ef3yLRh/view?usp=sharing">
+        <a id="resume" target="_blank" href="https://drive.google.com/file/d/1LYKP1ACt0GrwhE2FVFGOcVn1YbvBsdLP/view?usp=sharing">
           <h5 >Full resume</h5> <RightArrow/>
         </a>
       </div>
@@ -68,10 +68,10 @@
       })
       .add({
         targets: ['#dot', '#contact'],
-        duration: 500,
-        easing: 'easeOutExpo',
+        duration: 350,
+        easing: 'easeOutBack',
         opacity: [0, 1],
-        translateY: [15, 0]
+        translateY: [25, 0]
       }, '+=1000')
     },
   },

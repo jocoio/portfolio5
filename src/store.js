@@ -54,6 +54,12 @@ export default new Vuex.Store({
     shapes: [],
     // Number of available photos
     numShapes: 64,
+    // Array of ints representing availavle colors in palette
+    colors: [],
+    // Pallette options
+    palettes: [
+      ['#FFC90B', '#FE3E02', '#0A89FE']
+    ],
 
 
     // ----- PHOTO MODE ----- //
@@ -114,6 +120,9 @@ export default new Vuex.Store({
     setShapes (state, arr) {
       state.shapes = arr;
     },
+    setColors(state, arr) {
+      state.colors = arr;
+    },
     // ----- PHOTO MODE ----- //
     setPhotos (state, arr) {
       state.photos = arr;
@@ -153,6 +162,18 @@ export default new Vuex.Store({
     shuffleShapes ({ commit, state }) {
       let arr = _.shuffle(state.shapes);
       commit('setShapes', arr);
+    },
+    initColors({ commit, state }) {
+      let arr = [];
+      let offset = 0;
+      let length = state.palettes[0].length
+      for (let i = 0; i < state.cols * state.rows; i++) {
+        if (i % length === 0) {
+          offset = Math.floor(Math.random() * length);
+        }
+        arr.push(state.palettes[0][(i + offset) % length]);
+      }
+      commit('setColors', arr);
     },
     // ----- PHOTO MODE ----- //
     initPhotos({ commit, state }) {
