@@ -3,10 +3,10 @@
       <Joco @click.native="togNav"/>  
       <div id="navContent" ref="content" v-if="open" :style="width_sty">
         <!-- Top nav elements -->
-        <Company v-if="this.mode === 'letter'" id="company" :style="company_sty"/>
+        <Collab v-if="this.mode === 'letter'" id="company" :style="company_sty"/>
         <Controller v-else id="controller" :style="control_sty"/>
         <!-- Nav content -->
-        <Letter v-if="this.mode === 'letter'" :style="content_sty"/>
+        <CoverLetter v-if="this.mode === 'letter'" :style="content_sty"/>
         <Info v-else :style="content_sty"/>
       </div>
   </div>
@@ -16,24 +16,25 @@
   import anime from 'animejs';
   import { mapState, mapGetters } from 'vuex';
   import Info from './Info';
-  import Letter from './Letter';
+  import CoverLetter from './CoverLetter';
   import Joco from '../assets/logos/Joco';
   import Controller from './Controller';
-  import Company from './Company';
+  import Collab from './Collab';
 
   export default {
   name: 'Nav',
   data: function () {
     return {
-      animOutro: null
+      animOutro: null,
+      company: null
     }
   },
   components: {
     Info,
-    Letter,
+    CoverLetter,
     Joco,
     Controller,
-    Company
+    Collab
   },
   computed: {
     ...mapState([
@@ -44,7 +45,7 @@
       'introd',
       'transitioning',
       'resizing',
-      'naving'
+      'naving',
     ]),
     ...mapGetters([
       'blockWidth',

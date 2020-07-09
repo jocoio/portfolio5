@@ -20,7 +20,7 @@ export default new Vuex.Store({
     // Global grid mode
     mode: 'intro',
     // Array of available grid modes
-    modes: ['shapes', 'photos', 'letter'],
+    modes: ['home', 'photos', 'letter'],
     // Next mode to load
     next: 0,
 
@@ -48,6 +48,7 @@ export default new Vuex.Store({
     // Is the nav open
     navOpen: false,
 
+
     // ----- SHAPES MODE ----- //
     // Array of ints representing available photos
     // Will be shuffled
@@ -57,9 +58,7 @@ export default new Vuex.Store({
     // Array of ints representing availavle colors in palette
     colors: [],
     // Pallette options
-    palettes: [
-      ['#FFC90B', '#FE3E02', '#0A89FE']
-    ],
+    palette: ['#FFC90B', '#FE3E02', '#0A89FE'],
 
 
     // ----- PHOTO MODE ----- //
@@ -68,7 +67,19 @@ export default new Vuex.Store({
     // Will be shuffled
     photos: [],
     // Number of available photos
-    numPhotos: 100
+    numPhotos: 100,
+
+
+    // ----- LETTER MODE ----- //
+    // JSON Object of companies & relevant properties
+    companies: {
+      'hellomonday': {
+        id: 'hellomonday',
+        name: 'Hello Monday',
+        palette: ['#F8F4F3', '#201D1C', '#F1878C']
+      }
+    },
+    curCompany: ''
   },
   getters: {
     blockWidth (state) {
@@ -126,6 +137,10 @@ export default new Vuex.Store({
     // ----- PHOTO MODE ----- //
     setPhotos (state, arr) {
       state.photos = arr;
+    },
+    // ----- LETTER MODE ----- //
+    setCurCompany (state, route) {
+      state.curCompany = route;
     }
   },
   actions : {
@@ -166,12 +181,12 @@ export default new Vuex.Store({
     initColors({ commit, state }) {
       let arr = [];
       let offset = 0;
-      let length = state.palettes[0].length
+      let length = state.palette.length
       for (let i = 0; i < state.cols * state.rows; i++) {
         if (i % length === 0) {
           offset = Math.floor(Math.random() * length);
         }
-        arr.push(state.palettes[0][(i + offset) % length]);
+        arr.push(state.palette[(i + offset) % length]);
       }
       commit('setColors', arr);
     },

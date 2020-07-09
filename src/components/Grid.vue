@@ -104,6 +104,9 @@ export default {
     },
     mode () {
       this.$store.dispatch('changeMode', this.mode)
+      if (this.mode === 'letter') {
+        this.$store.commit('setCurCompany', this.$route.name)
+      }
     }
   },
   created () {},
@@ -132,6 +135,7 @@ export default {
     window.addEventListener('focus', this.restartRandomAnimator)
 
     if (this.mode === "letter") {
+      this.$store.commit('setCurCompany', this.$route.name)
       setTimeout(() => {
         this.$store.dispatch('changeNav')
       }, 5000);
@@ -151,7 +155,7 @@ export default {
         
         complete: () => {
           this.$store.commit("setIntrod", true);
-          this.$store.commit("setMode", this.mode ? this.mode : 'shapes');
+          this.$store.commit("setMode", this.mode ? this.mode : 'home');
           setTimeout(this.startRandomAnimator(), 1000);
         }
       })
@@ -205,7 +209,7 @@ export default {
       anime.remove('.block')
       anime.set('.block', {opacity: 1});
       this.$store.commit('setNavOpen', false);
-      if (this.mode === 'shapes') {
+      if (this.mode === 'home' || this.mode === 'letter') {
         this.$store.dispatch('shuffleShapes');
       }      
       else if (this.mode === 'photos') {

@@ -72,7 +72,7 @@
         easing: 'easeOutBack',
         opacity: [0, 1],
         translateY: [25, 0]
-      }, '+=1000')
+      }, '+=750')
     },
   },
   mounted () {
