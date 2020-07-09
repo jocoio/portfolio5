@@ -51,7 +51,7 @@ export default {
         easing: 'easeOutQuart',
         autoplay: false,
         direction: 'alternate',
-        width: [250, -10]
+        width: [250, 0]
       }) 
     }
   },

@@ -1,5 +1,5 @@
 <template>
-  <Grid :mode="$route.name"/>
+  <Grid :mode="mode"/>
 </template>
 
 <script>
@@ -10,6 +10,16 @@ export default {
   name: 'App',
   components: {
     Grid
+  },
+  computed: {
+    mode () {
+      if (this.$route.name === "hellomonday") {
+        return "letter";
+      }
+      else {
+        return this.$route.name;
+      }
+    }
   }
 }
 </script>

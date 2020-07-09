@@ -19,9 +19,5 @@ export default {
 }
 </script>
 
-<style scoped>
-  #right {
-    display: inline-block;
-    padding-left: 5px;
-  }
+<style scoped> 
 </style>

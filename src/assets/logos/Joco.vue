@@ -12,12 +12,10 @@
 <script>
 
 export default {
-  name: 'Logo',
   data: () => {
     return {}
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>
 

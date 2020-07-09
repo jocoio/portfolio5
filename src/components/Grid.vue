@@ -130,6 +130,12 @@ export default {
     window.addEventListener('resize', this.resizeGrid);
     window.addEventListener('blur', this.clearRandomAnimator)
     window.addEventListener('focus', this.restartRandomAnimator)
+
+    if (this.mode === "letter") {
+      setTimeout(() => {
+        this.$store.dispatch('changeNav')
+      }, 5000);
+    }
   },
   beforeDestroy () {
     clearInterval(this.randomAnimator);

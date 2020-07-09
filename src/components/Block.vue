@@ -3,6 +3,7 @@
       <Nav v-if="first" :ref="id" />
       <div v-else-if="mode === 'intro'" />
       <div v-else-if="resizing"></div>
+      <shapes v-else-if="mode === 'letter'" :num="id" :ref="id"/>
       <component v-else v-bind:is="mode" :num="id" :ref="id" />
   </div>
 </template>
@@ -10,12 +11,11 @@
 <script>
 import { mapState } from 'vuex';
 
-import mono from '../modes/Mono';
 import Nav from './Nav';
+import mono from '../modes/Mono';
 import solids from '../modes/Solids';
 import photos from '../modes/Photos';
 import shapes from '../modes/Shapes';
-
 
 export default {
   name: 'Block',
@@ -23,8 +23,8 @@ export default {
     return {}
   },
   components: {
-    mono,
     Nav,
+    mono,
     photos,
     solids,
     shapes

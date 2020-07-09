@@ -127,6 +127,11 @@
     margin-bottom: 10px
   }
 
+  #right {
+    display: inline-block;
+    padding-left: 5px;
+  }
+
   .arrow, #right {
     transition: margin 100ms
   }

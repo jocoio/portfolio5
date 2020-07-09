@@ -1,9 +1,13 @@
 <template>
   <div id="nav">
-      <Logo @click.native="togNav"/>  
+      <Joco @click.native="togNav"/>  
       <div id="navContent" ref="content" v-if="open" :style="width_sty">
-        <Modes id="modes" v-if="open" :style="block_sty"/>
-        <Info :style="info_sty"/>
+        <!-- Top nav elements -->
+        <Company v-if="this.mode === 'letter'" id="company" :style="company_sty"/>
+        <Controller v-else id="controller" :style="control_sty"/>
+        <!-- Nav content -->
+        <Letter v-if="this.mode === 'letter'" :style="content_sty"/>
+        <Info v-else :style="content_sty"/>
       </div>
   </div>
 </template>
@@ -12,8 +16,10 @@
   import anime from 'animejs';
   import { mapState, mapGetters } from 'vuex';
   import Info from './Info';
-  import Logo from '../assets/icons/Logo';
-  import Modes from './Modes';
+  import Letter from './Letter';
+  import Joco from '../assets/logos/Joco';
+  import Controller from './Controller';
+  import Company from './Company';
 
   export default {
   name: 'Nav',
@@ -24,16 +30,20 @@
   },
   components: {
     Info,
-    Logo,
-    Modes
+    Letter,
+    Joco,
+    Controller,
+    Company
   },
   computed: {
     ...mapState([
+      'mode',
       'naving',
       'navOpen',
       'navWidth',
       'introd',
       'transitioning',
+      'resizing',
       'naving'
     ]),
     ...mapGetters([
@@ -48,14 +58,21 @@
         width: this.navWidth + 'px',
       }
     },
-    block_sty () {
+    control_sty () {
       return {
         width: this.blockWidth + 'px',
         height: this.blockHeight + 'px',
         top: '-' + this.blockHeight + 'px'
       }
     },
-    info_sty () {
+    company_sty () {
+      return {
+        width: this.blockWidth * 2 + 'px',
+        height: this.blockHeight + 'px',
+        top: '-' + this.blockHeight + 'px'
+      }
+    },
+    content_sty () {
       return {
         marginTop: (-this.blockHeight / 5) + 'px',
         padding: '0 10%'
@@ -72,6 +89,13 @@
     transitioning () {
       if (this.transitioning) {
         this.playOutro();
+      }
+    },
+    resizing () {
+      if ((!this.resizing) && (this.mode === "letter")) {
+        setTimeout(() => {
+          this.$store.dispatch('changeNav')
+        }, 2300);
       }
     }
   },
@@ -103,12 +127,19 @@
     height: 100%;
   }
 
-  #modes {
+  #controller {
     position: absolute;
-    top: 0;
     right: 10%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+  }
+
+  #company {
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
   }
 

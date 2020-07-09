@@ -17,6 +17,11 @@ export default new Router({
       path: '/photos',
       name: 'photos',
       component: Grid,
+    },
+    {
+      path: '/hellomonday',
+      name: 'hellomonday',
+      component: Grid
     }
   ],
   mode: 'history',

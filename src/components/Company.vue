@@ -1,8 +1,8 @@
 <template>
   <div>
     <div id="cont" ref="modes">
-      <div class="mode" v-bind:class="{'active' : active(0)}" @click="handleClick(0)"></div>
-      <div class="mode" v-bind:class="{'active' : active(1)}" @click="handleClick(1)"></div>
+      <Cross id="cross" />
+      <HelloMonday id="logo"/>
     </div>
   </div>
 </template>
@@ -11,15 +11,19 @@
   import anime from 'animejs';
   import { mapState } from 'vuex';
   import router from '../router';
+  import Cross from '../assets/icons/Cross';
+  import HelloMonday from '../assets/logos/HelloMonday';
 
   export default {
-  name: 'Nav',
   data: function () {
     return {
       animIntro: null
     }
   },
-  components: {},
+  components: {
+    Cross,
+    HelloMonday
+  },
   computed: {
     ...mapState([
       'mode',
@@ -34,7 +38,6 @@
     },
     handleClick (idx) {
       if (!this.active(idx)) {
-        // this.$store.dispatch('changeMode', this.modes[idx]);
         router.push({ name: this.modes[idx] });
       }
     },
@@ -57,24 +60,18 @@
 
 <style scoped>
 
-  .mode:not(.active) {
-    cursor: pointer;
+  #cont {
+    display: flex;
+    margin-left: -10%;
   }
 
-  #cont > .mode {
-    opacity: 0.5;
+  #cross {
+    margin: auto 0;
+    height: 16px;
   }
 
-  #cont > .mode.active {
-    opacity: 1;
+  #logo {
+    margin-left: 10%;
   }
 
-  .mode {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin: 5px;
-    background-color: #FFFFFF;
-    transition: opacity 150ms translateY 5000ms;
-  }
 </style>
