@@ -35,11 +35,11 @@ export default {
     initIntro () {
       this.animIntro = anime.timeline().add({
         targets: this.$refs.letter.children,
-        duration: 600,
-        delay: anime.stagger(600),
+        duration: 500,
+        delay: anime.stagger(100),
         easing: "easeOutExpo",
         opacity: [0, 1],
-        translateX: [-15, 0]
+        translateY: [15, 0]
       });
     }
   },
