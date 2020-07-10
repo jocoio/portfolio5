@@ -1,10 +1,10 @@
 <template>
   <div ref="letter" id="letter">
     <h1 >Hey y'all!</h1>
-    <h3>I’m Jon, a developer, creative, and big fan of your work. You have an incredible attention to detail that shines through every experience you make.</h3>
+    <h3>I’m Jon, a developer, creative, and big fan of your work. You have an incredible attention to detail that shines through every experience you make. It inspires me constantly to push my creative output, most recently with this site here.</h3>
     <h3>If anyone is free to talk about what a path to {{companies[curCompany].name}} could look like, or more generally how to break into this caliber of studio, I’d really appreciate it.</h3>
-    <h3>Thanks in advance for your time and consideration!</h3>
-    <h3>Jon Corbett</h3>
+    <h3>Thanks in advance for your time,</h3>
+    <h3>Jon</h3>
     <div id="home" @click="goHome">
         <LeftArrow/><h5>Home</h5>
     </div>

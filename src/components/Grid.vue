@@ -84,7 +84,7 @@ export default {
         this.clearRandomAnimator();
       }
       else {
-       
+        this.$store.dispatch('initColors');
         this.animTransition.reset();
         this.restartRandomAnimator();
       }
@@ -107,6 +107,9 @@ export default {
       if (this.mode === 'letter') {
         this.$store.commit('setCurCompany', this.$route.name)
       }
+      else {
+        this.$store.commit('setCurCompany', '')
+      }
     }
   },
   created () {},
@@ -122,6 +125,14 @@ export default {
       this.animIntro.play();
     }, 500);
 
+    // Letter mode initing
+    if (this.mode === "letter") {
+      this.$store.commit('setCurCompany', this.$route.name)
+      setTimeout(() => {
+        this.$store.dispatch('changeNav')
+      }, 5000);
+    }
+
     // Shapes, Photo mode initing
     this.$store.dispatch('initShapes');
     this.$store.dispatch('shuffleShapes');
@@ -134,12 +145,7 @@ export default {
     window.addEventListener('blur', this.clearRandomAnimator)
     window.addEventListener('focus', this.restartRandomAnimator)
 
-    if (this.mode === "letter") {
-      this.$store.commit('setCurCompany', this.$route.name)
-      setTimeout(() => {
-        this.$store.dispatch('changeNav')
-      }, 5000);
-    }
+
   },
   beforeDestroy () {
     clearInterval(this.randomAnimator);

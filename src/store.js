@@ -75,11 +75,11 @@ export default new Vuex.Store({
     companies: {
       'hellomonday': {
         name: 'Hello Monday',
-        palette: ['#F8F4F3', '#201D1C', '#F1878C']
+        palette: ['#5762A3', '#EE7A37', '#FCBB57', '#148685', '#F59DA5', '#F24634']
       },
       'stink': {
         name: 'Stink',
-        palette: ['#FFFFFF', '#201D1C', '#A7E0A7']
+        palette: ['#EBB7CC', '#EBA7AF', '#AFD7E4', '#F1D1B6']
       }
     },
     curCompany: ''
@@ -182,14 +182,25 @@ export default new Vuex.Store({
       commit('setShapes', arr);
     },
     initColors({ commit, state }) {
+
+      let palette = [];
+
+      if (state.curCompany !== '') {
+        palette = state.companies[state.curCompany].palette;
+      }
+      else {
+        palette = state.palette;
+      }
+
       let arr = [];
       let offset = 0;
-      let length = state.palette.length
+      let length = palette.length
+      
       for (let i = 0; i < state.cols * state.rows; i++) {
         if (i % length === 0) {
           offset = Math.floor(Math.random() * length);
         }
-        arr.push(state.palette[(i + offset) % length]);
+        arr.push(palette[(i + offset) % length]);
       }
       commit('setColors', arr);
     },

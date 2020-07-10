@@ -44,7 +44,6 @@
       'navWidth',
       'introd',
       'transitioning',
-      'resizing',
       'naving',
     ]),
     ...mapGetters([
@@ -91,9 +90,7 @@
       if (this.transitioning) {
         this.playOutro();
       }
-    },
-    resizing () {
-      if ((!this.resizing) && (this.mode === "letter")) {
+      else if (this.mode === "letter") {
         setTimeout(() => {
           this.$store.dispatch('changeNav')
         }, 2300);

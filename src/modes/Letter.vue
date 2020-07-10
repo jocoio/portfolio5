@@ -24,6 +24,7 @@
       ...mapState([
       'shapes',
       'numShapes',
+      'colors',
       'companies',
       'curCompany'
     ]),
@@ -74,8 +75,8 @@
         this.atom = num;
       },
       applyColors: function () {
-        this.prime = this.companies[this.curCompany].palette[2];
-        this.second = this.companies[this.curCompany].palette[0];   
+        this.prime = this.colors[this.num - 2];
+        this.second = '#F9F9F9';   
       },
       setFlipped: function () {
         this.flipped = false;
