@@ -80,6 +80,14 @@ export default new Vuex.Store({
       'stink': {
         name: 'Stink',
         palette: ['#EBB7CC', '#EBA7AF', '#AFD7E4', '#F1D1B6']
+      },
+      'upperquad': {
+        name: 'Upperquad',
+        palette: ['#99D6FD', '#FEE770', '#27E8A8', '#FEDBE2', '#FC434D', '#3670F1']
+      },
+      'zero': {
+        name: 'Zero',
+        palette: ['#FB682C', '#FFD72F', '#F8403B', '#71EFFB', '#E2A6FC', '#A6BEC7']
       }
     },
     curCompany: ''

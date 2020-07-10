@@ -13,6 +13,8 @@
   import Cross from '../assets/icons/Cross';
   import hellomonday from '../assets/logos/hellomonday';
   import stink from '../assets/logos/stink';
+  import upperquad from '../assets/logos/upperquad';
+  import zero from '../assets/logos/zero';
 
   export default {
   data: function () {
@@ -26,7 +28,9 @@
   components: {
     Cross,
     hellomonday,
-    stink
+    stink,
+    upperquad,
+    zero
   },
   computed: {
     ...mapState([
@@ -62,17 +66,13 @@
   }
 
   #cross {
-    margin: auto 0;
+    margin: auto 25px auto 0;
     height: 16px;
   }
 
-  #logo {
-    margin-left: 10%;
-  }
-
   @media only screen and (max-width: 768px) {
-    #logo {
-      margin-left: 5%;
+    #cross {
+      margin-right: 15px;
     }
   }
 
