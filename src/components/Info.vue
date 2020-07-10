@@ -8,7 +8,7 @@
            and 
           <a href="https://www.github.com/jocoio" target="_blank">technology</a> 
           to share stories and build unique experiences.</h3>
-        <a id="resume" target="_blank" href="https://drive.google.com/file/d/1LYKP1ACt0GrwhE2FVFGOcVn1YbvBsdLP/view?usp=sharing">
+        <a id="resume" target="_blank" href="https://nbviewer.jupyter.org/github/jocoio/portfolio5/blob/master/src/assets/resume.pdf">
           <h5 >Full resume</h5> <RightArrow/>
         </a>
       </div>
