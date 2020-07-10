@@ -7,8 +7,7 @@
       :key="block.id"
       :id="block.id"
       :ref="block.id"
-    >
-    </Block>
+    />
   </div>
 </template>
 
@@ -106,7 +105,7 @@ export default {
       this.$store.dispatch('changeMode', this.mode)
       if (this.mode === 'letter') {
         this.$store.commit('setCurCompany', this.$route.name)
-      }
+      }    
       else {
         this.$store.commit('setCurCompany', '')
       }

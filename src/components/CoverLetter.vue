@@ -90,4 +90,15 @@ export default {
     position: fixed;
     bottom: 50px;
   }
+
+  @media only screen and (max-height: 650px) {
+    #letter>h1 {
+      font-size: 1.5rem;
+    }
+
+    #letter>h3 {
+      font-size: 1.1rem;
+      line-height: 1.4rem
+    }
+  }
 </style>
