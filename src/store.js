@@ -74,9 +74,12 @@ export default new Vuex.Store({
     // JSON Object of companies & relevant properties
     companies: {
       'hellomonday': {
-        id: 'hellomonday',
         name: 'Hello Monday',
         palette: ['#F8F4F3', '#201D1C', '#F1878C']
+      },
+      'stink': {
+        name: 'Stink',
+        palette: ['#FFFFFF', '#201D1C', '#A7E0A7']
       }
     },
     curCompany: ''

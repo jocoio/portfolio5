@@ -142,6 +142,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-left: -10%;
   }
 
   #navContent {

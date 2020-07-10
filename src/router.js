@@ -22,6 +22,11 @@ export default new Router({
       path: '/hellomonday',
       name: 'hellomonday',
       component: Grid
+    },
+    {
+      path: '/stink',
+      name: 'stink',
+      component: Grid
     }
   ],
   mode: 'history',

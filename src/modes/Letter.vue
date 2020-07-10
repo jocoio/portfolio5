@@ -74,7 +74,6 @@
         this.atom = num;
       },
       applyColors: function () {
-        console.log(this.companies[this.curCompany].palette[2]);
         this.prime = this.companies[this.curCompany].palette[2];
         this.second = this.companies[this.curCompany].palette[0];   
       },

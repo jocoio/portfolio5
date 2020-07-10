@@ -1,7 +1,9 @@
 <template>
-    <div id="cont" ref="modes" >
-      <Cross id="cross" />
-      <component v-bind:is="curCompany" id="logo" />
+    <div>
+      <div id="cont">
+        <Cross id="cross" />
+        <component v-bind:is="curCompany" id="logo" />
+      </div>
     </div>
 </template>
 
@@ -10,6 +12,7 @@
   import { mapState } from 'vuex';
   import Cross from '../assets/icons/Cross';
   import hellomonday from '../assets/logos/hellomonday';
+  import stink from '../assets/logos/stink';
 
   export default {
   data: function () {
@@ -22,7 +25,8 @@
   },
   components: {
     Cross,
-    hellomonday
+    hellomonday,
+    stink
   },
   computed: {
     ...mapState([
@@ -50,7 +54,7 @@
 </script>
 
 <style scoped>
-
+  
   #cont {
     display: flex;
     margin-left: -10%;

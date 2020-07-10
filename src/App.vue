@@ -13,11 +13,11 @@ export default {
   },
   computed: {
     mode () {
-      if (this.$route.name === "hellomonday") {
-        return "letter";
+      if (this.$route.name === "home" || this.$route.name === 'photos') {
+        return this.$route.name;
       }
       else {
-        return this.$route.name;
+        return 'letter';
       }
     }
   }
