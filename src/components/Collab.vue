@@ -38,11 +38,12 @@
   methods: {
     initIntro () {
       this.animIntro = anime({
-        targets: this.$refs.modes,
-        duration: 2000,
+        targets: '#cont',
+        duration: 1000,
         easing: 'easeOutExpo',
         delay: anime.stagger(100),
-        opacity: [0, 1]
+        opacity: [0, 1],
+        translateY: [15, 0]
       })
     }
   },
@@ -68,5 +69,12 @@
   #logo {
     margin-left: 10%;
   }
+
+  @media only screen and (max-width: 768px) {
+    #logo {
+      margin-left: 5%;
+    }
+  }
+
 
 </style>
