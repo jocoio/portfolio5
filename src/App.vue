@@ -5,7 +5,6 @@
 <script>
 import './styles/fonts.css';
 import Grid from './components/Grid';
-
 export default {
   name: 'App',
   components: {
@@ -13,13 +12,10 @@ export default {
   },
   computed: {
     mode () {
-      if (this.$route.name === "home" || this.$route.name === 'photos') {
-        return this.$route.name;
-      }
-      else {
-        return 'letter';
-      }
+      return this.$route.meta.mode;
     }
+  },
+  mounted () {
   }
 }
 </script>

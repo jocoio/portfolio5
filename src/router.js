@@ -10,31 +10,39 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Grid,
+      meta: { mode: 'home' }
     },
     {
       path: '/photos',
       name: 'photos',
       component: Grid,
+      meta: { mode: 'photos' }
+
     },
     {
       path: '/hellomonday',
       name: 'hellomonday',
-      component: Grid
+      component: Grid,
+      meta: { mode: 'letter' }
+      
     },
     {
       path: '/stink',
       name: 'stink',
-      component: Grid
+      component: Grid,
+      meta: { mode: 'letter' }
     },
     {
       path: '/upperquad',
       name: 'upperquad',
-      component: Grid
+      component: Grid,
+      meta: { mode: 'letter' }
     },
     {
       path: '/zero',
       name: 'zero',
-      component: Grid
+      component: Grid,
+      meta: { mode: 'letter' }
     },
   ],
   mode: 'history',
