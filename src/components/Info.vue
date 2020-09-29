@@ -31,7 +31,7 @@
         </a>
       </div>
       <a href="https://www.linkedin.com/in/jocoio/" target="_blank" id="contact">
-        <h5><Notif/> I'm looking for a new job!</h5><RightArrow/>
+        <h5><Notif/> Let's connect!</h5><RightArrow/>
       </a>
   </div>
 </template>
