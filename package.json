@@ -2,7 +2,7 @@
   "name": "portfolio5",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://joco.io",
+  "homepage": "https://github.com/jocoio/portfolio5",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
