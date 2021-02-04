@@ -73,18 +73,6 @@ export default new Vuex.Store({
     // ----- LETTER MODE ----- //
     // JSON Object of companies & relevant properties
     companies: {
-      'hellomonday': {
-        name: 'Hello Monday',
-        palette: ['#5762A3', '#EE7A37', '#FCBB57', '#148685', '#F59DA5', '#F24634']
-      },
-      'stink': {
-        name: 'Stink',
-        palette: ['#EBB7CC', '#EBA7AF', '#AFD7E4', '#F1D1B6']
-      },
-      'upperquad': {
-        name: 'Upperquad',
-        palette: ['#99D6FD', '#FEE770', '#27E8A8', '#FEDBE2', '#FC434D', '#3670F1']
-      },
       'zero': {
         name: 'Zero',
         palette: ['#FB682C', '#FFD72F', '#F8403B', '#71EFFB', '#E2A6FC', '#A6BEC7']

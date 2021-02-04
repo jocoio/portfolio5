@@ -26,8 +26,8 @@
           <h6>Sanity.io</h6>
           <h6>Twitter API</h6> -->
         </a>
-        <a href="https://youtu.be/x537ydNKKtE" target="_blank">
-          <h2>Video Reel<span class="arrow">↗&#xFE0E;</span></h2>
+        <a href="https://youtube.com/playlist?list=PLNzX5UGbEkhyzqhn7mwTSwDsAHG_3kuQ3" target="_blank">
+          <h2>Music Lab<span class="arrow">↗&#xFE0E;</span></h2>
         </a>
       </div>
       <a href="https://www.linkedin.com/in/jocoio/" target="_blank" id="contact">
