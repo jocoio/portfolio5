@@ -14,8 +14,8 @@
       </div>
       <div id="work">
         <h6>Recent work</h6>
-        <a href="https://www.diversitytoolkit.org/" target="_blank">
-          <h2>Flux<span class="arrow">↗&#xFE0E;</span></h2>
+        <a href="https://www.fueled.com/" target="_blank">
+          <h2>Fueled.com<span class="arrow">↗&#xFE0E;</span></h2>
           <!-- <h6>Vue</h6>
           <h6>Anime</h6>
           <h6>Mongodb</h6> -->
