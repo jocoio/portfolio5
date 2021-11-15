@@ -11,9 +11,6 @@
   import anime from 'animejs';
   import { mapState } from 'vuex';
   import Cross from '../assets/icons/Cross';
-  import hellomonday from '../assets/logos/hellomonday';
-  import stink from '../assets/logos/stink';
-  import upperquad from '../assets/logos/upperquad';
   import zero from '../assets/logos/zero';
 
   export default {
@@ -27,9 +24,6 @@
   },
   components: {
     Cross,
-    hellomonday,
-    stink,
-    upperquad,
     zero
   },
   computed: {

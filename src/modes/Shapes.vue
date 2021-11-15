@@ -43,7 +43,7 @@
     watch: {},
     created: function () {
       // For testing individual blocks
-      // this.setAtom(64);
+      this.setAtom(64);
       // For random block selection
       this.setAtom(this.shapes[this.num % this.numShapes] + 1);
       this.setFlipped(Math.round(Math.random()) === 1);
@@ -148,17 +148,13 @@
   import s_64 from '../assets/shapes/64_Watch';
 </script>
 
-<style>
+<style scoped>
   .shape.flipped {
     transform: rotate(180deg);
   }
 
   .shape > svg {
-    height: -moz-available;          /* WebKit-based browsers will ignore this. */
-    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
-    height: fill-available;
-    height: 100%;
-
+    height: stretch;
   }
 
   svg > * {

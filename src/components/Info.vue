@@ -20,8 +20,8 @@
           <h6>Anime</h6>
           <h6>Mongodb</h6> -->
         </a>
-        <a href="https://miraj-web.herokuapp.com/" target="_blank">
-          <h2>Miraj<span class="arrow">↗&#xFE0E;</span></h2>
+        <a href="https://fueled.com/diversity-equity-and-inclusion" target="_blank">
+          <h2>Fueled DE&I<span class="arrow">↗&#xFE0E;</span></h2>
           <!-- <h6>React</h6>
           <h6>Sanity.io</h6>
           <h6>Twitter API</h6> -->

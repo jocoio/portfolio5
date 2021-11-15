@@ -20,25 +20,6 @@ export default new Router({
 
     },
     {
-      path: '/hellomonday',
-      name: 'hellomonday',
-      component: Grid,
-      meta: { mode: 'letter' }
-      
-    },
-    {
-      path: '/stink',
-      name: 'stink',
-      component: Grid,
-      meta: { mode: 'letter' }
-    },
-    {
-      path: '/upperquad',
-      name: 'upperquad',
-      component: Grid,
-      meta: { mode: 'letter' }
-    },
-    {
       path: '/zero',
       name: 'zero',
       component: Grid,
