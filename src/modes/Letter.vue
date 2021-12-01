@@ -157,7 +157,6 @@
 
   .shape > svg {
     height: 100%;
-    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
   }
 
   svg > * {
