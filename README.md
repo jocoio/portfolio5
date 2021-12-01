@@ -15,3 +15,11 @@ npm install
 ```
 npm run serve
 ```
+
+### Deploy
+
+```
+sh deploy.sh
+```
+
+If you get this message: `git@github.com permission denied (publickey). fatal could not read from remote repository` follow [this artile](https://jhooq.com/github-permission-denied-publickey/) to add ssh key to project

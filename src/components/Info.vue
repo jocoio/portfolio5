@@ -1,9 +1,9 @@
 <template>
   <div id="info" ref="content">
       <div id="intro">
-        <h1>Hi, I'm Jon<Notif /></h1>
+        <h1>Hi, I'm Jon!<Notif /></h1>
         <h3>
-          I’m a developer and creative originally from New England. I love working with 
+          I’m a creative originally from New England. I love working with 
           <a href="https://www.instagram.com/joco.io" target="_blank">media</a>
            and 
           <a href="https://www.github.com/jocoio" target="_blank">technology</a> 
@@ -14,20 +14,23 @@
       </div>
       <div id="work">
         <h6>Recent work</h6>
+        <a href="https://youtube.com/playlist?list=PLNzX5UGbEkhyzqhn7mwTSwDsAHG_3kuQ3" target="_blank">
+          <h2>Music Lab<span class="arrow">↗&#xFE0E;</span></h2>
+          <h6>Music Theory</h6>
+          <h6>AE</h6>
+          <h6>Premiere</h6>
+        </a>
+        <a href="https://fueled.com/" target="_blank">
+          <h2>Fueled.com<span class="arrow">↗&#xFE0E;</span></h2>
+          <h6>UI/UX Design</h6>
+          <h6>Coding</h6>
+          <h6>Vue</h6>
+        </a>
         <a href="https://www.diversitytoolkit.org/" target="_blank">
           <h2>Flux<span class="arrow">↗&#xFE0E;</span></h2>
-          <!-- <h6>Vue</h6>
-          <h6>Anime</h6>
-          <h6>Mongodb</h6> -->
-        </a>
-        <a href="https://fueled.com/diversity-equity-and-inclusion" target="_blank">
-          <h2>Fueled DE&I<span class="arrow">↗&#xFE0E;</span></h2>
-          <!-- <h6>React</h6>
-          <h6>Sanity.io</h6>
-          <h6>Twitter API</h6> -->
-        </a>
-        <a href="https://youtu.be/x537ydNKKtE" target="_blank">
-          <h2>Video Reel<span class="arrow">↗&#xFE0E;</span></h2>
+          <h6>Coding</h6>
+          <h6>Freelance</h6>
+          <h6>Firebase</h6>
         </a>
       </div>
       <a href="https://www.linkedin.com/in/jocoio/" target="_blank" id="contact">
@@ -107,15 +110,12 @@
   }
 
   #intro>h3>a {
-    font-weight: 600;
+    font-weight: 900;
+    letter-spacing: 0.5px;
   }
 
   #work {
     margin-top: 50px;
-  }
-
-  #work>h6 {
-    margin-bottom: 10px;
   }
 
   #resume:hover > #right, #contact:hover > #right {
@@ -136,16 +136,17 @@
     transition: margin 100ms
   }
 
-  .work>a>h6 {
+  #work a>h6 {
     display: inline-block;
     width: min-content;
-    margin-right: 7px;
-    margin-bottom: 6px;
+    margin-top: 6px;
+    margin-right: 8px;
+    margin-bottom: 10px;
     border: 1px solid;
     background-color: initial;
     border-radius: 5px;
     white-space: nowrap;
-    padding: 4px 8px 4px 8px;
+    padding: 4px 7px 4px 8px;
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.7px;
