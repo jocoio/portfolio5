@@ -279,10 +279,12 @@ export default {
     outline-width: 0px;
     background-color: #000000; 
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: fit-content;
-    min-height: fit-content;
+    /* justify-content: center;
+    align-items: center; */
+    min-width: 100%;
+    min-height: 100%;
+    height: 100%;
+    width: 100%;
   }
 
   .block.intro-style {

@@ -154,7 +154,7 @@
   }
 
   .shape > svg {
-    height: stretch;
+    display: block;
   }
 
   svg > * {
