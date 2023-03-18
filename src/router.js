@@ -10,7 +10,7 @@ export default new Router({
       path: "/",
       name: "home",
       component: Grid,
-      meta: { mode: "solids" },
+      meta: { mode: "shapes" },
     },
     {
       path: "/photos",
