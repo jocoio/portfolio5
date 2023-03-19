@@ -20,7 +20,7 @@ export default new Vuex.Store({
     // Global grid mode
     mode: 'intro',
     // Array of available grid modes
-    modes: ['home', 'photos', 'work', 'letter'],
+    modes: ['home', 'about', 'projects', 'photos', 'letter'],
     // Next mode to load
     next: 0,
 

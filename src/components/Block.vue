@@ -11,12 +11,13 @@
 import { mapState } from 'vuex';
 
 import Nav from './Nav';
+import about from '../modes/About';
 import letter from '../modes/Letter';
 import mono from '../modes/Mono';
 import solids from '../modes/Solids';
 import photos from '../modes/Photos';
 import home from '../modes/Shapes';
-import work from '../modes/Work';
+import projects from '../modes/Projects';
 
 export default {
   name: 'Block',
@@ -25,12 +26,13 @@ export default {
   },
   components: {
     Nav,
+    about,
     letter,
     mono,
     photos,
     solids,
     home,
-    work,
+    projects,
   },
   props: {
     id: Number
