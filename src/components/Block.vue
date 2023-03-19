@@ -1,9 +1,9 @@
 <template>
   <div :id="'block_' + id">
-      <Nav v-if="first" :ref="id" />
-      <div v-else-if="mode === 'intro'" />
-      <div v-else-if="resizing"></div>
-      <component v-else v-bind:is="mode" :num="id" :ref="id" />
+    <Nav v-if="first" :ref="id" />
+    <div v-else-if="mode === 'intro'" />
+    <div v-else-if="resizing"></div>
+    <component v-else v-bind:is="mode" :num="id" :ref="id" />
   </div>
 </template>
 
@@ -16,6 +16,7 @@ import mono from '../modes/Mono';
 import solids from '../modes/Solids';
 import photos from '../modes/Photos';
 import home from '../modes/Shapes';
+import work from '../modes/Work';
 
 export default {
   name: 'Block',
@@ -28,7 +29,8 @@ export default {
     mono,
     photos,
     solids,
-    home
+    home,
+    work,
   },
   props: {
     id: Number
@@ -62,8 +64,8 @@ export default {
 </script>
 
 <style>
-  .block>div {
-    width: 100%;
-    height: 100%;
-  }
+.block > div {
+  width: 100%;
+  height: 100%;
+}
 </style>
