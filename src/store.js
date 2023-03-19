@@ -69,16 +69,6 @@ export default new Vuex.Store({
     // Number of available photos
     numPhotos: 100,
 
-
-    // ----- LETTER MODE ----- //
-    // JSON Object of companies & relevant properties
-    companies: {
-      'zero': {
-        name: 'Zero',
-        palette: ['#FB682C', '#FFD72F', '#F8403B', '#71EFFB', '#E2A6FC', '#A6BEC7']
-      }
-    },
-    curCompany: ''
   },
   getters: {
     blockWidth (state) {
@@ -137,10 +127,6 @@ export default new Vuex.Store({
     setPhotos (state, arr) {
       state.photos = arr;
     },
-    // ----- LETTER MODE ----- //
-    setCurCompany (state, route) {
-      state.curCompany = route;
-    }
   },
   actions : {
     // One time page intro done

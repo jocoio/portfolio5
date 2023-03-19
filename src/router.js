@@ -30,12 +30,6 @@ export default new Router({
       component: Grid,
       meta: { mode: "projects" },
     },
-    {
-      path: "/zero",
-      name: "zero",
-      component: Grid,
-      meta: { mode: "letter" },
-    },
   ],
   mode: "history",
 });

@@ -102,13 +102,7 @@ export default {
       } 
     },
     mode () {
-      this.$store.dispatch('changeMode', this.mode)
-      if (this.mode === 'letter') {
-        this.$store.commit('setCurCompany', this.$route.name)
-      }    
-      else {
-        this.$store.commit('setCurCompany', '')
-      }
+      this.$store.dispatch('changeMode', this.mode);
     }
   },
   created () {},
@@ -123,14 +117,6 @@ export default {
       this.initIntro();
       this.animIntro.play();
     }, 500);
-
-    // Letter mode initing
-    if (this.mode === "letter") {
-      this.$store.commit('setCurCompany', this.$route.name)
-      setTimeout(() => {
-        this.$store.dispatch('changeNav')
-      }, 5000);
-    }
 
     // Shapes, Photo mode initing
     this.$store.dispatch('initShapes');
@@ -214,7 +200,7 @@ export default {
       anime.remove('.block')
       anime.set('.block', {opacity: 1});
       this.$store.commit('setNavOpen', false);
-      if (this.mode === 'home' || this.mode === 'letter') {
+      if (this.mode === 'home') {
         this.$store.dispatch('shuffleShapes');
       }      
       else if (this.mode === 'photos') {
