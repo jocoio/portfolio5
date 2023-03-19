@@ -13,16 +13,22 @@ export default new Router({
       meta: { mode: "home" },
     },
     {
+      path: "/about",
+      name: "about",
+      component: Grid,
+      meta: { mode: "about" },
+    },
+    {
       path: "/photos",
       name: "photos",
       component: Grid,
       meta: { mode: "photos" },
     },
     {
-      path: "/work",
-      name: "work",
+      path: "/projects",
+      name: "projects",
       component: Grid,
-      meta: { mode: "work" },
+      meta: { mode: "projects" },
     },
     {
       path: "/zero",
