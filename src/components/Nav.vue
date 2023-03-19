@@ -64,10 +64,6 @@ export default {
     transitioning() {
       if (this.transitioning) {
         this.playOutro();
-      } else if (this.mode === "letter") {
-        setTimeout(() => {
-          this.$store.dispatch("changeNav");
-        }, 2300);
       }
     },
   },
