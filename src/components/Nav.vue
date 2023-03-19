@@ -3,11 +3,12 @@
       <Joco @click.native="togNav"/>  
       <div id="navContent" ref="content" v-if="open" :style="width_sty">
         <!-- Top nav elements -->
-        <Collab v-if="this.mode === 'letter'" id="company" :style="company_sty"/>
-        <Controller v-else id="controller" :style="control_sty"/>
+        <!-- <Collab v-if="this.mode === 'letter'" id="company" :style="company_sty"/> -->
+        <!-- <Controller v-else id="controller" :style="control_sty"/> -->
         <!-- Nav content -->
-        <CoverLetter v-if="this.mode === 'letter'" :style="content_sty"/>
-        <Info v-else :style="content_sty"/>
+        <!-- <CoverLetter v-if="this.mode === 'letter'" :style="content_sty"/>
+        <Info v-else :style="content_sty"/> -->
+        <Menu />
       </div>
   </div>
 </template>
@@ -15,11 +16,13 @@
 <script>
   import anime from 'animejs';
   import { mapState, mapGetters } from 'vuex';
-  import Info from './Info';
-  import CoverLetter from './CoverLetter';
+  // Components
+  // import Info from './Info';
+  // import CoverLetter from './CoverLetter';
   import Joco from '../assets/logos/Joco';
-  import Controller from './Controller';
-  import Collab from './Collab';
+  import Menu from "./Menu";
+  // import Controller from './Controller';
+  // import Collab from './Collab';
 
   export default {
   name: 'Nav',
@@ -30,11 +33,12 @@
     }
   },
   components: {
-    Info,
-    CoverLetter,
+    // Info,
+    // CoverLetter,
     Joco,
-    Controller,
-    Collab
+    Menu,
+    // Controller,
+    // Collab
   },
   computed: {
     ...mapState([
@@ -44,7 +48,6 @@
       'navWidth',
       'introd',
       'transitioning',
-      'naving',
     ]),
     ...mapGetters([
       'blockWidth',
