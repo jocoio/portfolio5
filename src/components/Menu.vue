@@ -17,7 +17,7 @@
         <h6>Coming soon</h6>
       </div>
       <div
-        class="page disabled"
+        class="page"
         v-bind:class="{ active: active(2) }"
         @click="handleClick(2)"
       >

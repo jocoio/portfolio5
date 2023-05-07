@@ -1,31 +1,43 @@
 <template>
-  <div v-if="false">
-    <div id="work">
-      <h6>Recent work</h6>
-      <a href="https//laganjaestranja.com" target="_blank">
-        <h2>LaganjaEstranja.com<span class="arrow">↗&#xFE0E;</span></h2>
-        <h6>Coding</h6>
-        <h6>Freelance</h6>
-        <h6>Squarespace</h6>
-      </a>
-      <a
-        href="https://youtube.com/playlist?list=PLNzX5UGbEkhyzqhn7mwTSwDsAHG_3kuQ3"
-        target="_blank"
-      >
-        <h2>Music Lab<span class="arrow">↗&#xFE0E;</span></h2>
-        <h6>Music Theory</h6>
-        <h6>Production</h6>
-        <h6>Animation</h6>
-      </a>
-      <a href="https://fueled.com/" target="_blank">
-        <h2>Fueled.com<span class="arrow">↗&#xFE0E;</span></h2>
-        <h6>UI/UX Design</h6>
-        <h6>Coding</h6>
-        <h6>Vue</h6>
-      </a>
+  <div v-if="num === 2" id="projects" :style="width_sty">
+    <!-- Featured -->
+    <h1>Featured</h1>
+    <a href="https//laganjaestranja.com" target="_blank">
+      <div :style="{ backgroundColor: colors[0], height: '300px' }" />
+
+      <h2>LaganjaEstranja.com<span class="arrow">↗&#xFE0E;</span></h2>
+      <h6>Coding</h6>
+      <h6>Freelance</h6>
+      <h6>Squarespace</h6>
+    </a>
+    <a
+      href="https://youtube.com/playlist?list=PLNzX5UGbEkhyzqhn7mwTSwDsAHG_3kuQ3"
+      target="_blank"
+    >
+      <div :style="{ backgroundColor: colors[1], height: '300px' }" />
+
+      <h2>Music Lab<span class="arrow">↗&#xFE0E;</span></h2>
+      <h6>Music Theory</h6>
+      <h6>Production</h6>
+      <h6>Animation</h6>
+    </a>
+    <a href="https://fueled.com/" target="_blank">
+      <div :style="{ backgroundColor: colors[2], height: '300px' }" />
+      <h2>Fueled.com<span class="arrow">↗&#xFE0E;</span></h2>
+      <h6>UI/UX Design</h6>
+      <h6>Coding</h6>
+      <h6>Vue</h6>
+    </a>
+    <!-- All -->
+    <h2>All</h2>
+    <div id="projects-all">
+      <div v-for="(color, idx) in colors" :key="idx">
+        <div :style="{ backgroundColor: color, height: '300px' }" />
+        <h3>{{ color }}</h3>
+      </div>
     </div>
   </div>
-  <div v-else class="solid" :id="num" :ref="num">Coming Soon</div>
+  <!-- <div v-else class="solid" :id="num" :ref="num">Coming Soon</div> -->
 </template>
 
 <script>
@@ -33,7 +45,7 @@ import { mapState } from "vuex";
 import anime from "animejs";
 
 export default {
-  name: "Work",
+  name: "Projects",
   data: function () {
     return {
       colors: [
@@ -56,10 +68,17 @@ export default {
     };
   },
   computed: {
-    ...mapState(["transitioning"]),
+    ...mapState(["contentWidth", "transitioning"]),
     color_style() {
       return {
         backgroundColor: this.color,
+      };
+    },
+    width_sty() {
+      return {
+        position: "absolute",
+        zIndex: 1,
+        width: this.contentWidth + 'px',
       };
     },
   },
@@ -118,7 +137,7 @@ export default {
   },
   mounted: function () {
     // Initial color
-    this.$refs[this.num].style.backgroundColor = this.randomColor();
+    // this.$refs[this.num].style.backgroundColor = this.randomColor();
 
     this.initIntro();
     this.initColor();
@@ -129,6 +148,18 @@ export default {
 </script>
 
 <style>
+#projects {
+  outline: 1px solid white;
+  overflow-y: scroll;
+  padding: 35px 0 ;
+}
+
+#projects-all {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+}
+
 .solid {
   opacity: 0;
   display: flex;

@@ -22,7 +22,8 @@ import {
   getRows,
   getCols,
   getNavIDs,
-  getNavWidth
+  calculateNavWidth,
+  calculateContentWidth
 } from '../grid';
 
 export default {
@@ -116,7 +117,8 @@ export default {
     // Create the grid
     this.makeGrid();
     this.blocks = reID(this.blocks);
-    this.$store.commit('setNavWidth', getNavWidth());
+    this.$store.commit('setNavWidth', calculateNavWidth());
+    this.$store.commit('setContentWidth', calculateContentWidth());
     
     // Animation intro
     setTimeout(() => {
@@ -241,7 +243,8 @@ export default {
       clearTimeout(this.resizeTimer);
       this.resizeTimer = setTimeout(() => {
         this.$store.commit('setResizing', false);
-        this.$store.commit('setNavWidth', getNavWidth());
+        this.$store.commit('setNavWidth', calculateNavWidth());
+        this.$store.commit('setContentWidth', calculateContentWidth());
         this.blocks = reID(this.blocks);
       }, 500);
 

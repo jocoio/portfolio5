@@ -72,13 +72,25 @@ export function getNavIDs (rows, cols) {
   return ids;
 }
 
-export function getNavWidth () {
+export function calculateNavWidth () {
   if (window.innerWidth < 480) {
     return window.innerWidth;
   }
   else {
     return Math.floor(window.innerWidth * 3 / getCols())
   } 
+}
+
+// Calculates width of
+export function calculateContentWidth () {
+  let cols = getCols();
+  if (cols > 4) {
+    return ((window.innerWidth / cols) * (cols - 2) );
+  }
+  // else {
+  //   return Math.floor(window.innerWidth * 3 / getCols())
+  // } 
+  return 500;
 }
 
 // Gets number of columns needed based on current width
@@ -88,5 +100,6 @@ export function getCols () {
 
 // Gets number of rows needed based on current height
 export function getRows () { 
+  console.log(Math.floor(window.innerHeight / getBlockIdeal()))
   return Math.floor(window.innerHeight / getBlockIdeal());
 }
