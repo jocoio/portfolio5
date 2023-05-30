@@ -1,5 +1,9 @@
 "use strict";
 
+// Engine that runs the grid calculations / determines the size //
+
+
+
 // ---------- RESIZE HELPERS ---------- //
 
 export function setBlocks (blocks) {
@@ -100,6 +104,5 @@ export function getCols () {
 
 // Gets number of rows needed based on current height
 export function getRows () { 
-  console.log(Math.floor(window.innerHeight / getBlockIdeal()))
   return Math.floor(window.innerHeight / getBlockIdeal());
 }

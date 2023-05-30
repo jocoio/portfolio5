@@ -1,53 +1,54 @@
 <template>
   <div v-if="num === 2" id="projects" :style="width_sty">
-    <!-- Featured -->
-    <h1>Featured</h1>
-    <a href="https//laganjaestranja.com" target="_blank">
-      <div :style="{ backgroundColor: colors[0], height: '300px' }" />
+    <!-- Featured Projects -->
+    <div id="featured">
+      <h1 ref="featured-header">Featured</h1>
 
-      <h2>LaganjaEstranja.com<span class="arrow">↗&#xFE0E;</span></h2>
-      <h6>Coding</h6>
-      <h6>Freelance</h6>
-      <h6>Squarespace</h6>
-    </a>
-    <a
-      href="https://youtube.com/playlist?list=PLNzX5UGbEkhyzqhn7mwTSwDsAHG_3kuQ3"
-      target="_blank"
-    >
-      <div :style="{ backgroundColor: colors[1], height: '300px' }" />
-
-      <h2>Music Lab<span class="arrow">↗&#xFE0E;</span></h2>
-      <h6>Music Theory</h6>
-      <h6>Production</h6>
-      <h6>Animation</h6>
-    </a>
-    <a href="https://fueled.com/" target="_blank">
-      <div :style="{ backgroundColor: colors[2], height: '300px' }" />
-      <h2>Fueled.com<span class="arrow">↗&#xFE0E;</span></h2>
-      <h6>UI/UX Design</h6>
-      <h6>Coding</h6>
-      <h6>Vue</h6>
-    </a>
+      <div
+        class="featured-project"
+        v-for="(project, idx) in FEATURES"
+        :key="idx"
+      >
+        <a
+          :href="`/projects/${project.slug}`"
+          class="project-art"
+          :style="{ backgroundColor: colors[idx] }"
+        />
+        <h2>{{ project.name }}</h2>
+        <div class="tags">
+          <h6 v-for="(tag, idx) in project.tags" :key="idx">
+            {{ tag }}
+          </h6>
+        </div>
+      </div>
+    </div>
     <!-- All -->
-    <h2>All</h2>
-    <div id="projects-all">
-      <div v-for="(color, idx) in colors" :key="idx">
-        <div :style="{ backgroundColor: color, height: '300px' }" />
-        <h3>{{ color }}</h3>
+    <div id="all">
+      <h2>All</h2>
+      <div id="projects-all">
+        <div v-for="(color, idx) in colors" :key="idx" class="">
+          <div class="project-art" :style="{ backgroundColor: color }" />
+          <h3>Project</h3>
+          <div class="tags">
+            <h6>Tag</h6>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <!-- <div v-else class="solid" :id="num" :ref="num">Coming Soon</div> -->
 </template>
 
 <script>
 import { mapState } from "vuex";
 import anime from "animejs";
 
+import { FEATURES } from "../data/projects";
+
 export default {
   name: "Projects",
-  data: function () {
+  data: function() {
     return {
+      FEATURES,
       colors: [
         "#DD6E42",
         "#FFBF46",
@@ -60,7 +61,6 @@ export default {
         "#E94F37",
         "#FCA311",
       ],
-      color: "#FFFFFF",
       // Has this solid animated already
       animated: false,
       animIntro: null,
@@ -78,7 +78,7 @@ export default {
       return {
         position: "absolute",
         zIndex: 1,
-        width: this.contentWidth + 'px',
+        width: this.contentWidth + "px",
       };
     },
   },
@@ -87,7 +87,7 @@ export default {
   },
   components: {},
   watch: {
-    transitioning: function () {
+    transitioning: function() {
       if (!this.transitioning) {
         this.animIntro.reset();
         this.animIntro.play();
@@ -95,23 +95,55 @@ export default {
     },
   },
   methods: {
-    animate: function () {
+    animate: function() {
       if (this.animated) {
         this.colorAnim.reverse();
       }
-      this.colorAnim.play();
     },
-    initIntro: function () {
-      this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs[this.num],
-        easing: "easeInOutQuad",
-        loop: false,
-        autoplay: false,
-        opacity: 1,
-      });
+    initIntro: function() {
+      // Projects page intro
+      this.animIntro = anime
+        .timeline({
+          // complete: () => {
+          // this.$store.commit("setIntrod", true);
+          // this.$store.commit("setMode", this.mode ? this.mode : 'home');
+          // setTimeout(this.startRandomAnimator(), 1000);
+          // }
+        })
+        .add(
+          {
+            targets: this.$refs["featured-header"],
+            opacity: 1,
+            translateY: [25, 0],
+            duration: 500,
+            easing: "easeOutCirc",
+          },
+          0
+        )
+        .add(
+          {
+            targets: ".featured-project",
+            opacity: 1,
+            translateY: [25, 0],
+            duration: 600,
+            delay: anime.stagger(250),
+            easing: "easeOutCirc",
+          },
+          100
+        )
+        .add(
+          {
+            targets: ".tags > h6",
+            opacity: [0, 0.75],
+            translateY: [5, 0],
+            duration: 500,
+            delay: anime.stagger(150),
+            easing: "easeOutCirc",
+          },
+          350
+        );
     },
-    initColor: function () {
+    initColor: function() {
       this.colorAnim = anime({
         duration: 500,
         targets: this.$refs[this.num],
@@ -123,24 +155,24 @@ export default {
       });
     },
     // Change color on a constant interval
-    changeColor: function () {
-      this.color = this.randomColor();
-    },
+    // changeColor: function() {
+    //   this.color = this.randomColor();
+    // },
     // Returns random color from colors list
-    randomColor: function () {
+    randomColor: function() {
       return this.colors[Math.floor(Math.random() * this.colors.length)];
     },
   },
 
-  created: function () {
-    this.changeColor();
+  created: function() {
+    // this.changeColor();
   },
-  mounted: function () {
+  mounted: function() {
     // Initial color
     // this.$refs[this.num].style.backgroundColor = this.randomColor();
 
     this.initIntro();
-    this.initColor();
+    // this.initColor();
 
     this.animIntro.play();
   },
@@ -148,16 +180,63 @@ export default {
 </script>
 
 <style>
+/* ----- Styling ----- */
+.project-art {
+  display: block;
+  height: 300px;
+  transition: all 125ms;
+}
+.project-art:hover {
+  border-radius: 15px;
+}
+.tags {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+.tags > h6 {
+  opacity: 0.75;
+}
+/* ----- Featured projects ----- */
+#featured > h1 {
+  margin-top: 52px;
+  font-weight: 100;
+  opacity: 0;
+  color: #fefefe;
+}
+/* ----- Featured Project ----- */
+.featured-project {
+  margin-top: 32px;
+  margin-bottom: 40px;
+  opacity: 0;
+}
+
+.featured-project > h2 {
+  font-weight: 300;
+  margin: 15px 0;
+  color: #fefefe;
+}
+
 #projects {
-  outline: 1px solid white;
+  outline: 0px solid white;
   overflow-y: scroll;
-  padding: 35px 0 ;
+  padding: 35px 0;
+}
+
+/* ----- All projects ----- */
+#all > h2 {
+  font-weight: 300;
+  margin-bottom: 15px;
 }
 
 #projects-all {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 35px;
+}
+#projects-all h3 {
+  margin-top: 15px;
 }
 
 .solid {
