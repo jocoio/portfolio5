@@ -1,5 +1,5 @@
 <template>
-  <div v-if="num === 2" id="projects" :style="width_sty">
+  <div v-if="num === anchorBlockIdx" id="projects" :style="width_sty">
     <!-- Featured Projects -->
     <div id="featured">
       <h1 ref="featured-header">Featured</h1>
@@ -26,11 +26,13 @@
     <div id="all">
       <h2>All</h2>
       <div id="projects-all">
-        <div v-for="(color, idx) in colors" :key="idx" class="">
-          <div class="project-art" :style="{ backgroundColor: color }" />
-          <h3>Project</h3>
+        <div v-for="(project, idx) in ALL" :key="idx" class="">
+          <div class="project-art" :style="{ backgroundColor: colors[idx] }" />
+          <h3>{{ project.name }}</h3>
           <div class="tags">
-            <h6>Tag</h6>
+            <h6 v-for="(tag, idx) in project.tags" :key="idx">
+              {{ tag }}
+            </h6>
           </div>
         </div>
       </div>
@@ -42,13 +44,14 @@
 import { mapState } from "vuex";
 import anime from "animejs";
 
-import { FEATURES } from "../data/projects";
+import { FEATURES, ALL } from "../data/projects";
 
 export default {
   name: "Projects",
-  data: function() {
+  data: function () {
     return {
       FEATURES,
+      ALL,
       colors: [
         "#DD6E42",
         "#FFBF46",
@@ -65,10 +68,11 @@ export default {
       animated: false,
       animIntro: null,
       colorAnim: null,
+      anchorBlockIdx: 2,
     };
   },
   computed: {
-    ...mapState(["contentWidth", "transitioning"]),
+    ...mapState(["contentWidth", "transitioning", "cols", "mobile"]),
     color_style() {
       return {
         backgroundColor: this.color,
@@ -79,6 +83,7 @@ export default {
         position: "absolute",
         zIndex: 1,
         width: this.contentWidth + "px",
+        padding: "0px 15px"
       };
     },
   },
@@ -87,29 +92,36 @@ export default {
   },
   components: {},
   watch: {
-    transitioning: function() {
+    transitioning: function () {
       if (!this.transitioning) {
         this.animIntro.reset();
         this.animIntro.play();
       }
     },
+    cols: function () {
+      alert("mobile");
+      console.log("mobile");
+    },
+    // mobile: function () {
+    //   alert("mobile");
+    //   if (this.mobile) {
+    //     this.anchorBlockIdx = this.cols + 1;
+    //   } else {
+    //     this.anchorBlockIdx = 2;
+    //   }
+    // },
   },
   methods: {
-    animate: function() {
+    animate: function () {
       if (this.animated) {
         this.colorAnim.reverse();
       }
     },
-    initIntro: function() {
+    initIntro: function () {
       // Projects page intro
       this.animIntro = anime
-        .timeline({
-          // complete: () => {
-          // this.$store.commit("setIntrod", true);
-          // this.$store.commit("setMode", this.mode ? this.mode : 'home');
-          // setTimeout(this.startRandomAnimator(), 1000);
-          // }
-        })
+        .timeline({})
+        // Featured section header
         .add(
           {
             targets: this.$refs["featured-header"],
@@ -120,6 +132,7 @@ export default {
           },
           0
         )
+        // Featured projects
         .add(
           {
             targets: ".featured-project",
@@ -131,6 +144,7 @@ export default {
           },
           100
         )
+        // Project tags
         .add(
           {
             targets: ".tags > h6",
@@ -143,7 +157,7 @@ export default {
           350
         );
     },
-    initColor: function() {
+    initColor: function () {
       this.colorAnim = anime({
         duration: 500,
         targets: this.$refs[this.num],
@@ -159,15 +173,15 @@ export default {
     //   this.color = this.randomColor();
     // },
     // Returns random color from colors list
-    randomColor: function() {
+    randomColor: function () {
       return this.colors[Math.floor(Math.random() * this.colors.length)];
     },
   },
 
-  created: function() {
+  created: function () {
     // this.changeColor();
   },
-  mounted: function() {
+  mounted: function () {
     // Initial color
     // this.$refs[this.num].style.backgroundColor = this.randomColor();
 
@@ -180,7 +194,7 @@ export default {
 </script>
 
 <style>
-/* ----- Styling ----- */
+/* ----- Common ----- */
 .project-art {
   display: block;
   height: 300px;
@@ -221,10 +235,13 @@ export default {
 #projects {
   outline: 0px solid white;
   overflow-y: scroll;
-  padding: 35px 0;
+  padding-top: 35px;
 }
 
 /* ----- All projects ----- */
+#all {
+  margin-bottom: 100px;
+}
 #all > h2 {
   font-weight: 300;
   margin-bottom: 15px;

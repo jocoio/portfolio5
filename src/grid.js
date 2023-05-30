@@ -91,10 +91,9 @@ export function calculateContentWidth () {
   if (cols > 4) {
     return ((window.innerWidth / cols) * (cols - 2) );
   }
-  // else {
-  //   return Math.floor(window.innerWidth * 3 / getCols())
-  // } 
-  return 500;
+  else {
+    return Math.floor(window.innerWidth);
+  }
 }
 
 // Gets number of columns needed based on current width

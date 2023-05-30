@@ -15,3 +15,16 @@ export const FEATURES = [
     tags: ["Music Theory", "Production", "Animation"],
   },
 ];
+
+export const ALL = [
+  {
+    name: "Fueled.com",
+    slug: "fueled",
+    tags: ["Vue", "Web dev"],
+  },
+  {
+    name: "comma.ai",
+    slug: "comma",
+    tags: ["Product design", "Freelance", "Design System"],
+  },
+];

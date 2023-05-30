@@ -196,7 +196,7 @@ export default {
           translateX: 300,
           opacity: 0.25,
           pointerEvents: "none",
-          duration: 850,
+          duration: 800,
         });
       }
       // Default Nav behavior

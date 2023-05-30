@@ -12,6 +12,8 @@ export default new Vuex.Store({
     rows: 0,
     // Number of cols
     cols: 0,
+    // Mobile sizing?
+    mobile: false,
 
     // ----- MODES ----- //
 
@@ -70,17 +72,17 @@ export default new Vuex.Store({
     // ----- LETTER MODE ----- //
     // JSON Object of companies & relevant properties
     companies: {
-      zero: {
-        name: "Zero",
-        palette: [
-          "#FB682C",
-          "#FFD72F",
-          "#F8403B",
-          "#71EFFB",
-          "#E2A6FC",
-          "#A6BEC7",
-        ],
-      },
+      // zero: {
+      //   name: "Zero",
+      //   palette: [
+      //     "#FB682C",
+      //     "#FFD72F",
+      //     "#F8403B",
+      //     "#71EFFB",
+      //     "#E2A6FC",
+      //     "#A6BEC7",
+      //   ],
+      // },
     },
     curCompany: "",
   },
@@ -97,8 +99,10 @@ export default new Vuex.Store({
     setRows(state, rows) {
       state.rows = rows;
     },
+    // Note: also set 
     setCols(state, cols) {
       state.cols = cols;
+      state.mobile = cols < 5;
     },
     // ----- MODE ----- //
     setMode(state, mode) {
