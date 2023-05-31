@@ -108,7 +108,6 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  /* opacity: 0; */
 }
 #menu .page > h1 {
   pointer-events: none;

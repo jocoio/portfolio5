@@ -99,10 +99,11 @@ export default new Vuex.Store({
     setRows(state, rows) {
       state.rows = rows;
     },
-    // Note: also set 
     setCols(state, cols) {
       state.cols = cols;
-      state.mobile = cols < 5;
+    },
+    setMobile(state, mobile) {
+      state.mobile = mobile;
     },
     // ----- MODE ----- //
     setMode(state, mode) {

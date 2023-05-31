@@ -120,6 +120,7 @@ export default {
     this.blocks = reID(this.blocks);
     this.$store.commit("setNavWidth", calculateNavWidth());
     this.$store.commit("setContentWidth", calculateContentWidth());
+    this.$store.commit("setMobile", this.cols < 5);
 
     // Animation intro
     setTimeout(() => {
@@ -274,6 +275,7 @@ export default {
         this.$store.commit("setResizing", false);
         this.$store.commit("setNavWidth", calculateNavWidth());
         this.$store.commit("setContentWidth", calculateContentWidth());
+        this.$store.commit("setMobile", this.cols < 5);
         this.blocks = reID(this.blocks);
       }, 500);
 

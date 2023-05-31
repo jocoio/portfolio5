@@ -1,18 +1,22 @@
+<!--- Note: this template is applied to every block in the grid --->
 <template>
-  <div v-if="num === anchorBlockIdx" id="projects" :style="width_sty">
+  <div
+    v-if="num === (mobile ? cols + 1 : 2)"
+    id="projects"
+    :style="container_sty"
+  >
     <!-- Featured Projects -->
-    <div id="featured">
+    <div id="featured" :style="featured_sty">
       <h1 ref="featured-header">Featured</h1>
-
       <div
         class="featured-project"
         v-for="(project, idx) in FEATURES"
         :key="idx"
       >
-        <a
-          :href="`/projects/${project.slug}`"
+        <img
+          @click="handleClick(project.slug)"
           class="project-art"
-          :style="{ backgroundColor: colors[idx] }"
+          :src="url(project.cover)"
         />
         <h2>{{ project.name }}</h2>
         <div class="tags">
@@ -23,17 +27,15 @@
       </div>
     </div>
     <!-- All -->
-    <div id="all">
+    <div id="all" :style="all_sty">
       <h2>All</h2>
-      <div id="projects-all">
-        <div v-for="(project, idx) in ALL" :key="idx" class="">
-          <div class="project-art" :style="{ backgroundColor: colors[idx] }" />
-          <h3>{{ project.name }}</h3>
-          <div class="tags">
-            <h6 v-for="(tag, idx) in project.tags" :key="idx">
-              {{ tag }}
-            </h6>
-          </div>
+      <div v-for="(project, idx) in ALL" :key="idx" class="">
+        <div class="project-art" :style="{ backgroundColor: colors[idx] }" />
+        <h3>{{ project.name }}</h3>
+        <div class="tags">
+          <h6 v-for="(tag, idx) in project.tags" :key="idx">
+            {{ tag }}
+          </h6>
         </div>
       </div>
     </div>
@@ -41,14 +43,17 @@
 </template>
 
 <script>
+// Utilities
 import { mapState } from "vuex";
 import anime from "animejs";
+import router from "../router";
 
+// Data
 import { FEATURES, ALL } from "../data/projects";
 
 export default {
   name: "Projects",
-  data: function () {
+  data: function() {
     return {
       FEATURES,
       ALL,
@@ -64,26 +69,38 @@ export default {
         "#E94F37",
         "#FCA311",
       ],
-      // Has this solid animated already
-      animated: false,
       animIntro: null,
-      colorAnim: null,
-      anchorBlockIdx: 2,
     };
   },
   computed: {
-    ...mapState(["contentWidth", "transitioning", "cols", "mobile"]),
+    ...mapState(["contentWidth", "transitioning", "mobile", "cols", "navOpen"]),
+    //
     color_style() {
       return {
         backgroundColor: this.color,
       };
     },
-    width_sty() {
+    container_sty() {
       return {
         position: "absolute",
         zIndex: 1,
-        width: this.contentWidth + "px",
-        padding: "0px 15px"
+        width: this.contentWidth * 0.9 + "px",
+        padding: "0 " + this.contentWidth * 0.05 + "px",
+        pointerEvents: this.navOpen ? "none" : "auto",
+      };
+    },
+    featured_sty() {
+      return {
+        marginTop: this.mobile ? "0px" : "52px",
+      };
+    },
+    all_sty() {
+      return {
+        display: this.mobile ? "flex" : "grid",
+        flexDirection: "column",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "35px",
+        marginBottom: "200px",
       };
     },
   },
@@ -92,32 +109,22 @@ export default {
   },
   components: {},
   watch: {
-    transitioning: function () {
+    transitioning: function() {
       if (!this.transitioning) {
         this.animIntro.reset();
         this.animIntro.play();
       }
     },
-    cols: function () {
-      alert("mobile");
-      console.log("mobile");
-    },
-    // mobile: function () {
-    //   alert("mobile");
-    //   if (this.mobile) {
-    //     this.anchorBlockIdx = this.cols + 1;
-    //   } else {
-    //     this.anchorBlockIdx = 2;
-    //   }
-    // },
   },
   methods: {
-    animate: function () {
-      if (this.animated) {
-        this.colorAnim.reverse();
-      }
+    url(slug) {
+      var images = require.context("../assets/projects", true, /\.png$/);
+      return images("./" + slug);
     },
-    initIntro: function () {
+    handleClick(slug) {
+      router.push({ name: `/projects/${slug}` });
+    },
+    initIntro: function() {
       // Projects page intro
       this.animIntro = anime
         .timeline({})
@@ -125,7 +132,7 @@ export default {
         .add(
           {
             targets: this.$refs["featured-header"],
-            opacity: 1,
+            opacity: [0, 1],
             translateY: [25, 0],
             duration: 500,
             easing: "easeOutCirc",
@@ -157,37 +164,11 @@ export default {
           350
         );
     },
-    initColor: function () {
-      this.colorAnim = anime({
-        duration: 500,
-        targets: this.$refs[this.num],
-        easing: "easeInOutQuad",
-        loop: false,
-        autoplay: false,
-        backgroundColor: this.color,
-        complete: () => (this.animated = true),
-      });
-    },
-    // Change color on a constant interval
-    // changeColor: function() {
-    //   this.color = this.randomColor();
-    // },
-    // Returns random color from colors list
-    randomColor: function () {
-      return this.colors[Math.floor(Math.random() * this.colors.length)];
-    },
   },
 
-  created: function () {
-    // this.changeColor();
-  },
-  mounted: function () {
-    // Initial color
-    // this.$refs[this.num].style.backgroundColor = this.randomColor();
-
+  created: function() {},
+  mounted: function() {
     this.initIntro();
-    // this.initColor();
-
     this.animIntro.play();
   },
 };
@@ -198,6 +179,7 @@ export default {
 .project-art {
   display: block;
   height: 300px;
+  cursor: pointer;
   transition: all 125ms;
 }
 .project-art:hover {
@@ -214,10 +196,7 @@ export default {
 }
 /* ----- Featured projects ----- */
 #featured > h1 {
-  margin-top: 52px;
   font-weight: 100;
-  opacity: 0;
-  color: #fefefe;
 }
 /* ----- Featured Project ----- */
 .featured-project {
@@ -239,21 +218,13 @@ export default {
 }
 
 /* ----- All projects ----- */
-#all {
-  margin-bottom: 100px;
-}
 #all > h2 {
   font-weight: 300;
-  margin-bottom: 15px;
+  grid-column: span 2;
 }
 
-#projects-all {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 35px;
-}
-#projects-all h3 {
-  margin-top: 15px;
+#all h3 {
+  margin-top: 20px;
 }
 
 .solid {

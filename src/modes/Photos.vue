@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <div>{{num - 2}}</div> -->
     <img :src="url" ref="photo" />
   </div>
 </template>
