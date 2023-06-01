@@ -1,23 +1,22 @@
-export const FEATURES = [
-  {
+
+
+export var FEATURES = {
+  "laganja": {
     name: "LaganjaEstranja.com",
-    slug: "laganja",
     tags: ["Branding", "Freelance", "Squarespace"],
     cover: "laganja/cover.png"
   },
-  {
+  "music-lab": {
     name: "Music Lab",
-    slug: "music-lab",
-    tags: ["Music Theory", "Production", "Animation", "Educational"],
+    tags: ["Music Theory", "Production", "Animation"],
     cover: "music-lab/cover.png"
   },
-  {
+  "las-culturistas": {
     name: "Las Culturistas: Rules of Culture",
-    slug: "las-culturistas",
     tags: ["Info Design", "Fan Project", "Indesign"],
     cover: "las-culturistas/cover.png"
   },
-];
+};
 
 export const ALL = [
   {

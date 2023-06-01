@@ -294,7 +294,7 @@ export default {
       clearInterval(this.randomAnimator);
     },
     restartRandomAnimator: function() {
-      if (this.introd) {
+      if (this.introd && this.mode === "home") {
         this.startRandomAnimator();
       }
     },
