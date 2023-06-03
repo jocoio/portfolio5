@@ -1,11 +1,8 @@
 <template>
   <div class="icon" id="">
-    <svg
-      viewBox="0 0 19 19"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
+        :style="bar_style"
         fill-rule="evenodd"
         clip-rule="evenodd"
         d="M8.72317 18.8738L8.72316 0L10.1507 7.58643e-07L10.1508 18.8739L8.72317 18.8738Z"
@@ -23,9 +20,24 @@
 
 <script>
 export default {
-  name: "Plus",
-  data: function() {
+  name: "PlusMinus",
+  data: function () {
     return {};
+  },
+  props: {
+    minus: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    bar_style() {
+      return {
+        transform: `rotate(${this.minus ? "270deg": "0deg"})`,
+        transformOrigin: "center",
+        transition: "all 450ms ease-out",
+      };
+    },
   },
 };
 </script>
