@@ -78,7 +78,7 @@ export default {
 /* ----- Common ----- */
 .project-art {
   display: block;
-  height: 300px;
+  height: 350px;
   cursor: pointer;
   transition: all 125ms;
 }

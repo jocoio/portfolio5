@@ -171,7 +171,7 @@ export default {
           outlineColor: "#FFFFFF",
           outlineWidth: "1px",
           duration: 750,
-          delay: anime.stagger(130, {
+          delay: anime.stagger(100, {
             grid: [this.cols, this.rows],
             from: 0,
           }),

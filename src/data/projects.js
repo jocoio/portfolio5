@@ -1,34 +1,55 @@
 export var FEATURES = {
+  "music-lab": {
+    name: "Music Lab",
+    tags: ["Music Theory", "Content production", "Animation"],
+    cover: "music-lab/cover.png",
+  },
   laganja: {
     name: "LaganjaEstranja.com",
     tags: ["Branding", "Freelance", "Squarespace"],
     cover: "laganja/cover.png",
+    link: "https://laganjaestranja.com",
     summary: [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam phasellus vestibulum lorem sed. Elementum nisi quis eleifend quam adipiscing vitae. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Fermentum leo vel orci porta non pulvinar neque laoreet suspendisse. Iaculis eu non diam phasellus vestibulum lorem sed risus ultricies.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam phasellus vestibulum lorem sed. Elementum nisi quis eleifend quam adipiscing vitae. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Fermentum leo vel orci porta non pulvinar neque laoreet suspendisse. Iaculis eu non diam phasellus vestibulum lorem sed risus ultricies.",
+      "New website and brand expansion for drag icon Laganja Estranja.",
+    ],
+    gallery: [
+      {
+        src: "laganja/cover.png",
+        wide: true,
+      },
+      {
+        src: "laganja/cover.png",
+        wide: false,
+      },
+      {
+        src: "laganja/cover.png",
+        wide: false,
+      }
     ],
   },
-  "music-lab": {
-    name: "Music Lab",
-    tags: ["Music Theory", "Production", "Animation"],
-    cover: "music-lab/cover.png",
+
+  "comma-ai": {
+    name: "comma.ai",
+    tags: ["Product design", "Freelance", "Design System"],
+    cover: "comma-ai/cover.png",
   },
+};
+
+export const OTHER = {
   "las-culturistas": {
     name: "Las Culturistas: Rules of Culture",
     tags: ["Info Design", "Fan Project", "Indesign"],
     cover: "las-culturistas/cover.png",
   },
+  fueled: {
+    name: "Fueled.com",
+    tags: ["Vue", "Web dev", "Marketing"],
+    cover: "fueled/cover.png",
+
+  },
 };
 
-export const ALL = [
-  {
-    name: "Fueled.com",
-    slug: "fueled",
-    tags: ["Vue", "Web dev"],
-  },
-  {
-    name: "comma.ai",
-    slug: "comma",
-    tags: ["Product design", "Freelance", "Design System"],
-  },
-];
+export const ALL = {
+  ...FEATURES,
+  ...OTHER,
+};

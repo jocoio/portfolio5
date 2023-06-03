@@ -14,14 +14,15 @@
         @click="handleClick(1)"
       >
         <h1>About</h1>
-        <h6 style="">Coming soon</h6>
+        <h6>Coming soon</h6>
       </div>
       <div
         class="page"
         v-bind:class="{ active: active(2) }"
         @click="handleClick(2)"
       >
-        <h1>Projects</h1>
+        <h1>Work</h1>
+        <h6>WIP</h6>
       </div>
       <div
         class="page"
@@ -56,7 +57,7 @@ import router from "../router";
 // Components
 export default {
   name: "Menu",
-  data: function() {
+  data: function () {
     return {
       animIntro: null,
     };
@@ -109,7 +110,8 @@ export default {
   justify-content: center;
   gap: 12px;
 }
-#menu .page > h1 {
+#menu .page > h1,
+#menu .page > h6 {
   pointer-events: none;
   transition: transform 150ms;
   font-weight: 300;
@@ -126,6 +128,9 @@ export default {
   opacity: 0.4;
 }
 #menu .page:hover h1 {
+  transform: translateX(10px);
+}
+#menu .page:hover h6 {
   transform: translateX(10px);
 }
 /* Active Page */

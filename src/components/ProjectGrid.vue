@@ -1,7 +1,7 @@
 <template>
   <!-- Featured Projects -->
   <div>
-    <div id="featured" :style="featured_sty">
+    <div id="featured">
       <h1 ref="featured-header">Featured</h1>
       <div
         class="featured-project"
@@ -20,8 +20,12 @@
     <!-- All -->
     <div id="all" :style="all_sty">
       <h2>All</h2>
-      <div v-for="(project, idx) in ALL" :key="idx" class="">
-        <div class="project-art" :style="{ backgroundColor: colors[idx] }" />
+      <div v-for="(project, key, idx) in OTHER" :key="idx" class="">
+        <img
+          @click="handleClick(key)"
+          class="project-art"
+          :src="url(project.cover)"
+        />
         <h3>{{ project.name }}</h3>
         <div class="tags">
           <h6 v-for="(tag, idx) in project.tags" :key="idx">
@@ -38,7 +42,7 @@
 import router from "../router";
 
 // Data
-import { FEATURES, ALL } from "../data/projects";
+import { FEATURES, OTHER } from "../data/projects";
 import { mapState } from "vuex";
 import anime from "animejs";
 
@@ -47,10 +51,10 @@ import Tags from "./Tags.vue";
 
 export default {
   name: "ProjectGrid",
-  data: function() {
+  data: function () {
     return {
       FEATURES,
-      ALL,
+      OTHER,
       colors: [
         "#DD6E42",
         "#FFBF46",
@@ -67,7 +71,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["transitioning"]),
+    ...mapState(["transitioning", "mobile"]),
     container_style() {
       return {
         marginBottom: "200px",
@@ -104,7 +108,7 @@ export default {
         path: `/projects/${slug}`,
       });
     },
-    intro: function() {
+    intro: function () {
       // Projects page intro
       this.animIntro = anime
         .timeline({
@@ -151,25 +155,21 @@ export default {
     },
   },
   watch: {
-    transitioning: function() {
+    transitioning: function () {
       if (!this.transitioning) {
         this.animIntro.reset();
         this.animIntro.play();
       }
     },
   },
-  created: function() {},
-  mounted: function() {
+  created: function () {},
+  mounted: function () {
     this.intro();
   },
 };
 </script>
 
 <style >
-/* ----- Featured projects ----- */
-#featured > h1 {
-  font-weight: 100;
-}
 /* ----- Featured Project ----- */
 .featured-project {
   margin-top: 32px;
@@ -177,14 +177,12 @@ export default {
 }
 
 .featured-project > h2 {
-  font-weight: 300;
   margin: 15px 0;
   color: #fefefe;
 }
 
 /* ----- All projects ----- */
 #all > h2 {
-  font-weight: 300;
   grid-column: span 2;
 }
 

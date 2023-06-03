@@ -2,30 +2,68 @@
   <div :style="container_style">
     <!-- Header -->
     <div :style="header_style">
+      <!-- Name + Tags -->
       <div>
         <h1>{{ project.name }}</h1>
         <Tags :tags="project.tags" />
       </div>
-      <div v-if="project.summary" id="more-info" @click="infoOpen = !infoOpen">
-        <h3 :style="{ 'white-space': 'nowrap' }">More info</h3>
-        <Plus />
+      <!-- Interactive Elements -->
+      <div :style="interactives_style">
+        <!-- More info button -->
+        <div
+          v-if="project.summary"
+          id="more-info"
+          @click="infoOpen = !infoOpen"
+        >
+          <h3 :style="{ 'white-space': 'nowrap' }">
+            {{ infoOpen ? "Less info" : "More info" }}
+          </h3>
+          <PlusMinus :minus="infoOpen" />
+        </div>
+        <!-- Link -->
+        <a
+          v-if="project.link"
+          :href="project.link"
+          target="_blank"
+          :style="{ display: 'flex', 'align-items': 'center', gap: '10px' }"
+        >
+          <h3>Link</h3>
+          <LinkArrow />
+        </a>
       </div>
     </div>
 
-    <!-- Summary -->
-    <div v-if="project.summary && infoOpen">
-      <h2>Overview</h2>
-      <p v-for="(p, idx) in project.summary" :key="idx" :style="summary_style">
-        {{ p }}
-      </p>
+    <!-- More Info Drawer -->
+    <div
+      v-if="project.summary"
+      :style="drawer_style"
+      :class="infoOpen && 'open'"
+    >
+      <!-- Container -->
+      <div ref="overview-container">
+        <h2>Overview</h2>
+        <p
+          v-for="(p, idx) in project.summary"
+          :key="idx"
+          :style="paragraph_style"
+        >
+          {{ p }}
+        </p>
+      </div>
     </div>
     <div id="project-button" @click="handleButtonClick" :style="button_style">
       <Cross v-if="infoOpen" />
       <LeftArrow v-else />
     </div>
     <!-- Gallery -->
-    <div :style="gallery_style">
-      <img :src="url(project.cover)" />
+    <SmartImage :src="project.cover" style="margin-top: 35px" />
+    <div v-if="project.gallery" :style="gallery_style">
+      <SmartImage
+        v-for="(image, idx) in project.gallery"
+        :key="idx"
+        :src="image.src"
+        :style="{ 'grid-column': image.wide ? 'span 2' : '' }"
+      />
     </div>
   </div>
 </template>
@@ -35,28 +73,29 @@
 import router from "../router";
 
 // Data
-import { FEATURES, ALL } from "../data/projects";
+import { ALL } from "../data/projects";
 import { mapState } from "vuex";
 import anime from "animejs";
 
 // Components
 import Cross from "../assets/icons/Cross";
 import LeftArrow from "../assets/icons/LeftArrow";
-import Plus from "../assets/icons/Plus";
+import LinkArrow from "../assets/icons/LinkArrow";
+import PlusMinus from "../assets/icons/PlusMinus";
+import SmartImage from "./SmartImage";
 import Tags from "./Tags.vue";
 
 export default {
   name: "ProjectPage",
-  data: function() {
+  data: function () {
     return {
-      FEATURES,
       ALL,
       animIntro: null,
       infoOpen: false,
     };
   },
   computed: {
-    ...mapState(["transitioning"]),
+    ...mapState(["transitioning", "mobile"]),
     container_style() {
       return {
         marginBottom: "200px",
@@ -64,11 +103,9 @@ export default {
     },
     header_style() {
       return {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
+        flexDirection: "column",
         flexFlow: "wrap",
-        gap: "45px",
+        gap: "15px",
       };
     },
     button_style() {
@@ -86,7 +123,25 @@ export default {
         height: "24px",
       };
     },
-    summary_style() {
+    interactives_style() {
+      return {
+        display: "flex",
+        gap: "36px",
+        alignItems: "center",
+      };
+    },
+    // Animate more info drawer opening
+    drawer_style() {
+      return {
+        transition: "all 500ms ease-in-out",
+        overflow: "hidden",
+        marginTop: "25px",
+        maxHeight: this.infoOpen
+          ? `${this.$refs["overview-container"].offsetHeight}px`
+          : "0px",
+      };
+    },
+    paragraph_style() {
       return {
         opacity: 0.7,
         marginTop: "10px",
@@ -95,12 +150,17 @@ export default {
     },
     gallery_style() {
       return {
-        marginTop: "50px",
+        marginTop: "25px",
+        display: this.mobile ? "flex" : "grid",
+        flexDirection: "column",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "25px",
+        gridAutoRows: "600px",
       };
     },
     // Helper for shorter names in the template
     project() {
-      return this.FEATURES[this.$route.params.slug];
+      return this.ALL[this.$route.params.slug];
     },
   },
   props: {
@@ -109,16 +169,15 @@ export default {
   components: {
     Cross,
     LeftArrow,
-    Plus,
+    LinkArrow,
+    PlusMinus,
+    SmartImage,
     Tags,
   },
   methods: {
-    // TODO: Make importable service
-    url(slug) {
-      var images = require.context("../assets/projects", true, /\.png$/);
-      return images("./" + slug);
-    },
     // Main white circle button click
+    // Either close the more info
+    // or
     handleButtonClick() {
       if (this.infoOpen) {
         this.infoOpen = !this.infoOpen;
@@ -128,7 +187,7 @@ export default {
         });
       }
     },
-    intro: function() {
+    intro: function () {
       this.animIntro = anime
         .timeline({
           easing: "easeInOutQuad",
@@ -173,15 +232,15 @@ export default {
     },
   },
   watch: {
-    transitioning: function() {
+    transitioning: function () {
       if (!this.transitioning) {
         this.animIntro.reset();
         this.animIntro.play();
       }
     },
   },
-  created: function() {},
-  mounted: function() {
+  created: function () {},
+  mounted: function () {
     this.intro();
   },
 };
@@ -190,6 +249,7 @@ export default {
 <style scoped>
 #more-info {
   display: flex;
+  padding: 15px 0;
   color: white;
   gap: 10px;
   align-items: center;
