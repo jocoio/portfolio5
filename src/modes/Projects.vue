@@ -1,74 +1,61 @@
+<!--- Note: this template is applied to every block in the grid --->
+<!--- Which is why we only render it for 1 block via v-if --->
 <template>
-  <div v-if="false">
-    <div id="work">
-      <h6>Recent work</h6>
-      <a href="https//laganjaestranja.com" target="_blank">
-        <h2>LaganjaEstranja.com<span class="arrow">↗&#xFE0E;</span></h2>
-        <h6>Coding</h6>
-        <h6>Freelance</h6>
-        <h6>Squarespace</h6>
-      </a>
-      <a
-        href="https://youtube.com/playlist?list=PLNzX5UGbEkhyzqhn7mwTSwDsAHG_3kuQ3"
-        target="_blank"
-      >
-        <h2>Music Lab<span class="arrow">↗&#xFE0E;</span></h2>
-        <h6>Music Theory</h6>
-        <h6>Production</h6>
-        <h6>Animation</h6>
-      </a>
-      <a href="https://fueled.com/" target="_blank">
-        <h2>Fueled.com<span class="arrow">↗&#xFE0E;</span></h2>
-        <h6>UI/UX Design</h6>
-        <h6>Coding</h6>
-        <h6>Vue</h6>
-      </a>
-    </div>
+  <div
+    id="projects"
+    v-if="num === (mobile ? cols + 1 : 2)"
+    :style="container_sty"
+  >
+    <!-- Single project if there's a slug in the URL -->
+    <ProjectPage v-if="$route.params.slug" />
+    <!-- Project grid otherwise -->
+    <ProjectGrid v-else />
   </div>
-  <div v-else class="solid" :id="num" :ref="num">Coming Soon</div>
 </template>
 
 <script>
+// Utils
 import { mapState } from "vuex";
-import anime from "animejs";
+
+// Data
+import { FEATURES, ALL } from "../data/projects";
+
+// Components
+import ProjectGrid from "../components/ProjectGrid";
+import ProjectPage from "../components/ProjectPage";
 
 export default {
-  name: "Work",
-  data: function () {
+  name: "Projects",
+  data: function() {
     return {
-      colors: [
-        "#DD6E42",
-        "#FFBF46",
-        "#648381",
-        "#8ACB88",
-        "#01295F",
-        "#463F3A",
-        "#BC4B51",
-        "#453750",
-        "#E94F37",
-        "#FCA311",
-      ],
-      color: "#FFFFFF",
-      // Has this solid animated already
-      animated: false,
+      FEATURES,
+      ALL,
       animIntro: null,
-      colorAnim: null,
     };
   },
+  components: {
+    ProjectGrid,
+    ProjectPage,
+  },
   computed: {
-    ...mapState(["transitioning"]),
-    color_style() {
+    ...mapState(["contentWidth", "transitioning", "mobile", "cols", "navOpen"]),
+    container_sty() {
       return {
-        backgroundColor: this.color,
+        position: "absolute",
+        zIndex: 1,
+        width: this.contentWidth * 0.9 + "px",
+        padding: "0 " + this.contentWidth * 0.05 + "px",
+        pointerEvents: this.navOpen ? "none" : "auto",
+        paddingTop: this.mobile ? "0px" : "75px",
+        overflowY: "scroll",
       };
     },
   },
   props: {
     num: Number,
   },
-  components: {},
   watch: {
-    transitioning: function () {
+    transitioning: function() {
       if (!this.transitioning) {
         this.animIntro.reset();
         this.animIntro.play();
@@ -76,63 +63,26 @@ export default {
     },
   },
   methods: {
-    animate: function () {
-      if (this.animated) {
-        this.colorAnim.reverse();
-      }
-      this.colorAnim.play();
-    },
-    initIntro: function () {
-      this.animIntro = anime({
-        duration: 500,
-        targets: this.$refs[this.num],
-        easing: "easeInOutQuad",
-        loop: false,
-        autoplay: false,
-        opacity: 1,
-      });
-    },
-    initColor: function () {
-      this.colorAnim = anime({
-        duration: 500,
-        targets: this.$refs[this.num],
-        easing: "easeInOutQuad",
-        loop: false,
-        autoplay: false,
-        backgroundColor: this.color,
-        complete: () => (this.animated = true),
-      });
-    },
-    // Change color on a constant interval
-    changeColor: function () {
-      this.color = this.randomColor();
-    },
-    // Returns random color from colors list
-    randomColor: function () {
-      return this.colors[Math.floor(Math.random() * this.colors.length)];
-    },
+    initIntro: function() {},
   },
 
-  created: function () {
-    this.changeColor();
-  },
-  mounted: function () {
-    // Initial color
-    this.$refs[this.num].style.backgroundColor = this.randomColor();
-
-    this.initIntro();
-    this.initColor();
-
-    this.animIntro.play();
+  created: function() {},
+  mounted: function() {
+    // this.initIntro();
+    // this.animIntro.play();
   },
 };
 </script>
 
 <style>
-.solid {
-  opacity: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ----- Common ----- */
+.project-art {
+  display: block;
+  height: 350px;
+  cursor: pointer;
+  transition: all 125ms;
+}
+.project-art:hover {
+  border-radius: 15px;
 }
 </style>

@@ -17,12 +17,12 @@
         <h6>Coming soon</h6>
       </div>
       <div
-        class="page disabled"
+        class="page"
         v-bind:class="{ active: active(2) }"
         @click="handleClick(2)"
       >
-        <h1>Projects</h1>
-        <h6>Coming soon</h6>
+        <h1>Work</h1>
+        <h6>WIP</h6>
       </div>
       <div
         class="page"
@@ -34,18 +34,18 @@
     </div>
     <!-- Socials -->
     <div id="socials">
-      <a href="https://www.etsy.com/shop/JOCOStudioDesigns" target="_blank">
-        <h6>Etsy<span class="arrow">↗&#xFE0E;</span></h6>
-      </a>
       <a href="https://www.instagram.com/joco.io" target="_blank">
-        <h6>Instagram<span class="arrow">↗&#xFE0E;</span></h6>
+        <h6>Insta</h6>
       </a>
-      <!-- <a
+      <a href="https://www.etsy.com/shop/JOCOStudioDesigns" target="_blank">
+        <h6>Etsy</h6>
+      </a>
+      <a
         target="_blank"
         href="https://nbviewer.jupyter.org/github/jocoio/portfolio5/blob/master/src/assets/resume.pdf"
       >
         <h6>Resume</h6>
-      </a> -->
+      </a>
     </div>
   </div>
 </template>
@@ -77,19 +77,17 @@ export default {
       }
     },
     initIntro() {
-      this.animIntro = anime
-        .timeline()
-        .add(
-          {
-            targets: [".page", "#socials > a"],
-            duration: 1000,
-            easing: "easeOutExpo",
-            delay: anime.stagger(150),
-            opacity: [0, 1],
-            translateY: [15, 0],
-          },
-          0
-        );
+      this.animIntro = anime.timeline().add(
+        {
+          targets: [".page", "#socials > a"],
+          duration: 1000,
+          easing: "easeOutExpo",
+          delay: anime.stagger(150),
+          opacity: [0, 1],
+          translateY: [15, 0],
+        },
+        0
+      );
     },
   },
   mounted() {
@@ -111,35 +109,36 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  /* opacity: 0; */
 }
-#menu .page > h1 {
+#menu .page > h1,
+#menu .page > h6 {
   pointer-events: none;
   transition: transform 150ms;
+  font-weight: 300;
 }
 #menu .page > h6 {
   pointer-events: none;
   padding-top: 10px;
   opacity: 0.4;
-
 }
 #menu .page.disabled {
   pointer-events: none;
 }
 #menu .page.disabled h1 {
   opacity: 0.4;
-  
 }
 #menu .page:hover h1 {
   transform: translateX(10px);
 }
+#menu .page:hover h6 {
+  transform: translateX(10px);
+}
 /* Active Page */
 #menu .page.active > h1 {
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: white;
-  color: black;
   text-decoration: line-through;
   transform: none;
+  font-weight: 300;
+  pointer-events: none;
 }
 #socials {
   margin-top: 48px;
@@ -149,7 +148,8 @@ export default {
 }
 #socials h6 {
   padding: 10px 15px;
-  border-radius: 20px;
+  border-radius: 5px;
+  font-weight: 600;
   color: black;
   background-color: white;
 }

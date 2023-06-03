@@ -1,5 +1,9 @@
 "use strict";
 
+// Engine that runs the grid calculations / determines the size //
+
+
+
 // ---------- RESIZE HELPERS ---------- //
 
 export function setBlocks (blocks) {
@@ -72,13 +76,24 @@ export function getNavIDs (rows, cols) {
   return ids;
 }
 
-export function getNavWidth () {
+export function calculateNavWidth () {
   if (window.innerWidth < 480) {
     return window.innerWidth;
   }
   else {
     return Math.floor(window.innerWidth * 3 / getCols())
   } 
+}
+
+// Calculates width of
+export function calculateContentWidth () {
+  let cols = getCols();
+  if (cols > 4) {
+    return ((window.innerWidth / cols) * (cols - 2) );
+  }
+  else {
+    return Math.floor(window.innerWidth);
+  }
 }
 
 // Gets number of columns needed based on current width

@@ -24,9 +24,17 @@ export default new Router({
       component: Grid,
       meta: { mode: "photos" },
     },
+    // Projects
     {
       path: "/projects",
       name: "projects",
+      component: Grid,
+      meta: { mode: "projects" },
+    },
+    // Individual Project
+    {
+      path: "/projects/:slug",
+      name: "projects/:slug",
       component: Grid,
       meta: { mode: "projects" },
     },

@@ -1,78 +1,73 @@
 <template>
   <div>
-    <!-- <div>{{num - 2}}</div> -->
-    <img :src="url" ref="photo"/>
+    <img :src="url" ref="photo" />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import anime from 'animejs';
-
+import { mapState } from "vuex";
+import anime from "animejs";
 
 export default {
-  name: 'Photo',
-  data: function () {
+  name: "Photo",
+  data: function() {
     return {
       idx: 0,
-      animIntro: null
-    }
+      animIntro: null,
+    };
   },
   computed: {
-    ...mapState([
-      'transitioning',
-      'photos',
-      'numPhotos'
-    ]),
-    url () {
-      var images = require.context('../assets/photos/', false, /\.jpg$/)
-      return images('./' + this.photos[(this.num - 2) % this.numPhotos]  + ".jpg")
-    }
+    ...mapState(["transitioning", "photos", "numPhotos"]),
+    url() {
+      var images = require.context("../assets/photos/", false, /\.jpg$/);
+      return images(
+        "./" + this.photos[(this.num - 2) % this.numPhotos] + ".jpg"
+      );
+    },
   },
   props: {
-    num: Number
+    num: Number,
   },
-  components: {
-  },
+  components: {},
   methods: {
-    animate: function () {},
-    initIntro: function () {
+    animate: function() {},
+    initIntro: function() {
       this.animIntro = anime({
         duration: 500,
         targets: this.$refs.photo,
-        easing: 'easeOutQuad',
+        easing: "easeOutQuad",
         loop: false,
         autoplay: false,
         opacity: [0, 1],
       });
-    }
+    },
   },
   watch: {
-    transitioning: function () {
+    transitioning: function() {
       if (!this.transitioning) {
         this.animIntro.reset();
         this.animIntro.play();
-      } 
-    }
+      }
+    },
   },
-  created: function () {
+  created: function() {
     this.idx = Math.floor(Math.random() * 20);
   },
-  mounted: function () {
+  mounted: function() {
     this.initIntro();
-    this.$refs.photo.onload = () => {   
+    this.$refs.photo.onload = () => {
       setTimeout(() => {
         this.animIntro.play();
-      }, Math.random() * 1000)
-    }
-  }
-}
+      }, Math.random() * 1000);
+    };
+  },
+};
 </script>
 
 <style>
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
 </style>
