@@ -155,7 +155,6 @@ export default {
         flexDirection: "column",
         gridTemplateColumns: "1fr 1fr",
         gap: "25px",
-        gridAutoRows: "600px",
       };
     },
     // Helper for shorter names in the template
