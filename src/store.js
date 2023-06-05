@@ -54,7 +54,30 @@ export default new Vuex.Store({
     // Array of ints representing availavle colors in palette
     colors: [],
     // Pallette options
-    palette: ["#FFC90B", "#FE3E02", "#0A89FE"],
+    // palette: ["#F0501E", "#1080E9", "#F6D215", "#25A410", "#F87D0B", "#B64BC7", "#FF95B3", "#75D9F0", "#A06432"],
+    palette: [
+      // Red
+      "#FF1D26",
+      "#FF1D26",
+      // Orange
+      "#FF8D11",
+      // Yellow
+      "#FFDA1A",
+      // Green
+      "#0EBF20",
+      "#0EBF20",
+      // Indigo
+      "#122DC3",
+      "#122DC3",
+      // Violet
+      "#8A0BB7",
+      // Pink
+      "#FF9BB7",
+      // Blue
+      "#5CDAF6",
+      // Brown
+      "#88420E",
+    ],
 
     // ----- PHOTO MODE ----- //
 
