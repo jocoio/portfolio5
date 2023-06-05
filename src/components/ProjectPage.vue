@@ -240,6 +240,7 @@ export default {
   },
   created: function () {},
   mounted: function () {
+    document.getElementById("projects").scrollTo(0,0);
     this.intro();
   },
 };

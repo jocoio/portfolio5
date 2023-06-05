@@ -127,12 +127,61 @@ export const OTHER = {
     name: "Las Culturistas: Rules of Culture",
     tags: ["Info Design", "Fan Project", "Indesign"],
     cover: "las-culturistas/cover.png",
+    gallery: [
+      {
+        src: "las-culturistas/gallery/0.png",
+        wide: true,
+      },
+      {
+        src: "las-culturistas/gallery/1a.png",
+        wide: false,
+      },
+      {
+        src: "las-culturistas/gallery/1b.png",
+        wide: false,
+      },
+      {
+        src: "las-culturistas/gallery/2.png",
+        wide: true,
+      },
+      {
+        src: "las-culturistas/gallery/3.png",
+        wide: true,
+      },
+      {
+        src: "las-culturistas/gallery/4.png",
+        wide: true,
+      },
+    ]
   },
   fueled: {
     name: "Fueled.com",
     tags: ["Vue", "Web dev", "Marketing"],
+    summary: ["Three years of steady UI and UX improvements to app agency Fueled’s primary marketing tool"],
     cover: "fueled/cover.png",
-
+    link: "https://fueled.com",
+    gallery: [
+      {
+        src: "fueled/gallery/0.png",
+        wide: true,
+      },
+      {
+        src: "fueled/gallery/1.png",
+        wide: true,
+      },
+      {
+        src: "fueled/gallery/2.png",
+        wide: true,
+      },
+      {
+        src: "fueled/gallery/3.png",
+        wide: true,
+      },
+      {
+        src: "fueled/gallery/4.png",
+        wide: true,
+      },
+    ]
   },
 };
 

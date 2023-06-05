@@ -40,12 +40,12 @@
       <a href="https://www.etsy.com/shop/JOCOStudioDesigns" target="_blank">
         <h6>Etsy</h6>
       </a>
-      <a
+      <!-- <a
         target="_blank"
         href="https://nbviewer.jupyter.org/github/jocoio/portfolio5/blob/master/src/assets/resume.pdf"
       >
         <h6>Resume</h6>
-      </a>
+      </a> -->
     </div>
   </div>
 </template>
