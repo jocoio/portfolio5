@@ -62,6 +62,7 @@
         v-for="(image, idx) in project.gallery"
         :key="idx"
         :src="image.src"
+        :embed="image.embed"
         :style="{ 'grid-column': image.wide ? 'span 2' : '' }"
       />
     </div>

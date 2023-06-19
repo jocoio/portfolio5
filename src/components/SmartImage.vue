@@ -3,8 +3,18 @@
   <div id="container">
     <!-- Loading placeholder -->
     <div id="placeholder" />
+    <!-- Embed Video -->
+    <iframe
+      v-if="embed"
+      width="100%"
+      height="500"
+      src="https://www.youtube.com/embed/DuVU948Nz_4?controls=0"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; picture-in-picture;"
+    />
     <!-- Image -->
-    <img :src="url(src)" ref="photo" />
+    <img v-else :src="url(src)" ref="photo" />
   </div>
 </template>
 
@@ -14,7 +24,7 @@ import anime from "animejs";
 
 export default {
   name: "SmartImage",
-  data: function () {
+  data: function() {
     return {
       // What should happen when the component first mounts
       animIntro: null,
@@ -26,6 +36,10 @@ export default {
   props: {
     tags: Array,
     src: String,
+    embed: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {},
   methods: {
@@ -56,24 +70,30 @@ export default {
           autoplay: false,
         })
         // Asset
-        .add({
-          targets: this.$refs.photo,
-          opacity: [0, 1],
-          duration: 300,
-          easing: "easeOutCirc",
-        }, 0)
-        .add({
-          targets: "#container",
-          outlineColor: "#000000",
-          opacity: 1,
-          duration: 300,
-          easing: "easeOutCirc",
-        }, 0);
+        .add(
+          {
+            targets: this.$refs.photo,
+            opacity: [0, 1],
+            duration: 300,
+            easing: "easeOutCirc",
+          },
+          0
+        )
+        .add(
+          {
+            targets: "#container",
+            outlineColor: "#000000",
+            opacity: 1,
+            duration: 300,
+            easing: "easeOutCirc",
+          },
+          0
+        );
     },
   },
   watch: {},
-  created: function () {},
-  mounted: function () {
+  created: function() {},
+  mounted: function() {
     // Initialize both anims, play intro one
     this.initAnims();
     this.animIntro.play();
