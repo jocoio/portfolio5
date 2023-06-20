@@ -7,8 +7,8 @@
     <iframe
       v-if="embed"
       width="100%"
-      height="500"
-      src="https://www.youtube.com/embed/DuVU948Nz_4?controls=0"
+      height="650"
+      :src="src"
       title="YouTube video player"
       frameborder="0"
       allow="accelerometer; autoplay; picture-in-picture;"

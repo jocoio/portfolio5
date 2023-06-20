@@ -1,8 +1,5 @@
 // Project Tags
-export const TAGS = [
-  "VR",
-  "Unity",
-];
+export const TAGS = ["VR", "Unity"];
 
 export const FEATURES = {
   "music-lab": {
@@ -156,10 +153,29 @@ export const OTHER = {
         wide: true,
       },
       {
-        src: "https://youtu.be/DuVU948Nz_4",
+        src: "https://youtube.com/embed/DuVU948Nz_4",
         embed: true,
         wide: true,
       },
+    ],
+  },
+  "miraj-web": {
+    name: "Miraj - Web Build",
+    tags: ["Web dev", "three.js", "interactive"],
+    cover: "miraj-web/cover.png",
+    summary: [
+      "A web re-write of Miraj, an Apple TV app that turns texts prompts into kaleidoscope-esque art pieces.",
+    ],
+    gallery: [
+      {
+        src: "miraj-web/gallery/0.png",
+        wide: true,
+      },
+      {
+        src: "https://www.youtube.com/embed/XbSiV_FxZrY",
+        wide: true,
+        embed: true,
+      }
     ],
   },
   "las-culturistas": {
