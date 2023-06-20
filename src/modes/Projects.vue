@@ -9,7 +9,7 @@
     <!-- Single project if there's a slug in the URL -->
     <ProjectPage v-if="$route.params.slug" />
     <!-- Project grid otherwise -->
-    <ProjectGrid v-else />
+    <ProjectsGrid v-else />
   </div>
 </template>
 
@@ -21,7 +21,7 @@ import { mapState } from "vuex";
 import { FEATURES, ALL } from "../data/projects";
 
 // Components
-import ProjectGrid from "../components/ProjectGrid";
+import ProjectsGrid from "../components/ProjectsGrid";
 import ProjectPage from "../components/ProjectPage";
 
 export default {
@@ -34,7 +34,7 @@ export default {
     };
   },
   components: {
-    ProjectGrid,
+    ProjectsGrid,
     ProjectPage,
   },
   computed: {

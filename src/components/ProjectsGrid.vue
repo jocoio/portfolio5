@@ -19,7 +19,15 @@
     </div>
     <!-- All -->
     <div id="all" :style="all_sty">
-      <h2>All</h2>
+      <div class="header">
+        <h2>All</h2>
+        <!-- Tag Filters -->
+        <!-- <div class="filter-container">
+          <div v-for="(tag, idx) in TAGS" :key="idx" class="filter-tag" @click="toggleFilter(tag)">
+            {{ tag }}
+          </div>
+        </div> -->
+      </div>
       <div v-for="(project, key, idx) in OTHER" :key="idx" class="">
         <img
           @click="handleClick(key)"
@@ -42,7 +50,7 @@
 import router from "../router";
 
 // Data
-import { FEATURES, OTHER } from "../data/projects";
+import { TAGS, FEATURES, OTHER } from "../data/projects";
 import { mapState } from "vuex";
 import anime from "animejs";
 
@@ -50,24 +58,14 @@ import anime from "animejs";
 import Tags from "./Tags.vue";
 
 export default {
-  name: "ProjectGrid",
+  name: "ProjectsGrid",
   data: function () {
     return {
+      TAGS,
       FEATURES,
       OTHER,
-      colors: [
-        "#DD6E42",
-        "#FFBF46",
-        "#648381",
-        "#8ACB88",
-        "#01295F",
-        "#463F3A",
-        "#BC4B51",
-        "#453750",
-        "#E94F37",
-        "#FCA311",
-      ],
       animIntro: null,
+      activeTags: [],
     };
   },
   computed: {
@@ -107,6 +105,9 @@ export default {
       router.push({
         path: `/projects/${slug}`,
       });
+    },
+    toggleFilter(tag) {
+      console.log(tag);
     },
     intro: function () {
       // Projects page intro
@@ -164,7 +165,7 @@ export default {
   },
   created: function () {},
   mounted: function () {
-    document.getElementById("projects").scrollTo(0,0);
+    document.getElementById("projects").scrollTo(0, 0);
     this.intro();
   },
 };
@@ -183,11 +184,27 @@ export default {
 }
 
 /* ----- All projects ----- */
-#all > h2 {
+#all .header {
   grid-column: span 2;
 }
 
 #all h3 {
   margin-top: 20px;
+}
+
+#all .filter-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding-top: 15px;
+}
+
+#all .filter-tag {
+  cursor: pointer;
+  color: #fefefe;
+  border: 1px solid #fefefe;
+  padding: 7px 10px;
+  opacity: 0.7;
+  border-radius: 20px;
 }
 </style>

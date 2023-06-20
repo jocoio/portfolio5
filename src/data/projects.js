@@ -1,4 +1,10 @@
-export var FEATURES = {
+// Project Tags
+export const TAGS = [
+  "VR",
+  "Unity",
+];
+
+export const FEATURES = {
   "music-lab": {
     name: "Music Lab",
     tags: ["Music Theory", "Content production", "Animation"],
