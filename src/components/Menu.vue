@@ -37,9 +37,9 @@
       <a href="https://www.instagram.com/joco.io" target="_blank">
         <h6>Insta</h6>
       </a>
-      <a href="https://www.etsy.com/shop/JOCOStudioDesigns" target="_blank">
+      <!-- <a href="https://www.etsy.com/shop/JOCOStudioDesigns" target="_blank">
         <h6>Etsy</h6>
-      </a>
+      </a> -->
       <a
         target="_blank"
         href="https://nbviewer.jupyter.org/github/jocoio/portfolio5/blob/master/src/assets/resume.pdf"
