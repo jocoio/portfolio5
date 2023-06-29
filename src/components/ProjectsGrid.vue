@@ -22,13 +22,19 @@
       <div class="header">
         <h2>All</h2>
         <!-- Tag Filters -->
-        <!-- <div class="filter-container">
-          <div v-for="(tag, idx) in TAGS" :key="idx" class="filter-tag" @click="toggleFilter(tag)">
+        <div class="filter-container">
+          <div
+            v-for="(tag, idx) in TAGS"
+            :key="idx"
+            class="filter-tag"
+            v-bind:class="{ active: activeTags[tag] }"
+            @click="toggleFilter(tag)"
+          >
             {{ tag }}
           </div>
-        </div> -->
+        </div>
       </div>
-      <div v-for="(project, key, idx) in OTHER" :key="idx" class="">
+      <div v-for="(project, key, idx) in filteredOthers" :key="idx">
         <img
           @click="handleClick(key)"
           class="project-art"
@@ -50,7 +56,7 @@
 import router from "../router";
 
 // Data
-import { TAGS, FEATURES, OTHER } from "../data/projects";
+import { TAGS, FEATURES, OTHER, ALL } from "../data/projects";
 import { mapState } from "vuex";
 import anime from "animejs";
 
@@ -59,13 +65,15 @@ import Tags from "./Tags.vue";
 
 export default {
   name: "ProjectsGrid",
-  data: function () {
+  data() {
     return {
       TAGS,
       FEATURES,
       OTHER,
+      ALL,
       animIntro: null,
-      activeTags: [],
+      activeTags: this.intitializeActiveTags(),
+      numTagsActive: 0,
     };
   },
   computed: {
@@ -88,6 +96,22 @@ export default {
     project() {
       return this.FEATURES[this.$route.params.slug];
     },
+    filteredOthers() {
+      if (this.numTagsActive === 0) return ALL;
+      else {
+        return Object.keys(ALL).reduce((r, e) => {
+          // For every tag in the project
+          ALL[e].tags.forEach((tag) => {
+            // if the tag is true in active tags
+            if (this.activeTags[tag]) {
+              r[e] = ALL[e];
+            }
+          });
+
+          return r;
+        }, {});
+      }
+    },
   },
   props: {
     num: Number,
@@ -96,6 +120,13 @@ export default {
     Tags,
   },
   methods: {
+    intitializeActiveTags() {
+      let returnObject = {};
+      TAGS.map((tag) => {
+        returnObject[tag] = false;
+      });
+      return returnObject;
+    },
     // TODO: Make importable service
     url(slug) {
       var images = require.context("../assets/projects", true, /\.png$/);
@@ -106,10 +137,19 @@ export default {
         path: `/projects/${slug}`,
       });
     },
+    // Turn a tag on or off
     toggleFilter(tag) {
-      console.log(tag);
+      if (this.activeTags[tag] !== undefined) {
+        // Increment or decrement how many tags are active
+        // If the tag is true it has been switched on
+        this.numTagsActive = this.activeTags[tag]
+          ? this.numTagsActive - 1
+          : this.numTagsActive + 1;
+        // Set the flag in activeTags
+        this.activeTags[tag] = !this.activeTags[tag];
+      }
     },
-    intro: function () {
+    intro: function() {
       // Projects page intro
       this.animIntro = anime
         .timeline({
@@ -156,22 +196,22 @@ export default {
     },
   },
   watch: {
-    transitioning: function () {
+    transitioning: function() {
       if (!this.transitioning) {
         this.animIntro.reset();
         this.animIntro.play();
       }
     },
   },
-  created: function () {},
-  mounted: function () {
+  created: function() {},
+  mounted: function() {
     document.getElementById("projects").scrollTo(0, 0);
     this.intro();
   },
 };
 </script>
 
-<style >
+<style>
 /* ----- Featured Project ----- */
 .featured-project {
   margin-top: 32px;
@@ -195,16 +235,26 @@ export default {
 #all .filter-container {
   display: flex;
   flex-direction: row;
-  gap: 20px;
-  padding-top: 15px;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 30px;
+  padding-bottom: 15px;
 }
 
 #all .filter-tag {
   cursor: pointer;
   color: #fefefe;
   border: 1px solid #fefefe;
-  padding: 7px 10px;
-  opacity: 0.7;
+  padding: 8px 12px;
+  opacity: 0.55;
   border-radius: 20px;
+  transition: all 150ms;
+  user-select: none;
+  font-size: 14px;
+}
+#all .filter-tag.active {
+  background-color: #fefefe;
+  color: #161616;
+  opacity: 1;
 }
 </style>

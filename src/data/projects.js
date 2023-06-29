@@ -1,10 +1,10 @@
 // Project Tags
-export const TAGS = ["VR", "Unity"];
+export const TAGS = ["unity", "web-dev", "product-design", "info-design", "branding", "freelance"];
 
 export const FEATURES = {
   "comma-ai": {
     name: "comma.ai",
-    tags: ["Product design", "Freelance", "Design System"],
+    tags: ["product-design", "freelance", "design-system"],
     cover: "comma-ai/cover.png",
     summary: [
       "A brand refresh and product re-skin for Comma’s latest flagship product, the Comma 3",
@@ -38,7 +38,7 @@ export const FEATURES = {
   },
   "music-lab": {
     name: "Music Lab",
-    tags: ["Branding", "Content production", "Animation"],
+    tags: ["branding", "Content production", "Animation"],
     cover: "music-lab/cover.png",
     link:
       "https://www.youtube.com/playlist?list=PLNzX5UGbEkhyzqhn7mwTSwDsAHG_3kuQ3",
@@ -86,7 +86,7 @@ export const FEATURES = {
   },
   laganja: {
     name: "LaganjaEstranja.com",
-    tags: ["Branding", "Freelance", "Squarespace"],
+    tags: ["branding", "freelance", "Squarespace"],
     cover: "laganja/cover.png",
     link: "https://laganjaestranja.com",
     summary: [
@@ -128,7 +128,7 @@ export const FEATURES = {
 export const OTHER = {
   fueled: {
     name: "Fueled.com",
-    tags: ["Vue", "Web dev", "Marketing"],
+    tags: ["Vue", "web-dev", "marketing"],
     summary: [
       "Three years of steady UI and UX improvements to app agency Fueled’s primary marketing tool",
     ],
@@ -159,7 +159,7 @@ export const OTHER = {
   },
   "las-culturistas": {
     name: "Las Culturistas: Rules of Culture",
-    tags: ["Info Design", "Fan Project", "Indesign"],
+    tags: ["info-design", "Fan Project", "branding"],
     cover: "las-culturistas/cover.png",
     gallery: [
       {
@@ -188,9 +188,32 @@ export const OTHER = {
       },
     ],
   },
+  "flux": {
+    name: "Flux - Diveristy Toolkit",
+    tags: ["web-dev", "freelance"],
+    cover: "flux/cover.png",
+    summary: [
+      "Contract work for IDEO's CoLab. Collaborated with a designer, an illustrator, and team leads to create Flux: a curated collection of content for developing inclusive teams.",
+    ],
+    link: "http://www.diversitytoolkit.org/",
+    gallery: [
+      {
+        src: "flux/gallery/0.png",
+        wide: true,
+      },
+      {
+        src: "flux/gallery/1.png",
+        wide: true,
+      },
+      {
+        src: "flux/gallery/2.png",
+        wide: true,
+      },
+    ],
+  },
   "miraj-web": {
     name: "Miraj - Web Build",
-    tags: ["Web dev", "three.js", "interactive"],
+    tags: ["web-dev", "three-js", "interactive art"],
     cover: "miraj-web/cover.png",
     summary: [
       "A web re-write of Miraj, an Apple TV app that turns texts prompts into kaleidoscope-esque art pieces.",
@@ -209,7 +232,7 @@ export const OTHER = {
   },
   "beatles-vr": {
     name: "The Beatles Rock Band - VR",
-    tags: ["VR", "Unity", "Meta Quest 2"],
+    tags: ["vr", "unity", "Meta Quest 2"],
     cover: "beatles-vr/cover.png",
     summary: [
       "Ongoing side project - taking the models and locations from The Beatles Rock Band (2009) and adding them to a Unity VR project.",
@@ -241,7 +264,7 @@ export const OTHER = {
   },
   "beyonce-vr": {
     name: "Beyonce Coachella Stage - Unity",
-    tags: ["Unity", "Blender", "Side Project"],
+    tags: ["unity", "Blender", "Side Project"],
     cover: "beyonce-vr/cover.png",
     summary: [
       "Ongoing side project - remaking Beyonce's homecoming stage in Unity. Making new object models in Blender.",
