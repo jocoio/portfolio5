@@ -63,7 +63,8 @@
         :key="idx"
         :src="image.src"
         :embed="image.embed"
-        :style="{ 'grid-column': image.wide ? 'span 2' : '' }"
+        :info="image.info"
+        :style="{ 'grid-column': image.wide ? 'span 2' : '', }"
       />
     </div>
   </div>

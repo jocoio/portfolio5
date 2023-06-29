@@ -32,6 +32,7 @@ export default {
   display: flex;
   flex-direction: row;
   gap: 15px;
+  flex-wrap: wrap;
 }
 .tags > h6 {
   opacity: 0.75;
