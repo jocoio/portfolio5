@@ -246,7 +246,6 @@ export const OTHER = {
       {
         src: "flux/gallery/0.png",
         wide: true,
-        info: "test",
       },
       {
         src: "flux/gallery/1.png",
