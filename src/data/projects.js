@@ -183,24 +183,27 @@ export const OTHER = {
       {
         src: "fueled/gallery/1.png",
         wide: true,
-        info: "One of our more significant design overhauls was our careers hub. The talent team saw several pain points along a candidate’s journey and wanted to re-organize the high-trafficked pages under one central roof: the careers hub."
+        info:
+          "One of our more significant design overhauls was our careers hub. The talent team saw several pain points along a candidate’s journey and wanted to re-organize the high-trafficked pages under one central roof: the careers hub.",
       },
       {
         src: "fueled/gallery/4.png",
         wide: true,
-        info: "We started with an initial audit of the site, organizing the existing pages and marking the pages the hub could encompass and link to."
+        info:
+          "We started with an initial audit of the site, organizing the existing pages and marking the pages the hub could encompass and link to.",
       },
       {
         src: "fueled/gallery/2.png",
         wide: true,
-        info: "From there it was a straightforward process of taking the copy from the talent team and creating lofi then hifi (above) designs. Knowing this project involved so many high-visibility pages, I took this opportunity to elevate Fueled’s design language with geometric elements and a careful use of our primary red. This update made the pages more legible and digestible, with color pops accenting the most important information / actions."
+        info:
+          "From there it was a straightforward process of taking the copy from the talent team and creating lofi then hifi (above) designs. Knowing this project involved so many high-visibility pages, I took this opportunity to elevate Fueled’s design language with geometric elements and a careful use of our primary red. This update made the pages more legible and digestible, with color pops accenting the most important information / actions.",
       },
       {
         src: "fueled/gallery/3.png",
         wide: true,
-        info: "My time at Fueled has been an incredible learning opportunity. On the engineering side, I’ve learned how to take on an existing system, understand the complexities, and find ways to improve our process. And on the design side, I’m proud of the personal growth I’ve made as a collaborative designer. Although I haven’t had the opportunity to execute a full rebrand, I’m really pleased with the slow but steady brand evolution we’ve made. We’ve elevated Fueled’s brand through a more intentional use of color, sleek animations, and a better balance of when to let brand shine and when sit back and let the incredible client work we’ve done take center stage."
+        info:
+          "My time at Fueled has been an incredible learning opportunity. On the engineering side, I’ve learned how to take on an existing system, understand the complexities, and find ways to improve our process. And on the design side, I’m proud of the personal growth I’ve made as a collaborative designer. Although I haven’t had the opportunity to execute a full rebrand, I’m really pleased with the slow but steady brand evolution we’ve made. We’ve elevated Fueled’s brand through a more intentional use of color, sleek animations, and a better balance of when to let brand shine and when sit back and let the incredible client work we’ve done take center stage.",
       },
-
     ],
   },
   "las-culturistas": {
@@ -253,6 +256,40 @@ export const OTHER = {
       },
       {
         src: "flux/gallery/2.png",
+        wide: true,
+      },
+    ],
+  },
+  dotv: {
+    name: "Drag Out The Vote",
+    tags: ["branding", "freelance"],
+    cover: "dotv/cover.png",
+    summary: [
+      "Freelance work for Drag Out The Vote, a national non-profit that uses the power of drag to improve voter turnout in the LBGTQ+ community. Deliverables included an impact report, a brand refresh, and supporting graphics to be used across socials.",
+    ],
+    gallery: [
+      {
+        src: "dotv/gallery/0.png",
+        wide: true,
+      },
+      {
+        src: "dotv/gallery/1.png",
+        wide: true,
+      },
+      {
+        src: "dotv/gallery/2a.png",
+        wide: false,
+      },
+      {
+        src: "dotv/gallery/2b.png",
+        wide: false,
+      },
+      {
+        src: "dotv/gallery/3.png",
+        wide: true,
+      },
+      {
+        src: "dotv/gallery/4.png",
         wide: true,
       },
     ],
