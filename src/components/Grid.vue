@@ -27,7 +27,7 @@ import {
 
 export default {
   name: "Grid",
-  data: function() {
+  data: function () {
     return {
       // Grid stuff
       blocks: [],
@@ -67,7 +67,7 @@ export default {
     },
   },
   watch: {
-    resizing: function() {
+    resizing: function () {
       if (this.resizing) {
         clearInterval(this.randomAnimator);
         this.resetGrid();
@@ -79,7 +79,7 @@ export default {
       }
     },
     // Switching from one mode to another
-    transitioning: function() {
+    transitioning: function () {
       if (this.transitioning) {
         this.playTransition();
         this.clearRandomAnimator();
@@ -153,7 +153,7 @@ export default {
   },
   methods: {
     // ANIMATION INITIALIZATION //
-    initIntro: function() {
+    initIntro: function () {
       this.animIntro = anime
         .timeline({
           targets: ".block",
@@ -183,22 +183,27 @@ export default {
         });
     },
 
-    initNav: function() {
+    initNav: function () {
       // Different Nav transition behavior for projects (& eventually about)
       if (this.mode === "projects") {
-        this.animNav = anime({
-          targets: "#projects",
-          easing: "easeInOutExpo",
-          autoplay: false,
-          complete: () => {
-            this.animNav.reverse();
-            this.$store.dispatch("navComplete");
-          },
-          translateX: 300,
-          opacity: 0.25,
-          pointerEvents: "none",
-          duration: 800,
-        });
+        this.animNav = anime
+          .timeline({
+            targets: "#projects",
+            easing: "easeInOutExpo",
+            autoplay: false,
+            complete: () => {
+              this.animNav.reverse();
+              this.$store.dispatch("navComplete");
+            },
+            translateX: 300,
+            opacity: 0.25,
+            pointerEvents: "none",
+            duration: 800,
+          })
+          .add({
+            targets: "#action-button",
+            opacity: 0.25,
+          });
       }
       // Default Nav behavior
       else {
@@ -223,7 +228,7 @@ export default {
       }
     },
 
-    playTransition: function() {
+    playTransition: function () {
       this.animTransition = anime({
         targets: ".block",
         easing: "easeOutExpo",
@@ -255,7 +260,7 @@ export default {
     },
 
     // Set the number of blocks, and row/col counts for window size
-    makeGrid: function() {
+    makeGrid: function () {
       this.$refs.grid.style.height = window.innerHeight + "px";
       this.blocks = setBlocks(this.blocks);
       this.$store.commit("setCols", getCols());
@@ -263,7 +268,7 @@ export default {
     },
 
     // Called on every resize, multiple times per resize
-    resizeGrid: function() {
+    resizeGrid: function () {
       // Runs once at start of resizing
       if (!this.resizing) {
         this.$store.commit("setResizing", true);
@@ -283,17 +288,17 @@ export default {
     },
 
     // Chooses a random block child on interval and sends call to animate it
-    startRandomAnimator: function() {
+    startRandomAnimator: function () {
       let idx = 0;
       this.randomAnimator = setInterval(() => {
         idx = Math.floor(Math.random() * (this.rows * this.cols));
         if (idx > 1) this.$refs[idx][0].animate();
       }, 3000);
     },
-    clearRandomAnimator: function() {
+    clearRandomAnimator: function () {
       clearInterval(this.randomAnimator);
     },
-    restartRandomAnimator: function() {
+    restartRandomAnimator: function () {
       if (this.introd && this.mode === "home") {
         this.startRandomAnimator();
       }

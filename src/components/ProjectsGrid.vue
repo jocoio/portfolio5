@@ -181,17 +181,17 @@ export default {
           100
         )
         // Project tags
-        .add(
-          {
-            targets: ".tags > h6",
-            opacity: [0, 0.75],
-            translateY: [5, 0],
-            duration: 500,
-            delay: anime.stagger(150),
-            easing: "easeOutCirc",
-          },
-          350
-        );
+        // .add(
+        //   {
+        //     targets: ".tags > h6",
+        //     opacity: [0, 0.75],
+        //     translateY: [5, 0],
+        //     duration: 500,
+        //     delay: anime.stagger(150),
+        //     easing: "easeOutCirc",
+        //   },
+        //   350
+        // );
       this.animIntro.play();
     },
   },
