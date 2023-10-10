@@ -16,7 +16,7 @@ git init
 git add -A
 git commit -m 'deploy'
 
-# if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:jocoio/portfolio5.git master:gh-pages
+# forcibly (-f) push the commit to the gh-pages branch of portfolio5.git
+git push -f git@github.com:jocoio/portfolio5.git main:gh-pages
 
 cd -
