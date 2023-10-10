@@ -51,10 +51,10 @@
         </p>
       </div>
     </div>
-    <div id="project-button" @click="handleButtonClick" :style="button_style">
+    <!-- <div id="project-button" @click="handleButtonClick" :style="button_style">
       <Cross v-if="infoOpen" />
       <LeftArrow v-else />
-    </div>
+    </div> -->
     <!-- Gallery -->
     <SmartImage :src="project.cover" style="margin-top: 35px" />
     <div v-if="project.gallery" :style="gallery_style">
@@ -71,17 +71,14 @@
 </template>
 
 <script>
-// Utils
-import router from "../router";
-
 // Data
 import { ALL } from "../data/projects";
 import { mapState } from "vuex";
 import anime from "animejs";
 
 // Components
-import Cross from "../assets/icons/Cross";
-import LeftArrow from "../assets/icons/LeftArrow";
+// import Cross from "../assets/icons/Cross";
+// import LeftArrow from "../assets/icons/LeftArrow";
 import LinkArrow from "../assets/icons/LinkArrow";
 import PlusMinus from "../assets/icons/PlusMinus";
 import SmartImage from "./SmartImage";
@@ -108,21 +105,6 @@ export default {
         flexDirection: "column",
         flexFlow: "wrap",
         gap: "15px",
-      };
-    },
-    button_style() {
-      return {
-        backgroundColor: "#FEFEFE",
-        color: "#000000",
-        padding: "15px",
-        borderRadius: "25px",
-        position: "fixed",
-        left: "50px",
-        bottom: "50px",
-        display: "flex",
-        cursor: "pointer",
-        width: "24px",
-        height: "24px",
       };
     },
     interactives_style() {
@@ -168,26 +150,14 @@ export default {
     num: Number,
   },
   components: {
-    Cross,
-    LeftArrow,
+    // Cross,
+    // LeftArrow,
     LinkArrow,
     PlusMinus,
     SmartImage,
     Tags,
   },
   methods: {
-    // Main white circle button click
-    // Either close the more info
-    // or
-    handleButtonClick() {
-      if (this.infoOpen) {
-        this.infoOpen = !this.infoOpen;
-      } else {
-        router.push({
-          path: `/projects`,
-        });
-      }
-    },
     intro: function () {
       this.animIntro = anime
         .timeline({
@@ -219,9 +189,10 @@ export default {
           300
         )
         // Control button
+        // TODO: move to nav somewhere?
         .add(
           {
-            targets: "#project-button",
+            targets: "#action-button",
             opacity: [0, 1],
             translateY: [25, 0],
             duration: 500,

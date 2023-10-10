@@ -1,6 +1,7 @@
 <template>
   <div id="menu">
     <div id="pages">
+      <!-- Home -->
       <div
         class="page"
         v-bind:class="{ active: active(0) }"
@@ -8,22 +9,24 @@
       >
         <h1>Home</h1>
       </div>
+      <!-- About -->
       <div
-        class="page disabled"
+        class="page"
         v-bind:class="{ active: active(1) }"
         @click="handleClick(1)"
       >
         <h1>About</h1>
-        <h6>Coming soon</h6>
       </div>
+      <!-- Work -->
       <div
         class="page"
         v-bind:class="{ active: active(2) }"
         @click="handleClick(2)"
       >
         <h1>Work</h1>
-        <h6>WIP</h6>
+        <!-- <h6>WIP</h6> -->
       </div>
+      <!-- Photos -->
       <div
         class="page"
         v-bind:class="{ active: active(3) }"
@@ -139,6 +142,8 @@ export default {
   transform: none;
   font-weight: 300;
   pointer-events: none;
+  opacity: 0.25;
+  cursor: not-allowed;
 }
 #socials {
   margin-top: 48px;
