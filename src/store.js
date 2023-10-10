@@ -53,8 +53,9 @@ export default new Vuex.Store({
     numShapes: 64,
     // Array of ints representing availavle colors in palette
     colors: [],
-    // Pallette options
+    // Pallette: HI GAY!
     // palette: ["#F0501E", "#1080E9", "#F6D215", "#25A410", "#F87D0B", "#B64BC7", "#FF95B3", "#75D9F0", "#A06432"],
+    // Some are duplicated to change how often they appear
     palette: [
       // Red
       "#FF1D26",
