@@ -1,6 +1,7 @@
 <template>
-  <div v-if="num == 2" id="intro">
+  <ClassicPageWrapper id="projects" :num="num">
     <h1>Hi, I'm Jon!</h1>
+    <br>
     <h3>
       I’m a designer + developer based in Brooklyn. I love working with
       <a href="https://www.instagram.com/joco.io" target="_blank">media</a>
@@ -8,6 +9,7 @@
       <a href="https://www.github.com/jocoio" target="_blank">technology</a>
       to share stories and build unique experiences.
     </h3>
+    <br>
     <a
       id="resume"
       target="_blank"
@@ -15,14 +17,16 @@
     >
       <h6>Full resume <RightArrow /></h6>
     </a>
-  </div>
-
-  <div v-else class="solid" :id="num" :ref="num" />
+  </ClassicPageWrapper>
 </template>
 
 <script>
+// Utils
 import { mapState } from "vuex";
 import anime from "animejs";
+
+// Components
+import ClassicPageWrapper from '../components/ClassicPageWrapper.vue';
 
 export default {
   name: "About",
@@ -55,7 +59,9 @@ export default {
   props: {
     num: Number,
   },
-  components: {},
+  components: {
+    ClassicPageWrapper
+  },
   watch: {
     transitioning: function () {
       if (!this.transitioning) {

@@ -1,16 +1,12 @@
 <!--- Note: this template is applied to every block in the grid --->
 <!--- Which is why we only render it for 1 block via v-if --->
 <template>
-  <div
-    id="projects"
-    v-if="num === (mobile ? cols + 1 : 2)"
-    :style="container_sty"
-  >
+  <ClassicPageWrapper id="projects" :num="num">
     <!-- Single project if there's a slug in the URL -->
     <ProjectPage v-if="$route.params.slug" />
     <!-- Project grid otherwise -->
     <ProjectsGrid v-else />
-  </div>
+  </ClassicPageWrapper>
 </template>
 
 <script>
@@ -21,12 +17,13 @@ import { mapState } from "vuex";
 import { FEATURES, ALL } from "../data/projects";
 
 // Components
+import ClassicPageWrapper from "../components/ClassicPageWrapper.vue";
 import ProjectsGrid from "../components/ProjectsGrid";
 import ProjectPage from "../components/ProjectPage";
 
 export default {
   name: "Projects",
-  data: function() {
+  data: function () {
     return {
       FEATURES,
       ALL,
@@ -34,6 +31,7 @@ export default {
     };
   },
   components: {
+    ClassicPageWrapper,
     ProjectsGrid,
     ProjectPage,
   },
@@ -48,6 +46,14 @@ export default {
         pointerEvents: this.navOpen ? "none" : "auto",
         paddingTop: this.mobile ? "0px" : "75px",
         overflowY: "scroll",
+        display: "flex",
+        justifyContent: "center",
+      };
+    },
+    wrapper_sty() {
+      return {
+        maxWidth: "1200px",
+        height: "min-content",
       };
     },
   },
@@ -55,7 +61,7 @@ export default {
     num: Number,
   },
   watch: {
-    transitioning: function() {
+    transitioning: function () {
       if (!this.transitioning) {
         this.animIntro.reset();
         this.animIntro.play();
@@ -63,11 +69,11 @@ export default {
     },
   },
   methods: {
-    initIntro: function() {},
+    initIntro: function () {},
   },
 
-  created: function() {},
-  mounted: function() {
+  created: function () {},
+  mounted: function () {
     // this.initIntro();
     // this.animIntro.play();
   },

@@ -4,25 +4,32 @@
     <div id="navContent" ref="content" v-if="open" :style="width_sty">
       <Menu />
     </div>
+    <ActionButton v-if="onProjectPage" />
   </div>
 </template>
 
 <script>
+// Libraries
 import anime from "animejs";
+
+// Utils
 import { mapState, mapGetters } from "vuex";
+
 // Components
+import ActionButton from "./ActionButton";
 import Joco from "../assets/logos/Joco";
 import Menu from "./Menu";
 
 export default {
   name: "Nav",
-  data: function() {
+  data: function () {
     return {
       animOutro: null,
       company: null,
     };
   },
   components: {
+    ActionButton,
     Joco,
     Menu,
   },
@@ -32,12 +39,16 @@ export default {
       "naving",
       "navOpen",
       "navWidth",
+      "currentSlug",
       "introd",
       "transitioning",
     ]),
     ...mapGetters(["blockWidth", "blockHeight"]),
     open() {
       return this.navOpen & !this.naving;
+    },
+    onProjectPage() {
+      return this.$route.name === "projects/:slug";
     },
     width_sty() {
       return {
@@ -107,14 +118,6 @@ export default {
 #navButtons {
   width: 100%;
   height: 100%;
-}
-
-#controller {
-  position: absolute;
-  right: 10%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
 }
 
 #company {
