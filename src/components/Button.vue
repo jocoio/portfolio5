@@ -36,5 +36,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+a.button {
+  display: block;
+  width: max-content;
+}
 </style>

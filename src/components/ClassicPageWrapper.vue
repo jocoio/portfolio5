@@ -41,6 +41,7 @@ export default {
       return {
         maxWidth: "1200px",
         height: "min-content",
+        marginBottom: "200px",
       };
     },
   },

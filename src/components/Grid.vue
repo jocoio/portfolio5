@@ -185,10 +185,10 @@ export default {
 
     initNav: function () {
       // Different Nav transition behavior for projects (& eventually about)
-      if (this.mode === "projects") {
+      if (this.mode === "projects" || this.mode === "about") {
         this.animNav = anime
           .timeline({
-            targets: "#projects",
+            targets: ["#projects", "#about"],
             easing: "easeInOutExpo",
             autoplay: false,
             complete: () => {
