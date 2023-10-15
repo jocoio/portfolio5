@@ -50,7 +50,7 @@ export default {
   methods: {
     // TODO: Make importable service
     url(slug) {
-      var images = require.context("../assets/projects", true, /\.png$/);
+      var images = require.context("../assets", true, /\.png$/);
       return images("./" + slug);
     },
     initAnims() {
