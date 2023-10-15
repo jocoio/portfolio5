@@ -37,18 +37,11 @@
     </div>
     <!-- Socials -->
     <div id="socials">
-      <a href="https://www.instagram.com/joco.io" target="_blank">
-        <h6>Insta</h6>
-      </a>
       <!-- <a href="https://www.etsy.com/shop/JOCOStudioDesigns" target="_blank">
         <h6>Etsy</h6>
       </a> -->
-      <a
-        target="_blank"
-        href="https://nbviewer.jupyter.org/github/jocoio/portfolio5/blob/master/src/assets/resume.pdf"
-      >
-        <h6>Resume</h6>
-      </a>
+      <Button link="https://www.instagram.com/joco.io" label="insta" />
+      <Button link="https://nbviewer.jupyter.org/github/jocoio/portfolio5/blob/master/src/assets/resume.pdf" label="resume" />
     </div>
   </div>
 </template>
@@ -57,7 +50,10 @@
 import anime from "animejs";
 import { mapState } from "vuex";
 import router from "../router";
+
 // Components
+import Button from "./Button.vue";
+
 export default {
   name: "Menu",
   data: function () {
@@ -65,7 +61,9 @@ export default {
       animIntro: null,
     };
   },
-  components: {},
+  components: {
+    Button,
+  },
   computed: {
     ...mapState(["mode", "modes", "naving"]),
   },
@@ -150,16 +148,5 @@ export default {
   display: flex;
   gap: 10px;
   align-items: center;
-}
-#socials h6 {
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-weight: 600;
-  color: black;
-  background-color: white;
-}
-#socials h6 .arrow {
-  margin-left: 5px;
-  color: inherit;
 }
 </style>
